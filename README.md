@@ -1,2 +1,1 @@
-# LinDeng.io
-Lin's person blog
+This is Lin Blog
