@@ -11,27 +11,35 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Example Post - Lin Blog | Blog">
+    <meta property="og:title" content="Optimization Modeling: Sports League Realignment - Lin Blog | Blog">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="JavaScript 有着很奇怪的命名史。
+    <meta property="og:description" content="Introduction
 
 ">
     
-    <meta property="article:published_time" content="2015-09-22T00:00:00Z">
+    <meta property="article:published_time" content="2018-03-27T07:00:00Z">
     
     
-    <meta property="article:author" content="Hux">
+    <meta property="article:author" content="LIN">
     
     
-    <meta property="article:tag" content="翻译">
+    <meta property="article:tag" content="Optimization">
+    
+    <meta property="article:tag" content="Model">
+    
+    <meta property="article:tag" content="AMPL">
+    
+    <meta property="article:tag" content="R">
+    
+    <meta property="article:tag" content="Sports">
     
     
     <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
-    <meta property="og:url" content="http://localhost:4000/2015/09/22/js-version/">
+    <meta property="og:url" content="http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/">
     <meta property="og:site_name" content="Lin Blog | Blog">
     
-    <title>Example Post - Lin Blog | Blog</title>
+    <title>Optimization Modeling: Sports League Realignment - Lin Blog | Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -40,7 +48,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2015/09/22/js-version/">
+    <link rel="canonical" href="http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -176,7 +184,7 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+<!-- <img src="/img/in-post/post-NHL-0.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -185,7 +193,7 @@
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-js-version.jpg');
+        background-image: url('/img/in-post/post-NHL-0.jpg');
         background: ;
     }
 
@@ -202,13 +210,21 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=%E7%BF%BB%E8%AF%91" title="翻译">翻译</a>
+                        <a class="tag" href="/archive/?tag=Optimization" title="Optimization">Optimization</a>
+                        
+                        <a class="tag" href="/archive/?tag=Model" title="Model">Model</a>
+                        
+                        <a class="tag" href="/archive/?tag=AMPL" title="AMPL">AMPL</a>
+                        
+                        <a class="tag" href="/archive/?tag=R" title="R">R</a>
+                        
+                        <a class="tag" href="/archive/?tag=Sports" title="Sports">Sports</a>
                         
                     </div>
-                    <h1>Example Post</h1>
+                    <h1>Optimization Modeling: Sports League Realignment</h1>
                     
-                    <h2 class="subheading">ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?</h2>
-                    <span class="meta">Posted by Hux on September 22, 2015</span>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by LIN on March 27, 2018</span>
                 </div>
             </div>
         </div>
@@ -234,77 +250,200 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p>JavaScript 有着很奇怪的命名史。</p>
+				<h2 id="introduction">Introduction</h2>
 
-<p>1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript <em>（当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）</em></p>
+<p>For MLB, NBA, NFL, NHL these four big leagues in North America normally consists of 30 to 32 teams. These teams will play same number of home and away games in the same division, and against some teams in other conferences and divisions.</p>
 
-<p><img src="/img/in-post/post-js-version/javascript-java.jpg" alt="java-javascript" />
-<small class="img-hint">歪果仁的笑话怎么一点都不好笑</small></p>
+<p>Take the National Hockey League (NHL) as an example, prior to 2013, the league was structured into two 15-team conferences, each subdivided into three 5-team. This kind of assignment is called <strong>League Structure</strong>.</p>
 
-<blockquote>
-  <p>译者注：<a href="https://en.wikipedia.org/wiki/JavaScript#History">wikipedia 的 JavaScript 词条</a> 更详细的叙述了这段历史</p>
-</blockquote>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2vhqa9bd9j310o04u0tb.jpg" alt="NHL 2008-2012" /></p>
 
-<p>1996 年，网景将 JavaScript 提交给 <a href="http://www.ecma-international.org/">ECMA International（欧洲计算机制造商协会）</a> 进行标准化，并最终确定出新的语言标准，它就是 ECMAScript。自此，ECMAScript 成为所有 JavaScript 实现的基础，不过，由于 JavaScript 名字的历史原因和市场原因（很显然 ECMAScript 这个名字并不令人喜欢……），现实中我们只用 ECMAScript 称呼标准，平时都还是使用 JavaScript 来称呼这个语言。</p>
+<p>But for 2013-2014 season, the league realign the number of subdivision to 4.</p>
 
-<blockquote>
-  <p>术语（译者注）：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2viahuipbj30f302uaa6.jpg" alt="NHL 2013-2014" /></p>
 
-  <ul>
-    <li><em>标准（Standard）</em>： 用于定义与其他事物区别的一套规则</li>
-    <li><em>实现（Implementation）</em>： 某个标准的具体实施/真实实践</li>
-  </ul>
-</blockquote>
+<p>Hence for this optimization problem we need to focus on how to build a model that will support the construction of a efficient league structure.</p>
 
-<p>不过，JavaScript 开发者们并不怎么在乎这些，因为在诞生之后的 15 年里，ECMAScript 并没有多少变化，而且现实中的很多实现都已经和标准大相径庭。其实在第一版的 ECMAScript 发布后，很快又跟进发布了两个版本，但是自从 1999 年 ECMAScript 3 发布后，十年内都没有任何改动被成功添加到官方规范里。取而代之的，是各大浏览器厂商们争先进行自己的语言拓展，web 开发者们别无选择只能去尝试并且支持这些 API。即使是在 2009 年 ECMAScript 5 发布之后，仍然用了数年这些新规范才得到了浏览器的广泛支持，可是大部分开发者还是写着 ECMAScript 3 风格的代码，并不觉得有必要去了解这些规范。</p>
+<h2 id="league-structure-evaluation">League Structure Evaluation</h2>
 
-<blockquote>
-  <p>译者注：<a href="https://en.wikipedia.org/wiki/ECMAScript#4th_Edition_.28abandoned.29">ECMAScript 第四版草案</a>由于太过激进而被抛弃，Adobe 的 <a href="https://en.wikipedia.org/wiki/ActionScript">ActionScript 3.0</a> 是 ECMAScript edition 4 的唯一实现（ Flash 差点就统一 Web 了）</p>
-</blockquote>
+<p>The purpose of constructing a league structure is to minimize the total travel distance for a whole season. We set $S$ as the league structure, the measure or objective function $D(S)$ is defined as the total distances over all games between pairs $(i, j)$ teams or cities. Base on above, let $d(i,j) $ as distance between teams or home cities $(i, j)$ , $g(i, j)$ as the number of games between pair $(i, j)$ in a season. The objective can be defined as:</p>
 
-<p>到了 2012 年，事情突然开始有了转变。大家开始推动停止对旧版本 IE 浏览器的支持，用 ECMAScript 5 (ES5) 风格来编写代码也变得更加可行。与此同时，一个新的 ECMAScript 规范也开始启动。到了这时，大家开始逐渐习惯以对 ECMAScript 规范的版本支持程度来形容各种 JavaScript 实现。在正式被指名为 ECMAScript 第 6 版 (ES6) 之前，这个新的标准原本被称为 ES.Harmony（和谐）。2015 年，负责制定 ECMAScript 规范草案的委员会 TC39 决定将定义新标准的制度改为一年一次，这意味着每个新特性一旦被批准就可以添加，而不像以往一样，规范只有在整个草案完成，所有特性都没问题后才能被定稿。因此，ECMAScript 第 6 版在六月份公布之前，又被重命名为了 ECMAScript 2015（ES2015）</p>
+<script type="math/tex; mode=display">D(S) = \sum_{(i,j)}d(i, j)g(i,j)</script>
 
-<p>目前，仍然有很多新的 JavaScript 特性或语法正在提议中，包括 <a href="https://github.com/wycats/javascript-decorators">decorators（装饰者）</a>，<a href="https://github.com/lukehoban/ecmascript-asyncawait">async-await（async-await 异步编程模型）</a> 和 <a href="https://github.com/jeffmo/es-class-properties">static class properties（静态类属性）</a>。它们通常被称为 ES7，ES2016 或者 ES.Next 的特性，不过实际上它们只能被称作提案或者说可能性，毕竟 ES2016 的规范还没有完成，有可能全部都会引入，也有可能一个都没有。TC39 把一个提案分为 4 个阶段，你可以在 <a href="https://babeljs.io/docs/usage/experimental/">Babel 的官网</a> 上查看各个提案目前都在哪个阶段了。</p>
+<h2 id="mixed-integer-programming-mip">Mixed Integer Programming (MIP)</h2>
 
-<p>所以，我们该如何使用这一大堆术语呢？下面的列表或许能帮助到你：</p>
+<p>Our realignment (league structure) is a common Mixed Integer Progarmming which require one additional condition that at least one of the variables can and only take integer value. For NHL teams whther to be assigned to one of subdivision is a binary (0 or 1) problem.</p>
+
+<p>The basic form of MIP:</p>
+
+<p>Minimize</p>
+
+<script type="math/tex; mode=display">\beta^T X</script>
+
+<p>subject to</p>
+
+<script type="math/tex; mode=display">AX \le b, X\geq 0</script>
+
+<p>Where</p>
+
+<script type="math/tex; mode=display">X = (x_1, x_2, x_3, ..., x_n)^T, x_i \in X \ are \ restricted\  to\  integer</script>
+
+<script type="math/tex; mode=display">\beta = (\beta_1, \beta_2, \beta_3,..., \beta_n)^T</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+A = \begin {pmatrix}a_{11} &...  &a_{1n}\\ \vdots &\ddots &\vdots \\a_{n1} &... &a_{nn} \end {pmatrix} %]]></script>
+
+<script type="math/tex; mode=display">b = (b_1, b_2, b_3,..., b_n)^T</script>
+
+<h2 id="minimizing-the-total-league-travel-distance-mip">Minimizing the total league travel distance MIP</h2>
 
 <ul>
-  <li><strong>ECMAScript</strong>：一个由 ECMA International 进行标准化，TC39 委员会进行监督的语言。通常用于指代标准本身。</li>
-  <li><strong>JavaScript</strong>：ECMAScript 标准的各种实现的最常用称呼。这个术语并不局限于某个特定版本的 ECMAScript 规范，并且可能被用于任何不同程度的任意版本的 ECMAScript 的实现。</li>
-  <li><strong>ECMAScript 5 (ES5)</strong>：ECMAScript 的第五版修订，于 2009 年完成标准化。这个规范在所有现代浏览器中都相当完全的实现了。</li>
-  <li><strong>ECMAScript 6 (ES6) / ECMAScript 2015 (ES2015)</strong>：ECMAScript 的第六版修订，于 2015 年完成标准化。这个标准被部分实现于大部分现代浏览器。可以查阅<a href="http://kangax.github.io/compat-table/es6/">这张兼容性表</a>来查看不同浏览器和工具的实现情况。</li>
-  <li><strong>ECMAScript 2016</strong>：预计的第七版 ECMAScript 修订，计划于明年夏季发布。这份规范具体将包含哪些特性还没有最终确定</li>
-  <li><strong>ECMAScript Proposals</strong>：被考虑加入未来版本 ECMAScript 标准的特性与语法提案，他们需要经历五个阶段：Strawman（稻草人），Proposal（提议），Draft（草案），Candidate（候选）以及 Finished （完成）。</li>
+  <li>$T$ is a set of $n$ teams or cities</li>
+  <li>$S$ is a set of $s$ divisions</li>
+  <li>$D = (D_{ij} = d(i, j): i, j \in T)$ is a $n \times n$ matrix that contains distance between each pair of cities</li>
+  <li>G is a $s \times s$ matrix. $G_{u, v}$ represent average number of games between division $u$ and $v$, it was calculated by the understanding the schedule of NHL, details could be seen at <a href="https://en.wikipedia.org/wiki/Season_structure_of_the_NHL">Season structure of the NHL</a></li>
+  <li>Set $b$ as the number of teams assigned into each divisions</li>
 </ul>
 
-<p>在这整个 Blog 中，我将把目前的 ECMAScript 版本称作 ES6（因为这是大部分开发者最习以为常的），把明年的规范称作 ES2016（因为，与 ES6/ES2015 不同，这个名字将在整个标准化过程中沿用）并且将那些还没有成为 ECMAScript 定稿或草案的未来语言概念称为 ECMAScript 提案或者 JavaScript 提案。我将尽我所能在任何可能引起困惑的场合沿用这篇文章。</p>
+<blockquote>
+  <p><strong>2008 - 2012</strong></p>
 
-<h4 id="一些资源">一些资源</h4>
+  <p>NHL was a 2-conference, 6-division league where $n = 30, s = 6, b = [5, 5, 5, 5, 5, 5]$</p>
+</blockquote>
+
+<script type="math/tex; mode=display">% <![CDATA[
+G = \begin{pmatrix} 3 & 2 & 2 & 0.6 & 0.6 & 0.6 \\ 2 & 3 & 2 & 0.6 & 0.6 & 0.6 \\ 2 & 2 & 3 & 0.6 & 0.6 & 0.6 \\ 0.6 & 0.6 & 0.6 & 3 & 2 & 2 \\ 0.6 & 0.6 & 0.6 & 2 & 3 & 2 \\   0.6 & 0.6 & 0.6 & 2 & 2 & 3 \\\end{pmatrix} %]]></script>
+
+<blockquote>
+  <p><strong>2013 - 2014</strong></p>
+
+  <p>NHL had 4 divisions where $n = 30, s = 4, b = [7, 7, 8, 8]$</p>
+</blockquote>
+
+<script type="math/tex; mode=display">% <![CDATA[
+G = \begin{pmatrix} \frac{15}{7} & \frac{3}{2} & 1 & 1 \\ \frac{3}{2} & \frac{15}{7} &1 & 1 \\ 1 & 1 & \frac{14.5}{6} & \frac{3}{2} \\ 1 & 1 & \frac{3}{2} & \frac{14.5}{6} \end{pmatrix} %]]></script>
+
+<h3 id="formulate-mip">Formulate MIP</h3>
+
+<p>Set $x_{iu} = 1$ if team i in division j else $x_{iu} = 0$. Hence, we can get objective function as</p>
+
+<p>minimize</p>
+
+<script type="math/tex; mode=display">F(x) = \sum_{i,j \in T} \sum_{u,v \in S} x_{iu} \cdot x_{jv} \cdot D_{ij} \cdot G_{uv}</script>
+
+<blockquote>
+  <p>However, this may lead objective function $F(x) = 0$,  or one of the team will be assigned to multiple divisions, then we need a more rigorous term to define the assignment of each teams corresponding to each divisions.</p>
+</blockquote>
+
+<p>Set $Y_{ijuv}$ as follows: for each pair of teams $(i,j)$ and each pair of divisions $(u, v)$, if $y_{ijuv} = 1$ means team $i$ is assigned to division $u$, team $j$ is assigned to division $v$</p>
 
 <ul>
-  <li>TC39 的 <a href="https://github.com/tc39/ecma262">Github 仓库</a>上可以看到所有目前公开的提案</li>
-  <li>如果你还不熟悉 ES6，Babel 有一个<a href="https://babeljs.io/docs/learn-es2015/">很不错的特性概览</a></li>
-  <li>如果你希望深入 ES6，这里有两本很不错的书： Axel Rauschmayer 的 <a href="http://exploringjs.com/">Exploring ES6</a>和 Nicholas Zakas 的 <a href="https://leanpub.com/understandinges6">Understanding ECMAScript 6</a>。Axel 的博客 <a href="http://www.2ality.com/">2ality</a> 也是很不错的 ES6 资源</li>
+  <li>$\sum_{u, v \in S} Y_{ijuv} = 1$ for each pair of cities $(i, j)$</li>
+  <li>$\sum_{i, j \in T} Y_{ijuv} = b_u \cdot b_v$ for each pair of divisions $(u, v)$</li>
 </ul>
 
-<p><img class="shadow" width="320" src="/img/in-post/post-js-version/keep-calm-and-learn-javascript.png" />
-<small class="img-hint">来学 JavaScript 吧！</small></p>
+<p>For now we can summarize out MIP optimization:</p>
 
-<h4 id="著作权声明">著作权声明</h4>
+<p>minimize</p>
 
-<p>本文译自 <a href="http://benmccormick.org/2015/09/14/es5-es6-es2016-es-next-whats-going-on-with-javascript-versioning/">ES5, ES6, ES2016, ES.Next: What’s going on with JavaScript versioning?</a> <br />
-译者 <a href="http://weibo.com/huxpro">黄玄</a>，首次发布于 <a href="http://huangxuan.me">Hux Blog</a>，转载请保留以上链接</p>
+<script type="math/tex; mode=display">\sum_{i,j\in T; u,v\in S} Y_{ijuv} \cdot D_{ij}  \cdot G_{uv}</script>
+
+<p>s.t.</p>
+
+<script type="math/tex; mode=display">\sum_{i \in T} x_{iu} = b_u \ for \ u \in S</script>
+
+<blockquote>
+  <p>number of teams in each division must fullfill requirment</p>
+</blockquote>
+
+<script type="math/tex; mode=display">\sum_{u \in S}  x_{iu} = 1 \ for \  i \in T</script>
+
+<blockquote>
+  <p>each team can only be assigned into one division</p>
+</blockquote>
+
+<script type="math/tex; mode=display">\sum_{u, v \in S} y_{ijuv} = 1 \ for \ each  \ pair \ of \ teams \ (i, j)</script>
+
+<script type="math/tex; mode=display">\sum_{i, j \in T} y_{ijuv} = b_u \cdot b_v\ for \ each \ pair \ of \ divisions \ (u, v)</script>
+
+<blockquote>
+  <p>for any two divisions, will have $b_u \cdot b_v$ pairs of teams</p>
+</blockquote>
+
+<script type="math/tex; mode=display">y_{ijuv} \leq x_{iu} \ \ \ i,j \in T \ u,v \in S</script>
+
+<script type="math/tex; mode=display">y_{ijuv} \leq x_{jv} \ \ \ i,j \in T \ u,v \in S</script>
+
+<blockquote>
+  <p>$y_{ijuv} = 1$ when both $x_{iu}, x_{jv} = 1$</p>
+</blockquote>
+
+<h2 id="application">Application</h2>
+
+<p>Base on the above MIP, we can apply this to our own division schedule.</p>
+
+<h3 id="roller-derby">Roller Derby</h3>
+
+<p>A organizing committee for a new Roller Derby sports league
+is in the process of assigning 16 teams to four divisions in such a way that overall league travel is minimized. The 16 teams are located in the following cities.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">indianapolis,   in</th>
+      <th>columbus, oh</th>
+      <th>cincinnati, oh</th>
+      <th>st. paul, mn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">milwaukee, wi</td>
+      <td>memphis, tn</td>
+      <td>toledo, oh</td>
+      <td>grand rapids, mi</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">bloomington, il</td>
+      <td>louisville, ky</td>
+      <td>rockford, il</td>
+      <td>fort wayne, in</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">cedar rapids, ia</td>
+      <td>topeka, ks</td>
+      <td>green bay, wi</td>
+      <td>sioux falls, sd</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And what if we assigned <strong>Fort Wanye, IN</strong> and <strong>Indianapolis, IN</strong> into a same division. How  does this new constraint affect the total distance and alignment ?</p>
+
+<p>Details can be seen in my <a href="https://github.com/linchrisdeng/Optimization-Modeling-Sports-League-Realignment">GitHub</a> or <a href="https://htmlpreview.github.io/?https://github.com/linchrisdeng/Optimization-Modeling-Sports-League-Realignment/blob/master/Realignment.html#model">here</a></p>
+
+<h3 id="update">Update</h3>
+
+<ul>
+  <li>In R, <a href="http://www.datasciencetoolkit.org/about">DataScienceToolkit</a> will not support  <code class="highlighter-rouge">geocode</code> function <code class="highlighter-rouge">dsk</code> API anymore, please register, please register <a href="https://developers.google.com/maps/documentation/geocoding/start">Google GeoCoding API</a></li>
+  <li>To solve this MIP Optimization problem I use <a href="https://ampl.com/products/ampl/">AMPL</a> which is a optimization modeling system support (CPLEX, Gurobi, Xpress) solver, but it is not free to use except <a href="https://ampl.com/products/ampl/ampl-for-students/">30-day trial</a> for students</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ol>
+  <li>
+    <p><a href="https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Mixed_Integer_Programming.pdf">Mix Integer Programming</a></p>
+  </li>
+  <li>
+    <p>Macdonald, B. and Pulleyblank, W., 2014. Realignment in the NHL, MLB, NFL, and NBA. <em>Journal of Quantitative Analysis in Sports</em>, <em>10</em>(2), pp.225-240.</p>
+  </li>
+</ol>
+
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2015/07/09/js-module-7day/" data-toggle="tooltip" data-placement="top" title="Example Post using Keynote Layout">
-                        Previous<br>
-                        <span>Example Post using Keynote Layout</span>
-                        </a>
-                    </li>
                     
                     
                 </ul>
@@ -381,6 +520,27 @@
 </article>
 
 <!-- add support for mathjax by voleking-->
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    SVG: {
+      scale: 90
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
 
 
 
@@ -469,7 +629,8 @@
                     Copyright &copy; Lin Blog 2019
                     <br>
                     Powered by <a href="https://jekyllrb.com/">Jekyll</a> & 
-                    Theme by <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/quick-start">TeXt & <a href="https://github.com/Huxpro/huxpro.github.io#boilerplate-beta">Hux</a> 
+                    Theme by <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/structure">TeXt </a> &
+                        <a href="https://github.com/Huxpro/huxpro.github.io#boilerplate-beta">Hux</a> 
 
 <!--                     |
                     <iframe
@@ -541,6 +702,21 @@
 
 
 <!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139933717-1';
+    var _gaDomain = 'linchrisdeng.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
 
 
 
