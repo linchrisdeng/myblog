@@ -16,8 +16,6 @@ mathjax: true
 mathjax_autoNumber: true
 ---
 
-
-
 ##  Introduction
 
 For MLB, NBA, NFL, NHL these four big leagues in North America normally consists of 30 to 32 teams. These teams will play same number of home and away games in the same division, and against some teams in other conferences and divisions.

@@ -5,9 +5,47 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 09 May 2019 23:00:52 -0500</pubDate>
-    <lastBuildDate>Thu, 09 May 2019 23:00:52 -0500</lastBuildDate>
+    <pubDate>Fri, 10 May 2019 11:20:42 -0500</pubDate>
+    <lastBuildDate>Fri, 10 May 2019 11:20:42 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Machine Learning Optimization I</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Before talking about optimization in Machine Learning we need to clarify a question:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A: What does a machine learn?&lt;/p&gt;
+
+  &lt;p&gt;B: Algorithms! Supervised/Unsupervised Learning! KNN, Naive Bayes! Trees!&lt;/p&gt;
+
+  &lt;p&gt;A: Well, these are what we human beings need to learn. The question is WHAT does a MACHINE LEARN?&lt;/p&gt;
+
+  &lt;p&gt;B: I am not sure about your problem…&lt;/p&gt;
+
+  &lt;p&gt;A: &lt;strong&gt;PARAMETERS!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Before we start talking about how machine learn parameters, we trully need to review some mathmatics.&lt;/p&gt;
+
+&lt;h3 id=&quot;taylor-series-approximation&quot;&gt;Taylor Series Approximation&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you are tired of reading, please check this &lt;a href=&quot;https://www.khanacademy.org/math/ap-calculus-bc/bc-series-new/bc-10-11/v/maclaurin-and-taylor-series-intuition&quot;&gt;LINK&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Sat, 27 Apr 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/04/27/Machine-Learning-Optimization-I/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/27/Machine-Learning-Optimization-I/</guid>
+        
+        <category>Machine Learning</category>
+        
+        <category>Optimization</category>
+        
+        
+      </item>
     
       <item>
         <title>Optimization Modeling: Sports League Realignment</title>
