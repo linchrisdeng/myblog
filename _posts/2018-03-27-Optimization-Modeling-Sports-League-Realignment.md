@@ -4,7 +4,7 @@ title:      "Optimization Modeling: Sports League Realignment"
 subtitle:   ""
 date:       2018-03-27 12:00:00
 author:     "LIN"
-header-img: "img/in-post/post-NHL-0.jpg"
+header-img: "img/in-post/NHL/post-NHL-0.jpg"
 tags:
     - Optimization
     - Model
@@ -22,11 +22,11 @@ For MLB, NBA, NFL, NHL these four big leagues in North America normally consists
 
 Take the National Hockey League (NHL) as an example, prior to 2013, the league was structured into two 15-team conferences, each subdivided into three 5-team. This kind of assignment is called **League Structure**.
 
-![NHL 2008-2012](https://ws3.sinaimg.cn/large/006tNc79ly1g2vhqa9bd9j310o04u0tb.jpg)
+![NHL 2008-2012](/img/in-post/NHL/post-NHL-1.jpg)
 
 But for 2013-2014 season, the league realign the number of subdivision to 4.
 
-![NHL 2013-2014](https://ws1.sinaimg.cn/large/006tNc79ly1g2viahuipbj30f302uaa6.jpg)
+![NHL 2013-2014](/img/in-post/NHL/post-NHL-1.jpg)
 
 Hence for this optimization problem we need to focus on how to build a model that will support the construction of a efficient league structure.
 
