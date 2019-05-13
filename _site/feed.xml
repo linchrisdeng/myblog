@@ -5,8 +5,8 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 May 2019 21:21:22 -0500</pubDate>
-    <lastBuildDate>Sun, 12 May 2019 21:21:22 -0500</lastBuildDate>
+    <pubDate>Sun, 12 May 2019 21:26:55 -0500</pubDate>
+    <lastBuildDate>Sun, 12 May 2019 21:26:55 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -988,6 +988,10 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 &lt;/blockquote&gt;
 
 &lt;p&gt;However,  application in real machine learn or data mining production circumstance is another more complicated problem. In the next few blogs, I will interpret how to deal with regression and classification.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Plot code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/blob/master/ML_Optimization_00.ipynb&quot;&gt;ML_Optimization_00&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 27 Apr 2019 07:00:00 -0500</pubDate>
