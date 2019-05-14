@@ -5,8 +5,8 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 13 May 2019 23:49:43 -0500</pubDate>
-    <lastBuildDate>Mon, 13 May 2019 23:49:43 -0500</lastBuildDate>
+    <pubDate>Tue, 14 May 2019 00:00:21 -0500</pubDate>
+    <lastBuildDate>Tue, 14 May 2019 00:00:21 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -184,6 +184,11 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
   &lt;/body&gt;
   
 &lt;/html&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_01_Regression&quot;&gt;Github&lt;/a&gt;, &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_01_Regression/ML_01_regression.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 26 Mar 2019 07:00:00 -0500</pubDate>
         <link>http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II/</link>
@@ -1186,7 +1191,7 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 
 &lt;hr /&gt;
 
-&lt;p&gt;Plot code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/blob/master/ML_Optimization_00.ipynb&quot;&gt;ML_Optimization_00&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_00_GD_NT&quot;&gt;GitHub&lt;/a&gt;, &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_00_GD_NT/ML_00_GD_NT.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 21 Mar 2019 07:00:00 -0500</pubDate>

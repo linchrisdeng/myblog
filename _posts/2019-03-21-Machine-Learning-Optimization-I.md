@@ -261,7 +261,9 @@ However,  application in real machine learn or data mining production circumstan
 
 ----------------
 
-Plot code: [ML_Optimization_00](<https://github.com/linchrisdeng/ML_post/blob/master/ML_Optimization_00.ipynb>)
+Code: [GitHub](<https://github.com/linchrisdeng/ML_post/tree/master/ML_00_GD_NT>), [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_00_GD_NT/ML_00_GD_NT.ipynb>)
+
+
 
 
 

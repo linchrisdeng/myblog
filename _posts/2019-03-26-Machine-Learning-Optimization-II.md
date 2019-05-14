@@ -123,3 +123,10 @@ array([[-1.60729045e+02],
 
 
 {%include /plot/Reg_00.html%}
+
+
+
+-----
+
+Code: [Github](<https://github.com/linchrisdeng/ML_post/tree/master/ML_01_Regression>), [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_01_Regression/ML_01_regression.ipynb>)
+
