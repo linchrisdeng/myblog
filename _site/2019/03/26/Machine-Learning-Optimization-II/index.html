@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="What did I do && What will I do">
+    <meta name="keywords"  content="">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Machine Learning Optimization II - Lin Blog | Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="Introduction
+
+">
+    
+    <meta property="article:published_time" content="2019-03-26T07:00:00Z">
+    
+    
+    <meta property="article:author" content="LIN">
+    
+    
+    <meta property="article:tag" content="Machine Learning">
+    
+    <meta property="article:tag" content="Optimization">
+    
+    <meta property="article:tag" content="Linear Regression">
+    
+    <meta property="article:tag" content="Python">
+    
+    <meta property="article:tag" content="Gradient Descent">
+    
+    <meta property="article:tag" content="Newton's Method">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
+    <meta property="og:url" content="http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II/">
+    <meta property="og:site_name" content="Lin Blog | Blog">
+    
+    <title>Machine Learning Optimization II - Lin Blog | Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lin Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="/archive/">Archive</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/in-post/post-MLOptimization-1.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/in-post/post-MLOptimization-1.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=Machine+Learning" title="Machine Learning">Machine Learning</a>
+                        
+                        <a class="tag" href="/archive/?tag=Optimization" title="Optimization">Optimization</a>
+                        
+                        <a class="tag" href="/archive/?tag=Linear+Regression" title="Linear Regression">Linear Regression</a>
+                        
+                        <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
+                        
+                        <a class="tag" href="/archive/?tag=Gradient+Descent" title="Gradient Descent">Gradient Descent</a>
+                        
+                        <a class="tag" href="/archive/?tag=Newton%27s+Method" title="Newton's Method">Newton's Method</a>
+                        
+                    </div>
+                    <h1>Machine Learning Optimization II</h1>
+                    
+                    <h2 class="subheading">Regression</h2>
+                    <span class="meta">Posted by LIN on March 26, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h2 id="introduction">Introduction</h2>
+
+<p>We have reviewed <strong>Gradient Descent</strong> and <strong>Newton’s Method</strong> in previous blog. It’s time to apply optimization method into real problems – <strong>Regression</strong>.</p>
+
+<h3 id="notation">Notation</h3>
+
+<p>Input $X$ is a dataset with $N$ rows, $P+1$ columns:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots} \\ {\mathbf{x}_{n}^{T}}\end{array}\right)=\left( \begin{array}{cccc}{1} & {x_{11}} & {\cdots} & {x_{1 p}} \\ {1} & {x_{21}} & {\cdots} & {x_{2 p}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {1} & {x_{n 1}} & {\cdots} & {x_{n p}}\end{array}\right) %]]></script>
+
+<p>Output $Y$:</p>
+
+<script type="math/tex; mode=display">Y = [y_1, y_2, ..., y_n]^T</script>
+
+<p>$N + 1$ parameters:</p>
+
+<script type="math/tex; mode=display">W = [w_0, w_1, w_2, ..., w_n]^T</script>
+
+<p>Normal form of linear regression:</p>
+
+<script type="math/tex; mode=display">y_p \approx w_0 + w_1x_{p, 1} + w_2x_{p,2} + \cdots + w_nx_{p,n}</script>
+
+<p>or</p>
+
+<script type="math/tex; mode=display">y_p = w_0 + w_1x_{i, 1} + w_2x_{i,2} + \cdots + w_nx_{i,n} + \varepsilon_i, \ \ \ \ \ \ \ i = 1,...n</script>
+
+<p>where $\varepsilon$ is residual (error) to the fitness line</p>
+
+<p>Full equation:</p>
+
+<script type="math/tex; mode=display">Y \approx W^TX</script>
+
+<h2 id="cost-function">Cost Function</h2>
+
+<p>Cost function is a way that we can measure the fitness of our regression.</p>
+
+<p>Normally we use <strong>Least Squares</strong> for regression problem.</p>
+
+<p><img src="/img/in-post/ML_Optimization/least_squares.jpg" alt="least_squares" /></p>
+
+<p>We aim to minimize the distance between data and regression line.</p>
+
+<script type="math/tex; mode=display">g(w) = \sum^N_{i = 1}(w^T x_i - y_i)^2</script>
+
+<p>Then we can try to expand the equation</p>
+
+<script type="math/tex; mode=display">g(w) = \sum_{i = 1}^N((w^Tx_i)^2 + y_i^2 - 2w^Tx_iy_i)</script>
+
+<p>Regardless of the dataset, the least square cost function for linear regression is always convex.</p>
+
+<p>It means for X with one dimension, least square will be a U curve. To compute the gradient of least squares, which gives:</p>
+
+<script type="math/tex; mode=display">\nabla g(w) = 2\sum^N_{i = 1}(w^Tx_i)x_i - 2y_ix_i = 0</script>
+
+<script type="math/tex; mode=display">w^T = \sum^N_{i=1}y_ix_i(\sum^N_{i = 1}x_i^2)^{-1}</script>
+
+<script type="math/tex; mode=display">w = (X^TX)^{-1}X^TY</script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c1"># import the dataset
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'student_debt_data.csv'</span><span class="p">,</span><span class="n">header</span> <span class="o">=</span> <span class="bp">None</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># pad input with ones
+</span><span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">o</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">w</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x_new</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">x_new</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x_new</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>      <span class="c1"># weights learned by solving linear system
+</span><span class="n">w</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<pre><code class="language-output">array([[-1.60729045e+02],
+       [ 8.03244175e-02]])
+</code></pre>
+
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8" />
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css" type="text/css" />
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="3d7ad884-3006-47a0-b8b4-fa645551b5b1" data-root-id="2038"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="2381">
+          {"1ab45b61-74d5-4fe7-afb4-5b9c54a2f10b":{"roots":{"references":[{"attributes":{"children":[{"id":"1977","subtype":"Figure","type":"Plot"},{"id":"1999","subtype":"Figure","type":"Plot"}]},"id":"2038","type":"Row"},{"attributes":{},"id":"1996","type":"CrosshairTool"},{"attributes":{},"id":"2107","type":"Selection"},{"attributes":{},"id":"1984","type":"LinearScale"},{"attributes":{},"id":"2108","type":"UnionRenderers"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"zczMzMxQn0AAAAAAAFKfQDMzMzMzU59AAAAAAABUn0DNzMzMzFSfQAAAAAAAVp9AMzMzMzNXn0AAAAAAAFifQM3MzMzMWJ9AAAAAAABan0AzMzMzM1ufQAAAAAAAXJ9AzczMzMxcn0AAAAAAAF6fQDMzMzMzX59AAAAAAABgn0DNzMzMzGCfQAAAAAAAYp9AMzMzMzNjn0AAAAAAAGSfQM3MzMzMZJ9AAAAAAABmn0AzMzMzM2efQAAAAAAAaJ9AzczMzMxon0AAAAAAAGqfQDMzMzMza59AAAAAAABsn0DNzMzMzGyfQAAAAAAAbp9AMzMzMzNvn0AAAAAAAHCfQM3MzMzMcJ9AAAAAAAByn0AzMzMzM3OfQAAAAAAAdJ9AzczMzMx0n0AAAAAAAHafQDMzMzMzd59AAAAAAAB4n0A=","dtype":"float64","shape":[40]},"y":{"__ndarray__":"pHA9Ctej0D+kcD0K16PQPx+F61G4HtU/ZmZmZmZm1j8K16NwPQrXP65H4XoUrtc/UrgehetR2D/2KFyPwvXYP4XrUbgehds/KVyPwvUo3D/NzMzMzMzcP7gehetRuN4/UrgehetR4D9SuB6F61HgP/YoXI/C9eA/mpmZmZmZ4T+PwvUoXI/iP+F6FK5H4eI/hetRuB6F4z97FK5H4XrkPx+F61G4HuU/w/UoXI/C5T8UrkfhehTmPwrXo3A9Cuc/UrgehetR6D9SuB6F61HoP/YoXI/C9eg/7FG4HoXr6T/sUbgehevpPzMzMzMzM+s/16NwPQrX6z/Xo3A9CtfrP83MzMzMzOw/H4XrUbge7T+4HoXrUbjuPwrXo3A9Cu8/rkfhehSu7z+uR+F6FK7vP3sUrkfhevA/SOF6FK5H8T8=","dtype":"float64","shape":[40]}},"selected":{"id":"2109","type":"Selection"},"selection_policy":{"id":"2110","type":"UnionRenderers"}},"id":"2031","type":"ColumnDataSource"},{"attributes":{},"id":"2099","type":"BasicTickFormatter"},{"attributes":{"callback":null},"id":"2000","type":"DataRange1d"},{"attributes":{},"id":"2109","type":"Selection"},{"attributes":{"line_color":"red","x":{"field":"x"},"y":{"field":"y"}},"id":"2027","type":"Line"},{"attributes":{"formatter":{"id":"2097","type":"BasicTickFormatter"},"ticker":{"id":"1987","type":"BasicTicker"}},"id":"1986","type":"LinearAxis"},{"attributes":{},"id":"1982","type":"LinearScale"},{"attributes":{"data_source":{"id":"2021","type":"ColumnDataSource"},"glyph":{"id":"2022","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2023","type":"Circle"},"selection_glyph":null,"view":{"id":"2025","type":"CDSView"}},"id":"2024","type":"GlyphRenderer"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"2028","type":"Line"},{"attributes":{},"id":"2110","type":"UnionRenderers"},{"attributes":{},"id":"2014","type":"BasicTicker"},{"attributes":{"data_source":{"id":"2026","type":"ColumnDataSource"},"glyph":{"id":"2027","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2028","type":"Line"},"selection_glyph":null,"view":{"id":"2030","type":"CDSView"}},"id":"2029","type":"GlyphRenderer"},{"attributes":{"source":{"id":"2026","type":"ColumnDataSource"}},"id":"2030","type":"CDSView"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"zczMzMxQn0AdzuEczlGfQG3P9mzPUp9AvdALvdBTn0AN0iAN0lSfQF3TNV3TVZ9ArdRKrdRWn0D+1V/91VefQE7XdE3XWJ9AntiJndhZn0Du2Z7t2VqfQD7bsz3bW59AjtzIjdxcn0De3d3d3V2fQC7f8i3fXp9AfuAHfuBfn0DO4RzO4WCfQB7jMR7jYZ9AbuRGbuRin0C+5Vu+5WOfQA/ncA7nZJ9AX+iFXuhln0Cv6Zqu6WafQP/qr/7qZ59AT+zETuxon0Cf7dme7WmfQO/u7u7uap9AP/ADP/Brn0CP8RiP8WyfQN/yLd/ybZ9AL/RCL/Run0B/9Vd/9W+fQM/2bM/2cJ9AIPiBH/hxn0Bw+ZZv+XKfQMD6q7/6c59AEPzAD/x0n0Bg/dVf/XWfQLD+6q/+dp9AAAAAAAB4n0A=","dtype":"float64","shape":[40]},"y":{"__ndarray__":"AGh4ry510D8ARg/f4L/RPwAkpg6TCtM/AAI9PkVV1D8A3tNt95/VPwC8ap2p6tY/AJoBzVs12D8Aepj8DYDZPwBWLyzAyto/ADTGW3IV3D8AEl2LJGDdPwDw87rWqt4/AM6K6oj13z8A1RCNHaDgPwBE3KR2ReE/ALOnvM/q4T8AInPUKJDiPwCRPuyBNeM/AAAKBNva4z8AbtUbNIDkPwDeoDONJeU/AE1sS+bK5T8AuzdjP3DmPwAqA3uYFec/AJnOkvG65z8ACJqqSmDoPwB3ZcKjBek/AOYw2vyq6T8AVPzxVVDqPwDDxwmv9eo/ADKTIQib6z8AoV45YUDsPwAQKlG65ew/AH/1aBOL7T8A7sCAbDDuPwBdjJjF1e4/AMxXsB577z8AnRHkOxDwP4BU92/oYvA/AAzd+5S18D8=","dtype":"float64","shape":[40]}},"selected":{"id":"2107","type":"Selection"},"selection_policy":{"id":"2108","type":"UnionRenderers"}},"id":"2026","type":"ColumnDataSource"},{"attributes":{},"id":"1992","type":"BasicTicker"},{"attributes":{"callback":null},"id":"2002","type":"DataRange1d"},{"attributes":{"dimension":1,"ticker":{"id":"2014","type":"BasicTicker"}},"id":"2017","type":"Grid"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2032","type":"Circle"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2023","type":"Circle"},{"attributes":{"callback":null},"id":"1980","type":"DataRange1d"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2033","type":"Circle"},{"attributes":{"data_source":{"id":"2031","type":"ColumnDataSource"},"glyph":{"id":"2032","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2033","type":"Circle"},"selection_glyph":null,"view":{"id":"2035","type":"CDSView"}},"id":"2034","type":"GlyphRenderer"},{"attributes":{},"id":"2004","type":"LinearScale"},{"attributes":{},"id":"1987","type":"BasicTicker"},{"attributes":{},"id":"2006","type":"LinearScale"},{"attributes":{"source":{"id":"2031","type":"ColumnDataSource"}},"id":"2035","type":"CDSView"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","logo":null,"tools":[{"id":"2018","type":"CrosshairTool"}]},"id":"2019","type":"Toolbar"},{"attributes":{"below":[{"id":"2008","type":"LinearAxis"}],"center":[{"id":"2012","type":"Grid"},{"id":"2017","type":"Grid"}],"left":[{"id":"2013","type":"LinearAxis"}],"plot_height":300,"plot_width":300,"renderers":[{"id":"2029","type":"GlyphRenderer"},{"id":"2034","type":"GlyphRenderer"}],"title":{"id":"2095","type":"Title"},"toolbar":{"id":"2019","type":"Toolbar"},"x_range":{"id":"2000","type":"DataRange1d"},"x_scale":{"id":"2004","type":"LinearScale"},"y_range":{"id":"2002","type":"DataRange1d"},"y_scale":{"id":"2006","type":"LinearScale"}},"id":"1999","subtype":"Figure","type":"Plot"},{"attributes":{"source":{"id":"2021","type":"ColumnDataSource"}},"id":"2025","type":"CDSView"},{"attributes":{},"id":"2106","type":"UnionRenderers"},{"attributes":{"below":[{"id":"1986","type":"LinearAxis"}],"center":[{"id":"1990","type":"Grid"},{"id":"1995","type":"Grid"}],"left":[{"id":"1991","type":"LinearAxis"}],"plot_height":300,"plot_width":300,"renderers":[{"id":"2024","type":"GlyphRenderer"}],"title":{"id":"2093","type":"Title"},"toolbar":{"id":"1997","type":"Toolbar"},"x_range":{"id":"1978","type":"DataRange1d"},"x_scale":{"id":"1982","type":"LinearScale"},"y_range":{"id":"1980","type":"DataRange1d"},"y_scale":{"id":"1984","type":"LinearScale"}},"id":"1977","subtype":"Figure","type":"Plot"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","logo":null,"tools":[{"id":"1996","type":"CrosshairTool"}]},"id":"1997","type":"Toolbar"},{"attributes":{"formatter":{"id":"2103","type":"BasicTickFormatter"},"ticker":{"id":"2014","type":"BasicTicker"}},"id":"2013","type":"LinearAxis"},{"attributes":{},"id":"2101","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"2099","type":"BasicTickFormatter"},"ticker":{"id":"1992","type":"BasicTicker"}},"id":"1991","type":"LinearAxis"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"zczMzMxQn0AAAAAAAFKfQDMzMzMzU59AAAAAAABUn0DNzMzMzFSfQAAAAAAAVp9AMzMzMzNXn0AAAAAAAFifQM3MzMzMWJ9AAAAAAABan0AzMzMzM1ufQAAAAAAAXJ9AzczMzMxcn0AAAAAAAF6fQDMzMzMzX59AAAAAAABgn0DNzMzMzGCfQAAAAAAAYp9AMzMzMzNjn0AAAAAAAGSfQM3MzMzMZJ9AAAAAAABmn0AzMzMzM2efQAAAAAAAaJ9AzczMzMxon0AAAAAAAGqfQDMzMzMza59AAAAAAABsn0DNzMzMzGyfQAAAAAAAbp9AMzMzMzNvn0AAAAAAAHCfQM3MzMzMcJ9AAAAAAAByn0AzMzMzM3OfQAAAAAAAdJ9AzczMzMx0n0AAAAAAAHafQDMzMzMzd59AAAAAAAB4n0A=","dtype":"float64","shape":[40]},"y":{"__ndarray__":"pHA9Ctej0D+kcD0K16PQPx+F61G4HtU/ZmZmZmZm1j8K16NwPQrXP65H4XoUrtc/UrgehetR2D/2KFyPwvXYP4XrUbgehds/KVyPwvUo3D/NzMzMzMzcP7gehetRuN4/UrgehetR4D9SuB6F61HgP/YoXI/C9eA/mpmZmZmZ4T+PwvUoXI/iP+F6FK5H4eI/hetRuB6F4z97FK5H4XrkPx+F61G4HuU/w/UoXI/C5T8UrkfhehTmPwrXo3A9Cuc/UrgehetR6D9SuB6F61HoP/YoXI/C9eg/7FG4HoXr6T/sUbgehevpPzMzMzMzM+s/16NwPQrX6z/Xo3A9CtfrP83MzMzMzOw/H4XrUbge7T+4HoXrUbjuPwrXo3A9Cu8/rkfhehSu7z+uR+F6FK7vP3sUrkfhevA/SOF6FK5H8T8=","dtype":"float64","shape":[40]}},"selected":{"id":"2105","type":"Selection"},"selection_policy":{"id":"2106","type":"UnionRenderers"}},"id":"2021","type":"ColumnDataSource"},{"attributes":{"text":""},"id":"2095","type":"Title"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"x":{"field":"x"},"y":{"field":"y"}},"id":"2022","type":"Circle"},{"attributes":{},"id":"2097","type":"BasicTickFormatter"},{"attributes":{"text":""},"id":"2093","type":"Title"},{"attributes":{"callback":null},"id":"1978","type":"DataRange1d"},{"attributes":{"ticker":{"id":"2009","type":"BasicTicker"}},"id":"2012","type":"Grid"},{"attributes":{},"id":"2103","type":"BasicTickFormatter"},{"attributes":{},"id":"2105","type":"Selection"},{"attributes":{},"id":"2018","type":"CrosshairTool"},{"attributes":{},"id":"2009","type":"BasicTicker"},{"attributes":{"dimension":1,"ticker":{"id":"1992","type":"BasicTicker"}},"id":"1995","type":"Grid"},{"attributes":{"ticker":{"id":"1987","type":"BasicTicker"}},"id":"1990","type":"Grid"},{"attributes":{"formatter":{"id":"2101","type":"BasicTickFormatter"},"ticker":{"id":"2009","type":"BasicTicker"}},"id":"2008","type":"LinearAxis"}],"root_ids":["2038"]},"title":"Bokeh Application","version":"1.1.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('2381').textContent;
+                  var render_items = [{"docid":"1ab45b61-74d5-4fe7-afb4-5b9c54a2f10b","roots":{"2038":"3d7ad884-3006-47a0-b8b4-fa645551b5b1"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/03/21/Machine-Learning-Optimization-I/" data-toggle="tooltip" data-placement="top" title="Machine Learning Optimization I">
+                        Previous<br>
+                        <span>Machine Learning Optimization I</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        </a>
+        
+        
+                <a data-sort="0000" 
+                    href="/archive/?tag=Optimization"
+                    title="Optimization"
+                    rel="3">Optimization</a>
+        
+                <a data-sort="0001" 
+                    href="/archive/?tag=Gradient+Descent"
+                    title="Gradient Descent"
+                    rel="2">Gradient Descent</a>
+        
+                <a data-sort="0001" 
+                    href="/archive/?tag=Machine+Learning"
+                    title="Machine Learning"
+                    rel="2">Machine Learning</a>
+        
+                <a data-sort="0001" 
+                    href="/archive/?tag=Newton%27s+Method"
+                    title="Newton's Method"
+                    rel="2">Newton's Method</a>
+        
+                <a data-sort="0001" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="2">Python
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                <!-- 
+<hr>
+<h5>LINKS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://huangxuan.me">Hux Blog</a></li>
+  
+  <li><a href="#">Foo</a></li>
+  
+  <li><a href="#">Bar</a></li>
+  
+  <li><a href="#">Example Friends</a></li>
+  
+  <li><a href="#">It helps SEO</a></li>
+  
+</ul>
+ -->
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    SVG: {
+      scale: 90
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/linchrisdeng">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.linkedin.com/in/lin-deng-280200137">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Lin Blog 2019
+                    <br>
+                    Powered by <a href="https://jekyllrb.com/">Jekyll</a> & 
+                    Theme by <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/structure">TeXt </a> &
+                        <a href="https://github.com/Huxpro/huxpro.github.io#boilerplate-beta">Hux</a> 
+
+<!--                     |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139933717-1';
+    var _gaDomain = 'linchrisdeng.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -2,12 +2,15 @@
 layout:     post
 title:      "Machine Learning Optimization I"
 subtitle:   "Introduction of Gradient Descent and Newton's Method"
-date:       2019-04-27 12:00:00
+date:       2019-03-21 12:00:00
 author:     "LIN"
 header-img: "img/in-post/post-MLOptimization-0.jpg"
 tags:
     - Machine Learning
     - Optimization
+    - Python
+    - Gradient Descent
+    - Newton's Method
 catalog: true
 mathjax: true
 mathjax_autoNumber: true
