@@ -5,15 +5,685 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 14 May 2019 00:00:21 -0500</pubDate>
-    <lastBuildDate>Tue, 14 May 2019 00:00:21 -0500</lastBuildDate>
+    <pubDate>Wed, 15 May 2019 23:19:50 -0500</pubDate>
+    <lastBuildDate>Wed, 15 May 2019 23:19:50 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>Machine Learning Optimization II</title>
+        <title>Machine Learning Optimization II-2</title>
         <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;We have reviewed &lt;strong&gt;Gradient Descent&lt;/strong&gt; and &lt;strong&gt;Newton’s Method&lt;/strong&gt; in previous blog. It’s time to apply optimization method into real problems – &lt;strong&gt;Regression&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this blog I will describe a popular and one of my favorite model &lt;strong&gt;Logistic Regression.&lt;/strong&gt; And this is also the first classification method appeared in my blog, but we still call this is a &lt;em&gt;regression&lt;/em&gt; rather than a &lt;em&gt;classification&lt;/em&gt; method as it is a non-linear curve cross two-class.&lt;/p&gt;
+
+&lt;p&gt;Here is a small sample:&lt;/p&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  
+  &lt;head&gt;
+    
+      &lt;meta charset=&quot;utf-8&quot; /&gt;
+      &lt;title&gt;Bokeh Plot&lt;/title&gt;
+      
+      
+        
+          
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css&quot; type=&quot;text/css&quot; /&gt;
+        
+        
+          
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            Bokeh.set_log_level(&quot;info&quot;);
+        &lt;/script&gt;
+        
+      
+      
+    
+  &lt;/head&gt;
+  
+  
+  &lt;body&gt;
+    
+      
+        
+          
+          
+            
+              &lt;div class=&quot;bk-root&quot; id=&quot;7e478c40-5f55-431e-99cc-28b54b9033f0&quot; data-root-id=&quot;7117&quot;&gt;&lt;/div&gt;
+            
+          
+        
+      
+      
+        &lt;script type=&quot;application/json&quot; id=&quot;7373&quot;&gt;
+          {&quot;9c47f114-5ae8-4a27-9642-84193fd9ab63&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7113&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7125&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7093&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7088&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7092&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7097&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7093&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7107&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;7112&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7078&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7098&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7080&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7084&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7082&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7086&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7077&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7064&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;children&quot;:[{&quot;id&quot;:&quot;7057&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;id&quot;:&quot;7077&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;}]},&quot;id&quot;:&quot;7117&quot;,&quot;type&quot;:&quot;Row&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7097&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7076&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7098&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;&quot;},&quot;id&quot;:&quot;7118&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;Linear Regression&quot;},&quot;id&quot;:&quot;7078&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7080&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7121&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7100&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7123&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7067&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7066&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7101&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7125&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7121&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7072&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7071&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7099&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7100&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7101&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7103&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7102&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7062&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7127&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7099&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7103&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7067&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7070&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7129&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7072&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7130&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7129&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7099&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7130&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;xAdpxUufuD9qm6YSdXzEP5bjlxTo98Q/8VjzIBV00D/b+tT3k1TVP3gwIqrT3dY/PvmJabPx2j+oYjHyTSTvP4aj8ugel/A//ETZiBlF8T9z5r8oFPPxPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7134&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7133&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7105&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7082&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7131&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7106&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7132&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7105&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7106&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7108&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7107&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7072&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7075&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7133&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7134&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7066&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7070&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7075&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7071&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7102&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7118&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7076&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7058&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7062&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7060&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7064&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7057&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7108&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7127&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7088&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7084&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7123&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:{&quot;value&quot;:&quot;green&quot;},&quot;line_dash&quot;:[6],&quot;line_width&quot;:{&quot;value&quot;:3},&quot;location&quot;:0.5},&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7110&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7058&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7060&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7111&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7092&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7086&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7110&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7111&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7113&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7112&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7132&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7131&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7067&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}],&quot;root_ids&quot;:[&quot;7117&quot;]},&quot;title&quot;:&quot;Bokeh Application&quot;,&quot;version&quot;:&quot;1.1.0&quot;}}
+        &lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('7373').textContent;
+                  var render_items = [{&quot;docid&quot;:&quot;9c47f114-5ae8-4a27-9642-84193fd9ab63&quot;,&quot;roots&quot;:{&quot;7117&quot;:&quot;7e478c40-5f55-431e-99cc-28b54b9033f0&quot;}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts &gt; 100) {
+                        console.log(&quot;Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing&quot;);
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != &quot;loading&quot;) fn();
+            else document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+          })();
+        &lt;/script&gt;
+    
+  &lt;/body&gt;
+  
+&lt;/html&gt;
+
+&lt;p&gt;where we fit a linear regression by using
+&lt;script type=&quot;math/tex&quot;&gt;w=\left(X^{T} X\right)^{-1} X^{T} Y&lt;/script&gt;
+However, we may find linear regression cannot be used to classification problem, since we need a more descriptive method.&lt;/p&gt;
+
+&lt;h2 id=&quot;logistic-sigmoid-function&quot;&gt;Logistic Sigmoid Function&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma(w^Tx)=\frac{1}{1+e^{-(w^Tx)}}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma(z)=\frac{1}{1+e^{-z}}&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn.linear_model&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LogisticRegression&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LogisticRegression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'lbfgs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y_new&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;c1&quot;&gt;## sklearn here aims to save time, detailed parameters optimization will be intereprted later
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;output_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;logit_01.html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot_height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot_width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;red&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  
+  &lt;head&gt;
+    
+      &lt;meta charset=&quot;utf-8&quot; /&gt;
+      &lt;title&gt;Bokeh Plot&lt;/title&gt;
+      
+      
+        
+          
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css&quot; type=&quot;text/css&quot; /&gt;
+        
+        
+          
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            Bokeh.set_log_level(&quot;info&quot;);
+        &lt;/script&gt;
+        
+      
+      
+    
+  &lt;/head&gt;
+  
+  
+  &lt;body&gt;
+    
+      
+        
+          
+          
+            
+              &lt;div class=&quot;bk-root&quot; id=&quot;acfcce5e-4a1d-4eeb-8e08-56dac9d7edb6&quot; data-root-id=&quot;7407&quot;&gt;&lt;/div&gt;
+            
+          
+        
+      
+      
+        &lt;script type=&quot;application/json&quot; id=&quot;7713&quot;&gt;
+          {&quot;b979f4b0-8b67-48e0-8416-73c439051e3a&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;children&quot;:[{&quot;id&quot;:&quot;7077&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;id&quot;:&quot;7374&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;}]},&quot;id&quot;:&quot;7407&quot;,&quot;type&quot;:&quot;Row&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7113&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7125&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7093&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7397&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7398&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7400&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7399&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7088&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7092&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7097&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7093&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7107&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;7112&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7078&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7098&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7080&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7084&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7082&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7086&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7077&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7442&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7441&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7400&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7433&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7094&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7097&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;scikit-learn&quot;},&quot;id&quot;:&quot;7375&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7098&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7395&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;Linear Regression&quot;},&quot;id&quot;:&quot;7078&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7397&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7383&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7403&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7404&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7406&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7405&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7440&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7080&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7404&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7381&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7398&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7379&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7086&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7125&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7385&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7389&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7394&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7390&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7399&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;7405&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7375&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7395&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7377&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7381&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7379&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7383&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7374&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7377&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7127&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;xAdpxUufuD9qm6YSdXzEP5bjlxTo98Q/8VjzIBV00D/b+tT3k1TVP3gwIqrT3dY/PvmJabPx2j+oYjHyTSTvP4aj8ugel/A//ETZiBlF8T9z5r8oFPPxPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7134&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7133&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7433&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7385&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7105&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7082&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7131&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7431&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7406&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7389&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7106&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7442&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7132&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7105&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7106&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7108&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7107&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7403&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7133&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7134&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7108&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7127&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7088&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7439&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7441&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7084&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:{&quot;value&quot;:&quot;green&quot;},&quot;line_dash&quot;:[6],&quot;line_width&quot;:{&quot;value&quot;:3},&quot;location&quot;:0.5},&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7110&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7394&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7440&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7439&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7111&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7089&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7092&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7431&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7390&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7109&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7110&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7111&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7113&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7112&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7132&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7131&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7104&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}],&quot;root_ids&quot;:[&quot;7407&quot;]},&quot;title&quot;:&quot;Bokeh Application&quot;,&quot;version&quot;:&quot;1.1.0&quot;}}
+        &lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('7713').textContent;
+                  var render_items = [{&quot;docid&quot;:&quot;b979f4b0-8b67-48e0-8416-73c439051e3a&quot;,&quot;roots&quot;:{&quot;7407&quot;:&quot;acfcce5e-4a1d-4eeb-8e08-56dac9d7edb6&quot;}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts &gt; 100) {
+                        console.log(&quot;Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing&quot;);
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != &quot;loading&quot;) fn();
+            else document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+          })();
+        &lt;/script&gt;
+    
+  &lt;/body&gt;
+  
+&lt;/html&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Here I use scikit-learn to estimate parameters aim to save some time&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After setting threshold as 0.5 (if output &amp;gt; 0.5, output $\rightarrow$ 1, otherwise 0) and comparing two regressions, we can find &lt;strong&gt;logistic sigmoid&lt;/strong&gt; increase the classification accuracy, only one plot was misclassified to 0.&lt;/p&gt;
+
+&lt;p&gt;Now we need to consider how to construct the cost function for logistic regression to improve the parameters prediction. The first method we use is the &lt;strong&gt;least squares&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;least-squares-cost-function&quot;&gt;Least Squares Cost Function&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w})=\frac{1}{N} \sum_{i=1}^{N}\left(\sigma\left(\mathbf{w}^{T} \mathbf{x_i}\right)-y_{i}\right)^{2}&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sigmoid_least_squares&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;w_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;w_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;w0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meshgrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmoid_least_squares&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;mpl_toolkits&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mplot3d&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pylab&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;mpl_toolkits.mplot3d.axes3d&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matplotlib&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;widget&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# %matplotlib inline
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Axes3D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;180&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot_surface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'binary'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ax.contourf3D(w0,w1,cost)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'w_0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'w_1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_zlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_axes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GIF/step'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.png'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dpi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#     p.show()
+&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;IPython.display&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IFrame&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;IFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GIF/LS_gif.gif'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;iframe src=&quot;https://giphy.com/embed/Y3qHdXJC0auQE69C06&quot; width=&quot;480&quot; height=&quot;360&quot; frameborder=&quot;0&quot; class=&quot;giphy-embed&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/post-MLOptimization-3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is not a convex problem, hence we cannot treat this least squares as linear regression. Then we give a derivative to the &lt;em&gt;least squares&lt;/em&gt; cost&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\nabla g({\mathbf{w}})=2 \sum_{i=1}^{N}\left(\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)-y_{i}\right) \sigma\left(
+{\mathbf{w}}^{T} {\mathbf{x_i}}\right)\left(1-\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)\right) {\mathbf{x}}_{i}&lt;/script&gt;
+Combining the gradient cost function and visualization, this a non-convex problem. And it may cause a problem that some parts of the cost function is too &lt;em&gt;flat&lt;/em&gt; that means it will force the gradient or newton stop at some bad parameters.&lt;/p&gt;
+
+&lt;p&gt;For this gradient function, it can easily return $0$ when $sigmoid = 1$ with large input value, let me try this Mean Square Error as cost function:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0001&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;iteration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gradient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#         print(&quot;gradient = {} | g = {}&quot;.format(grad, g))
+#     if abs(grad) &amp;lt;= 0.001:
+#         break
+&lt;/span&gt;        
+    &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#     print(&quot;iter = {0} | w = {1} | gradient = {2}&quot;.format(iteration, w, grad))
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;iteration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iter = {0} | w = {1} | gradient = {2}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iteration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;iter = 20000 | w = [-19.99634777  20.00365223] | gradient = 0.0
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  
+  &lt;head&gt;
+    
+      &lt;meta charset=&quot;utf-8&quot; /&gt;
+      &lt;title&gt;Bokeh Plot&lt;/title&gt;
+      
+      
+        
+          
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css&quot; type=&quot;text/css&quot; /&gt;
+        
+        
+          
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            Bokeh.set_log_level(&quot;info&quot;);
+        &lt;/script&gt;
+        
+      
+      
+    
+  &lt;/head&gt;
+  
+  
+  &lt;body&gt;
+    
+      
+        
+          
+          
+            
+              &lt;div class=&quot;bk-root&quot; id=&quot;d6aa1f4a-3179-4095-9596-ec9609631e2b&quot; data-root-id=&quot;7765&quot;&gt;&lt;/div&gt;
+            
+          
+        
+      
+      
+        &lt;script type=&quot;application/json&quot; id=&quot;8089&quot;&gt;
+          {&quot;998591d5-645a-47df-934b-ce9e4f313610&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;children&quot;:[{&quot;id&quot;:&quot;7374&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;id&quot;:&quot;7732&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;}]},&quot;id&quot;:&quot;7765&quot;,&quot;type&quot;:&quot;Row&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7760&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7761&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7762&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7764&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7763&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7397&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7398&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7400&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7399&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7754&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7755&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7756&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7758&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7757&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7442&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7441&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7400&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7760&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7764&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7433&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7762&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;scikit-learn&quot;},&quot;id&quot;:&quot;7375&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7809&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7744&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7743&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7809&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7818&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7395&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7397&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7383&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;7403&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;7404&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;7406&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;7405&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7440&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7737&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7761&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7404&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7744&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7381&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7815&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7741&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7379&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;7753&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7398&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7816&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7385&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7389&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7394&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7390&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7399&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;7405&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7375&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7395&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7377&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7381&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7379&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7383&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7374&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7377&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;6tkWVJCm6D29oJJBEb10PmDTi0PVqH0+83khmCVuST8/IKMufpzgP3nVb5+bOu0/pL82tSv+7z8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7818&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7817&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7760&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7816&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7815&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7754&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7433&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7385&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7755&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7442&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7431&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7402&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7406&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7386&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7389&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;7743&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;7747&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7752&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;7748&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;7757&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;7763&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;7733&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;7753&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;7735&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;7739&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;7737&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;7741&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;7732&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7403&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7807&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;Mean Squared Error Cost&quot;},&quot;id&quot;:&quot;7733&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7807&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7749&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7748&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7739&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;7756&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7749&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7752&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;7735&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7439&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7441&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:{&quot;value&quot;:&quot;green&quot;},&quot;line_dash&quot;:[6],&quot;line_width&quot;:{&quot;value&quot;:3},&quot;location&quot;:0.5},&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;7744&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7747&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7817&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;7754&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;7758&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7394&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;7431&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;7391&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;7390&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;7440&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;7439&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;7396&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;7749&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}],&quot;root_ids&quot;:[&quot;7765&quot;]},&quot;title&quot;:&quot;Bokeh Application&quot;,&quot;version&quot;:&quot;1.1.0&quot;}}
+        &lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('8089').textContent;
+                  var render_items = [{&quot;docid&quot;:&quot;998591d5-645a-47df-934b-ce9e4f313610&quot;,&quot;roots&quot;:{&quot;7765&quot;:&quot;d6aa1f4a-3179-4095-9596-ec9609631e2b&quot;}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts &gt; 100) {
+                        console.log(&quot;Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing&quot;);
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != &quot;loading&quot;) fn();
+            else document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+          })();
+        &lt;/script&gt;
+    
+  &lt;/body&gt;
+  
+&lt;/html&gt;
+
+&lt;p&gt;You can notice that by setting a &lt;em&gt;KNOWN&lt;/em&gt; start point will help us get a perfect classification. But what if we have a high-dimension problem? This means we need a better cost function.&lt;/p&gt;
+
+&lt;h2 id=&quot;cross-entropy-cost-function&quot;&gt;Cross Entropy Cost Function&lt;/h2&gt;
+
+&lt;p&gt;This method called &lt;strong&gt;Cross Entropy&lt;/strong&gt;, but I’d like to call &lt;strong&gt;Cross Penalty&lt;/strong&gt;. 
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+g_{i}(\mathbf{w})=\left\{\begin{array}{ll}{-\log \left(\sigma\left(\mathbf{w}^{T} \mathbf{x_i}\right)\right)} &amp; {\text { if } y_{i}=1} \\ {-\log \left(1-\sigma\left(\mathbf{w}^{T}\mathbf{x_i}\right)\right)} &amp; {\text { if } y_{i}=0}\end{array}\right. %]]&gt;&lt;/script&gt;
+It’s a little complex but it’s crystal clear for visualization.&lt;/p&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  
+  &lt;head&gt;
+    
+      &lt;meta charset=&quot;utf-8&quot; /&gt;
+      &lt;title&gt;Bokeh Plot&lt;/title&gt;
+      
+      
+        
+          
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css&quot; type=&quot;text/css&quot; /&gt;
+        
+        
+          
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            Bokeh.set_log_level(&quot;info&quot;);
+        &lt;/script&gt;
+        
+      
+      
+    
+  &lt;/head&gt;
+  
+  
+  &lt;body&gt;
+    
+      
+        
+          
+          
+            
+              &lt;div class=&quot;bk-root&quot; id=&quot;4d39a168-3c0e-4a89-b499-2828023d63c8&quot; data-root-id=&quot;10417&quot;&gt;&lt;/div&gt;
+            
+          
+        
+      
+      
+        &lt;script type=&quot;application/json&quot; id=&quot;10794&quot;&gt;
+          {&quot;dd8f8926-647b-490c-a2da-6a6f6cc917b9&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;children&quot;:[{&quot;id&quot;:&quot;10361&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;id&quot;:&quot;10389&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;}]},&quot;id&quot;:&quot;10417&quot;,&quot;type&quot;:&quot;Row&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;/Knx0k1iUD8efaCe1LaGP35iccGvsJU/NkPJmfoCoD8u1dlSnS2lPyZn6gtAWKo/Hfn6xOKCrz+KxQW/wlayP4YOjhsU7LQ/glcWeGWBtz9+oJ7Utha6P3npJjEIrLw/dTKvjVlBvz+4vRt1VevAPzbiXyP+NcI/tAak0aaAwz8yK+h/T8vEP7BPLC74FcY/LnRw3KBgxz+smLSKSavIPyq9+Djy9ck/p+E855pAyz8lBoGVQ4vMP6MqxUPs1c0/IU8J8pQgzz/PuSbQnjXQPw7MSCfz2tA/Td5qfkeA0T+M8IzVmyXSP8sCryzwytI/ChXRg0Rw0z9JJ/PamBXUP4g5FTLtutQ/x0s3iUFg1T8GXlnglQXWP0VwezfqqtY/hIKdjj5Q1z/DlL/lkvXXPwKn4Tznmtg/QbkDlDtA2T+AyyXrj+XZP77dR0Lkito//e9pmTgw2z88AozwjNXbP3sUrkfhetw/uibQnjUg3T/5OPL1icXdPzhLFE3eat4/d102pDIQ3z+2b1j7hrXfP/pAPaltLeA/GkrO1BeA4D85U18AwtLgP1lc8CtsJeE/eGWBVxZ44T+YbhKDwMrhP7d3o65qHeI/14A02hRw4j/2icUFv8LiPxaTVjFpFeM/NZznXBNo4z9VpXiIvbrjP3SuCbRnDeQ/lLea3xFg5D+zwCsLvLLkP9LJvDZmBeU/8tJNYhBY5T8R3N6NuqrlPzHlb7lk/eU/UO4A5Q5Q5j9w95EQuaLmP48AIzxj9eY/rwm0Zw1I5z/OEkWTt5rnP+4b1r5h7ec/DSVn6gtA6D8tLvgVtpLoP0w3iUFg5eg/bEAabQo46T+LSauYtIrpP6tSPMRe3ek/ylvN7wgw6j/pZF4bs4LqPwlu70Zd1eo/KHeAcgco6z9IgBGesXrrP2eJoslbzes/h5Iz9QUg7D+mm8QgsHLsP8akVUxaxew/5a3mdwQY7T8Ft3ejrmrtPyTACM9Yve0/RMmZ+gIQ7j9j0iomrWLuP4Pbu1FXte4/ouRMfQEI7z/B7d2oq1rvP+H2btRVre8/AAAAAAAA8D8=&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[100]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;2Vuhrioq5j+MCKSU9QDmP+tTFt311+U/hWzbhiuv5T80dSSQloblP0OdcPY2XuU/0kGNtgw25T9zGJbMFw7lPxRj9TNY5uQ/CC1k582+5D9fkergeJfkP0UK4BlZcOQ/ksnrim5J5D9wGgUsuSLkP//Lc/Q4/OM/AqXQ2u3V4z+B4AXV16/jP0CzT9j2ieM/Gdo82Upk4z8YMa/L0z7jP1BT3KKRGeM/R0NOUYT04j8EHOTIq8/iP5jK0voHq+I/ANCl15iG4j98C0BPXmLiPweN3FBYPuI/DXAPy4Ya4j8pvsar6fbhP9lZS+CA0+E/IvFBVUyw4T/c96v2S43hP9ep6K9/auE/YRS2a+dH4T9jJzIUgyXhP8XN25JSA+E/CQ2U0FXh4D8aLJ+1jL/gP/ngpSn3neA/X4W2E5V84D8YUkZaZlvgP/KgMuNqOuA/PzXCk6IZ4D8mFU2hGvLfP8hT+vtVsd8/NQmi/vZw3z9Zqzdv/TDfPwwRjxJp8d4/MEtfrDmy3j/3iEX/bnPeP9oGyMwINd4/IAhZ1Qb33T+V2lnYaLndPyzkHZQufN0/ObrtxVc/3T8DQgoq5ALdP3Par3vTxtw/No4ZdSWL3D+tToTP2U/cP7A2MkPwFNw/P9Vth2ja2z+uf41SQqDbPxmr9ll9Zts/pkwhUhkt2z94QJvuFfTaP7y2C+Jyu9o/Dqc23i+D2j8MSQCUTEvaP8+ScLPIE9o/Dby266Pc2T8nxizr3aXZP8YIW192b9k/YcL79Gw52T/nrP5XwQPZP7CVjDNzztg/8fgKMoKZ2D/0nx/97WTYPxtCtD22MNg/Hyj6m9r81z+n0W2/WsnXP0Gc2k42ltc/TWxe8Gxj1z/KVm1J/jDXP1RM1f7p/tY/hsTBtC/N1j8Jar8Oz5vWP4LGv6/HatY/hu4cOhk61j/zLJ1PwwnWP8KtdpHF2dU/1SdToB+q1T98hVMc0XrVP6eLE6XZS9U/Q3+t2Tgd1T+9yL1Y7u7UPzKVZsD5wNQ/T3VTrlqT1D9f+by/EGbUP5RKbJEbOdQ/JMG+v3oM1D8=&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[100]}},&quot;selected&quot;:{&quot;id&quot;:&quot;10581&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;10580&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;10384&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;axis_label&quot;:&quot;sigmoid&quot;,&quot;formatter&quot;:{&quot;id&quot;:&quot;10578&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;10401&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10400&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;y = 0&quot;},&quot;id&quot;:&quot;10390&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;axis_label&quot;:&quot;cost&quot;,&quot;formatter&quot;:{&quot;id&quot;:&quot;10572&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;10378&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},&quot;visible&quot;:false},&quot;id&quot;:&quot;10377&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;10410&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10580&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10583&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;10385&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10582&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;10366&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;10413&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10581&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;10386&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;10392&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10576&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;axis_label&quot;:&quot;cost&quot;,&quot;formatter&quot;:{&quot;id&quot;:&quot;10576&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;10406&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},&quot;visible&quot;:false},&quot;id&quot;:&quot;10405&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10373&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10401&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10572&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;10414&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;10400&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;10404&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;10409&quot;,&quot;type&quot;:&quot;Grid&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;10405&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:200,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;10415&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;10390&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;10410&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;10392&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;10396&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;10394&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;10398&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;10389&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;10372&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;10376&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;10381&quot;,&quot;type&quot;:&quot;Grid&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;10377&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:200,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;10387&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;10362&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;10382&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;10364&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;10368&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;10366&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;10370&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;10361&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10396&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;10412&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;10413&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;10414&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;10416&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;10415&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10578&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;y = 1&quot;},&quot;id&quot;:&quot;10362&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10574&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;10382&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10406&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;10373&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10376&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;axis_label&quot;:&quot;sigmoid&quot;,&quot;formatter&quot;:{&quot;id&quot;:&quot;10574&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;10373&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10372&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;10384&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;10385&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;10386&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;10388&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;10387&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;10378&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10381&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;10394&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10368&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;/Knx0k1iUD8efaCe1LaGP35iccGvsJU/NkPJmfoCoD8u1dlSnS2lPyZn6gtAWKo/Hfn6xOKCrz+KxQW/wlayP4YOjhsU7LQ/glcWeGWBtz9+oJ7Utha6P3npJjEIrLw/dTKvjVlBvz+4vRt1VevAPzbiXyP+NcI/tAak0aaAwz8yK+h/T8vEP7BPLC74FcY/LnRw3KBgxz+smLSKSavIPyq9+Djy9ck/p+E855pAyz8lBoGVQ4vMP6MqxUPs1c0/IU8J8pQgzz/PuSbQnjXQPw7MSCfz2tA/Td5qfkeA0T+M8IzVmyXSP8sCryzwytI/ChXRg0Rw0z9JJ/PamBXUP4g5FTLtutQ/x0s3iUFg1T8GXlnglQXWP0VwezfqqtY/hIKdjj5Q1z/DlL/lkvXXPwKn4Tznmtg/QbkDlDtA2T+AyyXrj+XZP77dR0Lkito//e9pmTgw2z88AozwjNXbP3sUrkfhetw/uibQnjUg3T/5OPL1icXdPzhLFE3eat4/d102pDIQ3z+2b1j7hrXfP/pAPaltLeA/GkrO1BeA4D85U18AwtLgP1lc8CtsJeE/eGWBVxZ44T+YbhKDwMrhP7d3o65qHeI/14A02hRw4j/2icUFv8LiPxaTVjFpFeM/NZznXBNo4z9VpXiIvbrjP3SuCbRnDeQ/lLea3xFg5D+zwCsLvLLkP9LJvDZmBeU/8tJNYhBY5T8R3N6NuqrlPzHlb7lk/eU/UO4A5Q5Q5j9w95EQuaLmP48AIzxj9eY/rwm0Zw1I5z/OEkWTt5rnP+4b1r5h7ec/DSVn6gtA6D8tLvgVtpLoP0w3iUFg5eg/bEAabQo46T+LSauYtIrpP6tSPMRe3ek/ylvN7wgw6j/pZF4bs4LqPwlu70Zd1eo/KHeAcgco6z9IgBGesXrrP2eJoslbzes/h5Iz9QUg7D+mm8QgsHLsP8akVUxaxew/5a3mdwQY7T8Ft3ejrmrtPyTACM9Yve0/RMmZ+gIQ7j9j0iomrWLuP4Pbu1FXte4/ouRMfQEI7z/B7d2oq1rvP+H2btRVre8/AAAAAAAA8D8=&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[100]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;rdSK1Vsy5j+Aih7n0FvmP//eIVt7heY/tgB4MFuv5j+FElJlcNnmP7dDL/e6A+c/ZfHc4jou5z8m0XYk8FjnP+QkZ7fag+c/+fdmlvqu5z9wZX67T9rnP3bnBCDaBeg/5K+hvJkx6D/gCUyJjl3oP4zES324ieg/sKY5jxe26D9N6/+0q+LoPyrH2uN0D+k/I/dYEHM86T9EV1wupmnpP5uCGjEOl+k/snsdC6vE6T+RXUSufPLpP0AVxAuDIOo/xyMoFL5O6j9haFO3LX3qPwzzgOTRq+o/NN9Eiqra6j9wNo2WtwnrP0Hbovb4OOs/pXsql25o6z+BiyVkGJjrP5tG80j2x+s/R7pRMAj46z9p1l4ETijsP+aFma7HWOw/TM7iF3WJ7D989n4oVrrsP3q0Fshq6+w/AmK43bIc7T/XN9lPLk7tP9KPVgTdf+0/Oi134L6x7T+xi+zI0+PtPyQ01KEbFu4/+Re5TpZI7j8s8pSyQ3vuPyOu0a8jru4/VtRKKDbh7j9Y/E79ehTvP2hEoQ/yR+8/Kc56P5t77z+DQIxsdq/vP2xO/3WD4+8/SCE8HeEL8D/NxwtMGSbwP3eyPTZqQPA/+aNgytNa8D+o2MP2VXXwPzjXd6nwj/A/aUNP0KOq8D+Ust9Yb8XwP/+BgjBT4PA/9K5VRE/78D92sDyBYxbxP5pS4dOPMfE/O5O0KNRM8T9NgO9rMGjxP04XlImkg/E/KyZubTCf8T9DLRQD1LrxP3hC6DWP1vE/cPUY8WHy8T+gNKIfTA7yP2MzTqxNKvI/w1C2gWZG8j8U/0OKlmLyPyusMbDdfvI/P6qL3Tub8j8uGTH8sLfyP2TQ1PU81PI/90j+s9/w8j8piAogmQ3zPxkKLSNpKvM/tqxwpk9H8z+lmriSTGTzP1U2wdBfgfM/5AQhSYme8z8PmUnkyLvzP9V9iIoe2fM/6SAIJIr28z/hvNCYCxT0P/tCydCiMfQ/ckS4s09P9D9g20QpEm30Pw+T9xjqivQ/pE87ateo9D84NV4E2sb0PxeOks7x5PQ/SbDvrx4D9T8=&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[100]}},&quot;selected&quot;:{&quot;id&quot;:&quot;10583&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;10582&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;10412&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;10384&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;10388&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10370&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;10406&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10409&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;10364&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;10401&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;10404&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;10412&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;10416&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10378&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10398&quot;,&quot;type&quot;:&quot;LinearScale&quot;}],&quot;root_ids&quot;:[&quot;10417&quot;]},&quot;title&quot;:&quot;Bokeh Application&quot;,&quot;version&quot;:&quot;1.1.0&quot;}}
+        &lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('10794').textContent;
+                  var render_items = [{&quot;docid&quot;:&quot;dd8f8926-647b-490c-a2da-6a6f6cc917b9&quot;,&quot;roots&quot;:{&quot;10417&quot;:&quot;4d39a168-3c0e-4a89-b499-2828023d63c8&quot;}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts &gt; 100) {
+                        console.log(&quot;Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing&quot;);
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != &quot;loading&quot;) fn();
+            else document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+          })();
+        &lt;/script&gt;
+    
+  &lt;/body&gt;
+  
+&lt;/html&gt;
+
+&lt;p&gt;In case $y = 1$, when the sigmoid approaches to 1, cost approches to 0. Conversely, the cost grows to infinity as sigmoid approaches to 0. That’s why I call this is a penalty function. We can summarize two cases into one formula:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_{i}(\mathbf{w}) = -y_i\log(\sigma(\mathbf{w}^{T} \mathbf{x_i})) - (1 - y_i)\log(1 - \sigma(\mathbf{w}^{T} \mathbf{x_i)})&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Downarrow&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = -\frac{1}{N}\sum^{N}_{i = 1}y_i\log(\sigma(\mathbf{w}^{T} \mathbf{x_i})) + (1 - y_i)\log(1 - \sigma(\mathbf{w}^{T} \mathbf{x_i)})&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Downarrow&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = -\frac{1}{N}\sum^{N}_{i = 1}y_i\mathbf{w}^{T} \mathbf{x_i} - \log(1 + e^{\mathbf{w}^{T} \mathbf{x_i}})&lt;/script&gt;
+
+&lt;p&gt;We also get the gradient:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla g(\mathbf w) = -\frac{1}{N}\sum^N_{i = 1}(y_i - \sigma(\mathbf w^T\mathbf x_i))\mathbf x_i&lt;/script&gt;
+
+&lt;p&gt;And second order gradient:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla^2 g(\mathbf w) = \frac{1}{N}\sum^N_{i =1}(\sigma(\mathbf w^T \mathbf x_i))(1-\sigma(\mathbf w^T \mathbf x_i))\mathbf x_i^T\mathbf x_i&lt;/script&gt;
+
+&lt;p&gt;If the Hessian Matrix or Second-Order Taylor Approximation is non-negative or positive semi-definite, the original model would be &lt;strong&gt;convex&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We can use&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf z^T\nabla^2g(w) \mathbf z \geq 0, \ where \ \mathbf  z \ is \ a \ non-zero \ vevtor&lt;/script&gt;
+
+&lt;p&gt;to prove this.&lt;/p&gt;
+
+&lt;p&gt;Hence, for cross-entropy cost function:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf z^T\nabla^2g(w) \mathbf z = \frac{1}{N}\sum^N_{}(\sigma(\mathbf w^T \mathbf x_i))(1-\sigma(\mathbf w^T \mathbf x_i)) \mathbf z^T\mathbf x_i^T\mathbf x_i \mathbf z \\
+\Downarrow \\
+\frac{1}{N}\sum^N_{}(\sigma(\mathbf w^T \mathbf x_i))(1-\sigma(\mathbf w^T \mathbf x_i)) (\mathbf x_i \mathbf z)^2 \geq 0&lt;/script&gt;
+
+&lt;p&gt;For more details, please read &lt;a href=&quot;https://en.wikipedia.org/wiki/Definiteness_of_a_matrix#Negative-definite.2C_semidefinite_and_indefinite_matrices&quot;&gt;Definiteness of a matrix&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus logistic regression becomes a pretty straight forward convex-optimization problem, you can choose &lt;em&gt;Gradient Descent&lt;/em&gt; or &lt;em&gt;Newton’s Method&lt;/em&gt; to find the global optimal.&lt;/p&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  
+  &lt;head&gt;
+    
+      &lt;meta charset=&quot;utf-8&quot; /&gt;
+      &lt;title&gt;Bokeh Plot&lt;/title&gt;
+      
+      
+        
+          
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css&quot; type=&quot;text/css&quot; /&gt;
+        
+        
+          
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            Bokeh.set_log_level(&quot;info&quot;);
+        &lt;/script&gt;
+        
+      
+      
+    
+  &lt;/head&gt;
+  
+  
+  &lt;body&gt;
+    
+      
+        
+          
+          
+            
+              &lt;div class=&quot;bk-root&quot; id=&quot;1472ca8f-d927-4c27-99ff-697df9d4303a&quot; data-root-id=&quot;9919&quot;&gt;&lt;/div&gt;
+            
+          
+        
+      
+      
+        &lt;script type=&quot;application/json&quot; id=&quot;10342&quot;&gt;
+          {&quot;3a802c11-ee52-4398-8602-cb980b3af793&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;children&quot;:[{&quot;id&quot;:&quot;8108&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;id&quot;:&quot;9885&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;}]},&quot;id&quot;:&quot;9919&quot;,&quot;type&quot;:&quot;Row&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10071&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8201&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8209&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;9888&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;9897&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;8129&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10060&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10069&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;8130&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;8131&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;8132&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;8134&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;8133&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;9890&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8117&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;8203&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;8120&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;8119&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;8125&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;8128&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;9914&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;9896&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;9900&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;9905&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;9901&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;9910&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;9916&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;9886&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;9906&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;x_range&quot;:{&quot;id&quot;:&quot;9888&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;9892&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;9890&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;9894&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;9885&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;dimension&quot;:1,&quot;ticker&quot;:{&quot;id&quot;:&quot;9902&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;9905&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8125&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;8210&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;8209&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;8130&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;ZXjtwvcPfjZ6cSuYgD3pOOwT+KYvxA45bqDryGAWlzwo6ljDd+t6P1wc3tgdze8/fv//////7z8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;10071&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;10070&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;9913&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;9913&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;9917&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10068&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;8113&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;8132&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;8136&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;8140&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;Gradient Descent&quot;},&quot;id&quot;:&quot;8109&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;fill_alpha&quot;:{&quot;value&quot;:0.1},&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_alpha&quot;:{&quot;value&quot;:0.1},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;9909&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;below&quot;:[{&quot;id&quot;:&quot;8119&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;center&quot;:[{&quot;id&quot;:&quot;8123&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;8128&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;}],&quot;left&quot;:[{&quot;id&quot;:&quot;8124&quot;,&quot;type&quot;:&quot;LinearAxis&quot;}],&quot;plot_height&quot;:300,&quot;plot_width&quot;:300,&quot;renderers&quot;:[{&quot;id&quot;:&quot;8133&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;id&quot;:&quot;8139&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;}],&quot;title&quot;:{&quot;id&quot;:&quot;8109&quot;,&quot;type&quot;:&quot;Title&quot;},&quot;toolbar&quot;:{&quot;id&quot;:&quot;8129&quot;,&quot;type&quot;:&quot;Toolbar&quot;},&quot;toolbar_location&quot;:null,&quot;x_range&quot;:{&quot;id&quot;:&quot;8111&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;x_scale&quot;:{&quot;id&quot;:&quot;8115&quot;,&quot;type&quot;:&quot;LinearScale&quot;},&quot;y_range&quot;:{&quot;id&quot;:&quot;8113&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},&quot;y_scale&quot;:{&quot;id&quot;:&quot;8117&quot;,&quot;type&quot;:&quot;LinearScale&quot;}},&quot;id&quot;:&quot;8108&quot;,&quot;subtype&quot;:&quot;Figure&quot;,&quot;type&quot;:&quot;Plot&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;8130&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;8134&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;9915&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.1,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;8138&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8210&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null},&quot;id&quot;:&quot;8111&quot;,&quot;type&quot;:&quot;DataRange1d&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;9913&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;9914&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;9915&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;9917&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;9916&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;8136&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;8137&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;8138&quot;,&quot;type&quot;:&quot;Line&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;8140&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;8139&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;8120&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;8123&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;9908&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;10062&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;9897&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;9896&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8211&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;8201&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;8125&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;8124&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8120&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10070&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;10062&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;10069&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;10068&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;9907&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},{&quot;attributes&quot;:{&quot;ticker&quot;:{&quot;id&quot;:&quot;9897&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;9900&quot;,&quot;type&quot;:&quot;Grid&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8115&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;source&quot;:{&quot;id&quot;:&quot;9907&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}},&quot;id&quot;:&quot;9911&quot;,&quot;type&quot;:&quot;CDSView&quot;},{&quot;attributes&quot;:{&quot;data_source&quot;:{&quot;id&quot;:&quot;9907&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;},&quot;glyph&quot;:{&quot;id&quot;:&quot;9908&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;hover_glyph&quot;:null,&quot;muted_glyph&quot;:null,&quot;nonselection_glyph&quot;:{&quot;id&quot;:&quot;9909&quot;,&quot;type&quot;:&quot;Circle&quot;},&quot;selection_glyph&quot;:null,&quot;view&quot;:{&quot;id&quot;:&quot;9911&quot;,&quot;type&quot;:&quot;CDSView&quot;}},&quot;id&quot;:&quot;9910&quot;,&quot;type&quot;:&quot;GlyphRenderer&quot;},{&quot;attributes&quot;:{&quot;fill_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;line_color&quot;:{&quot;value&quot;:&quot;#1f77b4&quot;},&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;8131&quot;,&quot;type&quot;:&quot;Circle&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8212&quot;,&quot;type&quot;:&quot;Selection&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:{&quot;value&quot;:&quot;green&quot;},&quot;line_dash&quot;:[6],&quot;line_width&quot;:{&quot;value&quot;:3},&quot;location&quot;:0.5},&quot;id&quot;:&quot;7114&quot;,&quot;type&quot;:&quot;Span&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;8203&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},{&quot;attributes&quot;:{&quot;text&quot;:&quot;Newton's Method&quot;},&quot;id&quot;:&quot;9886&quot;,&quot;type&quot;:&quot;Title&quot;},{&quot;attributes&quot;:{&quot;active_drag&quot;:&quot;auto&quot;,&quot;active_inspect&quot;:&quot;auto&quot;,&quot;active_multi&quot;:null,&quot;active_scroll&quot;:&quot;auto&quot;,&quot;active_tap&quot;:&quot;auto&quot;,&quot;logo&quot;:null},&quot;id&quot;:&quot;9906&quot;,&quot;type&quot;:&quot;Toolbar&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;9902&quot;,&quot;type&quot;:&quot;BasicTicker&quot;},{&quot;attributes&quot;:{&quot;line_color&quot;:&quot;red&quot;,&quot;x&quot;:{&quot;field&quot;:&quot;x&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;y&quot;}},&quot;id&quot;:&quot;8137&quot;,&quot;type&quot;:&quot;Line&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;9892&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{},&quot;id&quot;:&quot;9894&quot;,&quot;type&quot;:&quot;LinearScale&quot;},{&quot;attributes&quot;:{&quot;formatter&quot;:{&quot;id&quot;:&quot;10060&quot;,&quot;type&quot;:&quot;BasicTickFormatter&quot;},&quot;ticker&quot;:{&quot;id&quot;:&quot;9902&quot;,&quot;type&quot;:&quot;BasicTicker&quot;}},&quot;id&quot;:&quot;9901&quot;,&quot;type&quot;:&quot;LinearAxis&quot;},{&quot;attributes&quot;:{&quot;callback&quot;:null,&quot;data&quot;:{&quot;x&quot;:{&quot;__ndarray__&quot;:&quot;gRHJLCGSwL+QnXMjGuzFP4gIMYJgMcg/ZHRAoAca5D/gO0scX5XvP5qZmZmZmfE/ZmZmZmZm9j8AAAAAAAAQQDMzMzMzMxFAAAAAAAAAEkDNzMzMzMwSQA==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]},&quot;y&quot;:{&quot;__ndarray__&quot;:&quot;vmjhjFjePTy0AlPry7swPcN7hWdhGz89chrc3/kyoT69fL6E2wrAP2KDp3ayNew/LSvJIPj/7z8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==&quot;,&quot;dtype&quot;:&quot;float64&quot;,&quot;shape&quot;:[11]}},&quot;selected&quot;:{&quot;id&quot;:&quot;8212&quot;,&quot;type&quot;:&quot;Selection&quot;},&quot;selection_policy&quot;:{&quot;id&quot;:&quot;8211&quot;,&quot;type&quot;:&quot;UnionRenderers&quot;}},&quot;id&quot;:&quot;8136&quot;,&quot;type&quot;:&quot;ColumnDataSource&quot;}],&quot;root_ids&quot;:[&quot;9919&quot;]},&quot;title&quot;:&quot;Bokeh Application&quot;,&quot;version&quot;:&quot;1.1.0&quot;}}
+        &lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('10342').textContent;
+                  var render_items = [{&quot;docid&quot;:&quot;3a802c11-ee52-4398-8602-cb980b3af793&quot;,&quot;roots&quot;:{&quot;9919&quot;:&quot;1472ca8f-d927-4c27-99ff-697df9d4303a&quot;}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts &gt; 100) {
+                        console.log(&quot;Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing&quot;);
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != &quot;loading&quot;) fn();
+            else document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+          })();
+        &lt;/script&gt;
+    
+  &lt;/body&gt;
+  
+&lt;/html&gt;
+
+&lt;p&gt;I set all iteration == 5000, we can see for this small scale problem, **Newton’s Method ** is also the best. From now, we can build our own logistic regresion for binary classification. Next blog I will give a quick review to softmax – logistic regression multi-classification.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_02_Logistic_Regression&quot;&gt;GItHub&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_02_Logistic_Regression/ML_02_logit.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 27 Mar 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/03/27/Machine-Learning-Optimization-II-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/03/27/Machine-Learning-Optimization-II-2/</guid>
+        
+        <category>Machine Learning</category>
+        
+        <category>Optimization</category>
+        
+        <category>Logistic Regression</category>
+        
+        <category>Python</category>
+        
+        <category>Gradient Descent</category>
+        
+        <category>Newton's Method</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Machine Learning Optimization II-1</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;We have reviewed &lt;strong&gt;Gradient Descent&lt;/strong&gt; and &lt;strong&gt;Newton’s Method&lt;/strong&gt; in previous blog. It’s time to apply optimization method into real problems – &lt;strong&gt;Linear Regression&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;notation&quot;&gt;Notation&lt;/h3&gt;
 
@@ -191,8 +861,8 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
 
 </description>
         <pubDate>Tue, 26 Mar 2019 07:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II/</guid>
+        <link>http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II-1/</guid>
         
         <category>Machine Learning</category>
         
@@ -201,10 +871,6 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
         <category>Linear Regression</category>
         
         <category>Python</category>
-        
-        <category>Gradient Descent</category>
-        
-        <category>Newton's Method</category>
         
         
       </item>
@@ -738,7 +1404,7 @@ iter = 37 | w = 0.005031406022294332 | gradient: -0.008856875366752504
   
 &lt;/html&gt;
 
-&lt;p&gt;The basic idea of Newton’s Method is given a start point, find its Second-Order Taylor Approximation, then find the mode of the approximation to update $w$.&lt;/p&gt;
+&lt;p&gt;The basic idea of Newton’s Method is given a start point, find its Second-Order Taylor Approximation, then find the nearest stationary point of the approximation to update $w​$.&lt;/p&gt;
 
 &lt;p&gt;From equation $(2)$&lt;/p&gt;
 
@@ -956,7 +1622,7 @@ iter = 4 | w = 0.004961528354188844 | gradient: -0.022415532619628586
   &lt;li&gt;Cannot guarantee convergency&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;For Newton’s method, it doesn’t like Gradient Descent directed by gradient, it always tend to find the nearest &lt;strong&gt;mode&lt;/strong&gt; point that means it may be trapped into &lt;strong&gt;saddle point&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For Newton’s method, it doesn’t like Gradient Descent directed by gradient, it always tend to find the nearest &lt;strong&gt;stationary point&lt;/strong&gt; point that means it may be trapped into &lt;strong&gt;saddle point&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2

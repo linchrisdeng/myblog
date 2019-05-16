@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Machine Learning Optimization II"
-subtitle:   "Regression"
+title:      "Machine Learning Optimization II-1"
+subtitle:   "Linear Regression"
 date:       2019-03-26 12:00:00
 author:     "LIN"
 header-img: "img/in-post/post-MLOptimization-1.jpg"
@@ -10,8 +10,6 @@ tags:
     - Optimization
     - Linear Regression
     - Python
-    - Gradient Descent
-    - Newton's Method
 catalog: true
 mathjax: true
 mathjax_autoNumber: true
@@ -19,7 +17,7 @@ mathjax_autoNumber: true
 
 ## Introduction
 
-We have reviewed **Gradient Descent** and **Newton's Method** in previous blog. It's time to apply optimization method into real problems -- **Regression**.
+We have reviewed **Gradient Descent** and **Newton's Method** in previous blog. It's time to apply optimization method into real problems -- **Linear Regression**.
 
 ### Notation
 

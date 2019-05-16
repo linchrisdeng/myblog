@@ -20,6 +20,8 @@ mathjax_autoNumber: true
 
 For this blog I wanna give you some intuitions about how does optimization methods work. Without further ado let's clarify a question: 
 
+
+
 > A: What does a machine learn?
 >
 > B: Algorithms! Supervised/Unsupervised Learning! KNN, Naive Bayes! Trees!
@@ -29,6 +31,8 @@ For this blog I wanna give you some intuitions about how does optimization metho
 > B: I am not sure about your problem...
 >
 > A: **PARAMETERS!**
+
+
 
 Before we start talking about how machine learn parameters, we trully need to review some mathmatics.
 
@@ -54,6 +58,8 @@ Base on this we created two patameter optimization methods: **Gradient Descent**
 
 Let's minimize one function.
 
+
+
 $$f(x) = 100x^2(1-x)^2 - x$$
 
 
@@ -64,6 +70,8 @@ $$f(x) = 100x^2(1-x)^2 - x$$
 
 For this problem, we can easily get optimal solution by following steps:
 
+
+
 > **Input**: differentiable function g, fixed step length $\alpha$, and set an initial point $w^0$
 >
 > Initial interation mark $k = 1$, and set a stopping condition $k < 1000$
@@ -73,6 +81,8 @@ For this problem, we can easily get optimal solution by following steps:
 > $$w^k = w^{k-1} - \alpha\nabla g(w^{k-1})$$
 >
 > $$k = k +1$$ 
+
+
 
 We set initial point $w^0 = 1.2 $, step length $\alpha = 0.01$
 
@@ -89,9 +99,15 @@ iter = 34 | w = 1.0049688007651585 | gradient: 0.008622611509167655
 
 After 34 iterations we can get the global optimal point $w \approx 1, f(x) \approx -1.0025$
 
+
+
 {% include plot/GD_01.html %}
 
+
+
 What if we change the start point to $w=  -0.4$
+
+
 
 ```
 iter = 0 | w = -0.4 | gradient: -202.60000000000002
@@ -102,7 +118,11 @@ iter = 36 | w = 0.005020417353844365 | gradient: -0.010988668449965933
 iter = 37 | w = 0.005031406022294332 | gradient: -0.008856875366752504
 ```
 
+
+
 {% include plot/GD_02.html %}
+
+
 
 After 37 iterations, it reached local optimal $w\approx 0.005, f(x) \approx -0.0025$
 
@@ -112,9 +132,15 @@ I will talk about other optimization method and choose step length and start poi
 
 Overall, we can understand that:
 
+
+
 $$w^k = w^{k-1} - \alpha\nabla g(w^{k-1})$$ 
 
+
+
 $$\frac{w^k - w^{k-1}}{\alpha} = \nabla g(w^{k-1})$$
+
+
 
 Gradient Descent is a way that by keeping gradient (tangent for 2-D problem), step length $\alpha$ and start point to update *"optimial"* solution of a **convex** model.
 
@@ -126,7 +152,11 @@ Newton's method AKA SONC, it means we use second order Taylor approximation to f
 
 Second-Order Taylor Approximation
 
+
+
 $$f(x) \approx f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x-a)^2 \ \ \ \ \ \ \ (1)$$
+
+
 
 $$f(x) \approx \frac{1}{2}f''(a)x^2 + [f'(a) - af''(a)]x + [f(a) -  af'(a) +\frac{1}{2}a^2f''(a)]  \ \ \ \ \ \ \ (2)$$
 
@@ -134,19 +164,29 @@ $$f(x) \approx \frac{1}{2}f''(a)x^2 + [f'(a) - af''(a)]x + [f(a) -  af'(a) +\fra
 
 We keep use  $$f(x) = 100x^2(1-x)^2 - x$$, and still set initial point $w^0 = 1.2$
 
+
+
 {% include plot/NT_00_0.html %}
+
+
 
 You will notice that I make a black point and a new red point which become the next *start point* $w$. 
 
+
+
 {% include plot/NT_00_1.html %}
 
-The basic idea of Newton's Method is given a start point, find its Second-Order Taylor Approximation, then find the mode of the approximation to update $w$. 
+
+
+The basic idea of Newton's Method is given a start point, find its Second-Order Taylor Approximation, then find the nearest stationary point of the approximation to update $w​$. 
 
 From equation $(2)$ 
 
 $$\frac{d}{dx}f(x) \approx f''(a)x + f'(a) - af''(a) = 0 \ \ \ \ \ (3)$$
 
 $$x = a - \frac{f'(a)}{f''(a)} \ \ \ \ \ (4)$$
+
+
 
 > **Newtons's Method**
 >
@@ -171,7 +211,11 @@ iter = 2 | w = 1.0131023128030214 | gradient: 1.7243646338414464
 iter = 3 | w = 1.0051165101084196 | gradient: 0.03906280448109101
 ```
 
+
+
 {% include plot/NT_00.html %}
+
+
 
 Then we change start point at $w= -0.4$ 
 
@@ -183,7 +227,11 @@ iter = 3 | w = -0.001156095577173201 | gradient: -1.2320216676998228
 iter = 4 | w = 0.004961528354188844 | gradient: -0.022415532619628586
 ```
 
+
+
 {% include plot/NT_01.html %}
+
+
 
 We may find compare with Gradient Descent, Newton's Method is much faster!!!
 
@@ -193,9 +241,15 @@ However here are some points we need to pay attentation to.
 
 ### Cons
 
+
+
 1. Cannot guarantee convergency 
 
-For Newton's method, it doesn't like Gradient Descent directed by gradient, it always tend to find the nearest **mode** point that means it may be trapped into **saddle point**.
+
+
+For Newton's method, it doesn't like Gradient Descent directed by gradient, it always tend to find the nearest **stationary point** point that means it may be trapped into **saddle point**.
+
+
 
 ```
 iter = 0 | w = 0.6 | gradient: -10.600000000000023
@@ -207,6 +261,8 @@ iter = 53 | w = 1.0048781031630378 | gradient: -0.010055401587351298
 iter = 54 | w = 1.0048881585646252 | gradient: -0.00798511133473312
 ```
 
+
+
 {% include plot/GD_03.html %}
 
 
@@ -217,25 +273,43 @@ iter = 1 | w = 0.4795454545454543 | gradient: 1.0420313673929797
 iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 ```
 
+
+
 {% include plot/NT_02.html %}
+
+
 
 2. Computationally Expensive
 
+
+
 Also we have to use two differentiatd function in each iteration. As to a high dimensional problem like
+
+
 
 $$f(x, y , z) = 2x^2 + 2y^2 + z^2 - 2xy - 2xz - 6y + 7$$
 
+
+
 We first have FONC:
+
+
 
 $$\nabla f(x, y, z) = (4x-2y-2z,4y-2x-6, 2z-2x)$$ 
 
+
+
 Then we have second-order Taylor Approximation (Hessian Matrix):
+
+
 
 $$\nabla^2f = \begin{pmatrix} 4 &-2& -2 \\ -2 &4 &0 \\ -2 &0 & 2\end{pmatrix}$$
 
 
 
 3. May cause low accuracy (compared with Gradient Descent)
+
+
 
 For GD, we can set a small step size $\alpha$ or step a adaptative one to adjust the learning rate. But for 
 
