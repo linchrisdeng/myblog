@@ -11,7 +11,7 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Machine Learning Optimization II-2 - Lin Blog | Blog">
+    <meta property="og:title" content="Logistic Regression -- Cross Entropy Cost Function - Lin Blog | Blog">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="Introduction
@@ -38,10 +38,10 @@
     
     
     <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
-    <meta property="og:url" content="http://localhost:4000/2019/03/27/Machine-Learning-Optimization-II-2/">
+    <meta property="og:url" content="http://localhost:4000/2019/03/27/Logistic-Regression-Cross-Entropy-Cost-Function/">
     <meta property="og:site_name" content="Lin Blog | Blog">
     
-    <title>Machine Learning Optimization II-2 - Lin Blog | Blog</title>
+    <title>Logistic Regression -- Cross Entropy Cost Function - Lin Blog | Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -50,7 +50,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/03/27/Machine-Learning-Optimization-II-2/">
+    <link rel="canonical" href="http://localhost:4000/2019/03/27/Logistic-Regression-Cross-Entropy-Cost-Function/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -225,9 +225,9 @@
                         <a class="tag" href="/archive/?tag=Newton%27s+Method" title="Newton's Method">Newton's Method</a>
                         
                     </div>
-                    <h1>Machine Learning Optimization II-2</h1>
+                    <h1>Logistic Regression -- Cross Entropy Cost Function</h1>
                     
-                    <h2 class="subheading">Logistic Regression</h2>
+                    <h2 class="subheading">{0, 1} class problem</h2>
                     <span class="meta">Posted by LIN on March 27, 2019</span>
                 </div>
             </div>
@@ -341,9 +341,11 @@
   
 </html>
 
-<p>where we fit a linear regression by using
-<script type="math/tex">w=\left(X^{T} X\right)^{-1} X^{T} Y</script>
-However, we may find linear regression cannot be used to classification problem, since we need a more descriptive method.</p>
+<p>where we fit a linear regression by using</p>
+
+<script type="math/tex; mode=display">w=\left(X^{T} X\right)^{-1} X^{T} Y</script>
+
+<p>However, we may find that linear regression cannot be used to classification problem, since we need a more descriptive method.</p>
 
 <h2 id="logistic-sigmoid-function">Logistic Sigmoid Function</h2>
 
@@ -691,10 +693,12 @@ Combining the gradient cost function and visualization, this a non-convex proble
 
 <h2 id="cross-entropy-cost-function">Cross Entropy Cost Function</h2>
 
-<p>This method called <strong>Cross Entropy</strong>, but I’d like to call <strong>Cross Penalty</strong>. 
-<script type="math/tex">% <![CDATA[
+<p>This method called <strong>Cross Entropy</strong>, but I’d like to call <strong>Cross Penalty</strong>.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
 g_{i}(\mathbf{w})=\left\{\begin{array}{ll}{-\log \left(\sigma\left(\mathbf{w}^{T} \mathbf{x_i}\right)\right)} & {\text { if } y_{i}=1} \\ {-\log \left(1-\sigma\left(\mathbf{w}^{T}\mathbf{x_i}\right)\right)} & {\text { if } y_{i}=0}\end{array}\right. %]]></script>
-It’s a little complex but it’s crystal clear for visualization.</p>
+
+<p>It’s a little complex but it’s crystal clear for visualization.</p>
 
 <html lang="en">
   
@@ -896,7 +900,7 @@ It’s a little complex but it’s crystal clear for visualization.</p>
   
 </html>
 
-<p>I set all iteration == 5000, we can see for this small scale problem, **Newton’s Method ** is also the best. From now, we can build our own logistic regresion for binary classification. Next blog I will give a quick review to softmax – logistic regression multi-classification.</p>
+<p>I set all iteration == 5000, we can see for this small scale problem, <strong>Newton’s Method</strong> is also the best. From now, we can build our own logistic regresion for binary classification. Next blog I will give a quick review to softmax – logistic regression multi-classification.</p>
 
 <hr />
 
@@ -908,12 +912,19 @@ It’s a little complex but it’s crystal clear for visualization.</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/03/26/Machine-Learning-Optimization-II-1/" data-toggle="tooltip" data-placement="top" title="Machine Learning Optimization II-1">
+                        <a href="/2019/03/26/Linear-Regression-Parameter-Estimation/" data-toggle="tooltip" data-placement="top" title="Linear Regression -- Parameter Estimation">
                         Previous<br>
-                        <span>Machine Learning Optimization II-1</span>
+                        <span>Linear Regression -- Parameter Estimation</span>
                         </a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2019/03/29/Logistic-Regression-tanh-Cost-Function/" data-toggle="tooltip" data-placement="top" title="Logistic Regression -- Hyperbolic Tangent (tanh) Cost Function">
+                        Next<br>
+                        <span>Logistic Regression -- Hyperbolic Tangent (tanh) Cost Function</span>
+                        </a>
+                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
@@ -965,27 +976,32 @@ It’s a little complex but it’s crystal clear for visualization.</p>
                 <a data-sort="0000" 
                     href="/archive/?tag=Optimization"
                     title="Optimization"
-                    rel="4">Optimization</a>
+                    rel="5">Optimization</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Machine+Learning"
                     title="Machine Learning"
-                    rel="3">Machine Learning</a>
+                    rel="4">Machine Learning</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Python"
                     title="Python"
-                    rel="3">Python</a>
+                    rel="4">Python</a>
         
                 <a data-sort="0002" 
                     href="/archive/?tag=Gradient+Descent"
                     title="Gradient Descent"
-                    rel="2">Gradient Descent</a>
+                    rel="3">Gradient Descent</a>
         
                 <a data-sort="0002" 
                     href="/archive/?tag=Newton%27s+Method"
                     title="Newton's Method"
-                    rel="2">Newton's Method
+                    rel="3">Newton's Method</a>
+        
+                <a data-sort="0003" 
+                    href="/archive/?tag=Logistic+Regression"
+                    title="Logistic Regression"
+                    rel="2">Logistic Regression
     </div>
 </section>
 

@@ -11,7 +11,7 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Machine Learning Optimization II-1 - Lin Blog | Blog">
+    <meta property="og:title" content="Linear Regression -- Parameter Estimation - Lin Blog | Blog">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="Introduction
@@ -34,10 +34,10 @@
     
     
     <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
-    <meta property="og:url" content="http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II-1/">
+    <meta property="og:url" content="http://localhost:4000/2019/03/26/Linear-Regression-Parameter-Estimation/">
     <meta property="og:site_name" content="Lin Blog | Blog">
     
-    <title>Machine Learning Optimization II-1 - Lin Blog | Blog</title>
+    <title>Linear Regression -- Parameter Estimation - Lin Blog | Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -46,7 +46,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/03/26/Machine-Learning-Optimization-II-1/">
+    <link rel="canonical" href="http://localhost:4000/2019/03/26/Linear-Regression-Parameter-Estimation/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -217,7 +217,7 @@
                         <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Machine Learning Optimization II-1</h1>
+                    <h1>Linear Regression -- Parameter Estimation</h1>
                     
                     <h2 class="subheading">Linear Regression</h2>
                     <span class="meta">Posted by LIN on March 26, 2019</span>
@@ -287,15 +287,11 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
 
 <p><img src="/img/in-post/ML_Optimization/least_squares.jpg" alt="least_squares" /></p>
 
-<p>We aim to minimize the distance between data and regression line.</p>
-
-<script type="math/tex; mode=display">g(w) = \sum^N_{i = 1}(w^T x_i - y_i)^2</script>
-
-<p>Then we can try to expand the equation</p>
-
-<script type="math/tex; mode=display">g(w) = \sum_{i = 1}^N((w^Tx_i)^2 + y_i^2 - 2w^Tx_iy_i)</script>
-
-<p>Regardless of the dataset, the least square cost function for linear regression is always convex.</p>
+<p>We aim to minimize the distance between data and regression line.
+<script type="math/tex">g(w) = \sum^N_{i = 1}(w^T x_i - y_i)^2</script>
+Then we can try to expand the equation
+<script type="math/tex">g(w) = \sum_{i = 1}^N((w^Tx_i)^2 + y_i^2 - 2w^Tx_iy_i)</script>
+Regardless of the dataset, the least square cost function for linear regression is always convex.</p>
 
 <p>It means for X with one dimension, least square will be a U curve. To compute the gradient of least squares, which gives:</p>
 
@@ -430,17 +426,17 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2019/03/21/Machine-Learning-Optimization-I/" data-toggle="tooltip" data-placement="top" title="Machine Learning Optimization I">
+                        <a href="/2019/03/21/Introduction-to-Gradient-Descent-and-Newtons-Method/" data-toggle="tooltip" data-placement="top" title="Introduction to Gradient Descent and Newton's Method">
                         Previous<br>
-                        <span>Machine Learning Optimization I</span>
+                        <span>Introduction to Gradient Descent and Newton's Method</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2019/03/27/Machine-Learning-Optimization-II-2/" data-toggle="tooltip" data-placement="top" title="Machine Learning Optimization II-2">
+                        <a href="/2019/03/27/Logistic-Regression-Cross-Entropy-Cost-Function/" data-toggle="tooltip" data-placement="top" title="Logistic Regression -- Cross Entropy Cost Function">
                         Next<br>
-                        <span>Machine Learning Optimization II-2</span>
+                        <span>Logistic Regression -- Cross Entropy Cost Function</span>
                         </a>
                     </li>
                     
@@ -494,27 +490,32 @@ X=\left( \begin{array}{c}{\mathbf{x}_{1}^{T}} \\ {\mathbf{x}_{2}^{T}} \\ {\vdots
                 <a data-sort="0000" 
                     href="/archive/?tag=Optimization"
                     title="Optimization"
-                    rel="4">Optimization</a>
+                    rel="5">Optimization</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Machine+Learning"
                     title="Machine Learning"
-                    rel="3">Machine Learning</a>
+                    rel="4">Machine Learning</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Python"
                     title="Python"
-                    rel="3">Python</a>
+                    rel="4">Python</a>
         
                 <a data-sort="0002" 
                     href="/archive/?tag=Gradient+Descent"
                     title="Gradient Descent"
-                    rel="2">Gradient Descent</a>
+                    rel="3">Gradient Descent</a>
         
                 <a data-sort="0002" 
                     href="/archive/?tag=Newton%27s+Method"
                     title="Newton's Method"
-                    rel="2">Newton's Method
+                    rel="3">Newton's Method</a>
+        
+                <a data-sort="0003" 
+                    href="/archive/?tag=Logistic+Regression"
+                    title="Logistic Regression"
+                    rel="2">Logistic Regression
     </div>
 </section>
 

@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Machine Learning Optimization I"
-subtitle:   "Introduction of Gradient Descent and Newton's Method"
+title:      "Introduction to Gradient Descent and Newton's Method"
+subtitle:   ""
 date:       2019-03-21 12:00:00
 author:     "LIN"
 header-img: "img/in-post/post-MLOptimization-0.jpg"
@@ -14,6 +14,7 @@ tags:
 catalog: true
 mathjax: true
 mathjax_autoNumber: true
+
 ---
 
 ## Introduction
@@ -178,7 +179,7 @@ You will notice that I make a black point and a new red point which become the n
 
 
 
-The basic idea of Newton's Method is given a start point, find its Second-Order Taylor Approximation, then find the nearest stationary point of the approximation to update $w​$. 
+The basic idea of Newton's Method is given a start point, find its Second-Order Taylor Approximation, then find the nearest stationary point of the approximation to update $w$. 
 
 From equation $(2)$ 
 
@@ -279,7 +280,7 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 
 
 
-2. Computationally Expensive
+1. Computationally Expensive
 
 
 
@@ -307,7 +308,7 @@ $$\nabla^2f = \begin{pmatrix} 4 &-2& -2 \\ -2 &4 &0 \\ -2 &0 & 2\end{pmatrix}$$
 
 
 
-3. May cause low accuracy (compared with Gradient Descent)
+1. May cause low accuracy (compared with Gradient Descent)
 
 
 
@@ -333,7 +334,7 @@ However,  application in real machine learn or data mining production circumstan
 
 
 
-----------------
+------
 
 Code: [GitHub](<https://github.com/linchrisdeng/ML_post/tree/master/ML_00_GD_NT>), [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_00_GD_NT/ML_00_GD_NT.ipynb>)
 

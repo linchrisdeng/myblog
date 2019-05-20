@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Machine Learning Optimization II-1"
+title:      "Linear Regression -- Parameter Estimation"
 subtitle:   "Linear Regression"
 date:       2019-03-26 12:00:00
 author:     "LIN"
@@ -13,6 +13,7 @@ tags:
 catalog: true
 mathjax: true
 mathjax_autoNumber: true
+
 ---
 
 ## Introduction
@@ -62,21 +63,13 @@ Normally we use **Least Squares** for regression problem.
 ![least_squares](/img/in-post/ML_Optimization/least_squares.jpg)
 
 We aim to minimize the distance between data and regression line.
-
-
 $$
 g(w) = \sum^N_{i = 1}(w^T x_i - y_i)^2
 $$
-
-
 Then we can try to expand the equation
-
-
 $$
 g(w) = \sum_{i = 1}^N((w^Tx_i)^2 + y_i^2 - 2w^Tx_iy_i)
 $$
-
-
 Regardless of the dataset, the least square cost function for linear regression is always convex.
 
 It means for X with one dimension, least square will be a U curve. To compute the gradient of least squares, which gives:
@@ -90,11 +83,9 @@ $$
 w^T = \sum^N_{i=1}y_ix_i(\sum^N_{i = 1}x_i^2)^{-1}
 $$
 
-
 $$
 w = (X^TX)^{-1}X^TY
 $$
-
 
 ```python
 # import the dataset
@@ -124,7 +115,7 @@ array([[-1.60729045e+02],
 
 
 
------
+------
 
 Code: [Github](<https://github.com/linchrisdeng/ML_post/tree/master/ML_01_Regression>), [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_01_Regression/ML_01_regression.ipynb>)
 

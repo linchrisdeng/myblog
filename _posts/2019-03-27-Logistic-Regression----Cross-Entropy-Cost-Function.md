@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Machine Learning Optimization II-2"
-subtitle:   "Logistic Regression"
+title:      "Logistic Regression -- Cross Entropy Cost Function"
+subtitle:   "{0, 1} class problem"
 date:       2019-03-27 12:00:00
 author:     "LIN"
 header-img: "img/in-post/post-MLOptimization-2.jpg"
@@ -15,6 +15,7 @@ tags:
 catalog: true
 mathjax: true
 mathjax_autoNumber: true
+
 ---
 
 ## Introduction
@@ -26,10 +27,14 @@ Here is a small sample:
 {% include /plot/logit_00.html %}
 
 where we fit a linear regression by using
+
+
 $$
 w=\left(X^{T} X\right)^{-1} X^{T} Y
 $$
-However, we may find linear regression cannot be used to classification problem, since we need a more descriptive method.
+
+
+However, we may find that linear regression cannot be used to classification problem, since we need a more descriptive method.
 
 
 
@@ -189,9 +194,13 @@ You can notice that by setting a *KNOWN* start point will help us get a perfect 
 ## Cross Entropy Cost Function
 
 This method called **Cross Entropy**, but I'd like to call **Cross Penalty**. 
+
+
 $$
 g_{i}(\mathbf{w})=\left\{\begin{array}{ll}{-\log \left(\sigma\left(\mathbf{w}^{T} \mathbf{x_i}\right)\right)} & {\text { if } y_{i}=1} \\ {-\log \left(1-\sigma\left(\mathbf{w}^{T}\mathbf{x_i}\right)\right)} & {\text { if } y_{i}=0}\end{array}\right.
 $$
+
+
 It's a little complex but it's crystal clear for visualization.
 
 
@@ -274,11 +283,11 @@ Thus logistic regression becomes a pretty straight forward convex-optimization p
 
 
 
-I set all iteration == 5000, we can see for this small scale problem, **Newton's Method ** is also the best. From now, we can build our own logistic regresion for binary classification. Next blog I will give a quick review to softmax -- logistic regression multi-classification. 
+I set all iteration == 5000, we can see for this small scale problem, **Newton's Method** is also the best. From now, we can build our own logistic regresion for binary classification. Next blog I will give a quick review to softmax -- logistic regression multi-classification. 
 
 
 
------
+------
 
 Code: [GItHub](<https://github.com/linchrisdeng/ML_post/tree/master/ML_02_Logistic_Regression>) & [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_02_Logistic_Regression/ML_02_logit.ipynb>)
 
