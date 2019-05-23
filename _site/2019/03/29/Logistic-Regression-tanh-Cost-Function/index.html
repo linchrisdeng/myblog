@@ -34,7 +34,7 @@
     
     <meta property="article:tag" content="Gradient Descent">
     
-    <meta property="article:tag" content="Newton's Method">
+    <meta property="article:tag" content="tanh">
     
     <meta property="article:tag" content="Linear">
     
@@ -117,6 +117,8 @@
                     <li>
                         <a href="/archive/">Archive</a>
                     </li>
+                    
+                    
                     
                     
                     
@@ -224,7 +226,7 @@
                         
                         <a class="tag" href="/archive/?tag=Gradient+Descent" title="Gradient Descent">Gradient Descent</a>
                         
-                        <a class="tag" href="/archive/?tag=Newton%27s+Method" title="Newton's Method">Newton's Method</a>
+                        <a class="tag" href="/archive/?tag=tanh" title="tanh">tanh</a>
                         
                         <a class="tag" href="/archive/?tag=Linear" title="Linear">Linear</a>
                         
@@ -425,6 +427,13 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/2019/04/01/Introduction-to-Binary-Classification-Perceptron/" data-toggle="tooltip" data-placement="top" title="Introduction to Binary Classification -- Perceptron ">
+                        Next<br>
+                        <span>Introduction to Binary Classification -- Perceptron </span>
+                        </a>
+                    </li>
+                    
                 </ul>
                 <hr style="visibility: hidden;">
 
@@ -475,32 +484,32 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
                 <a data-sort="0000" 
                     href="/archive/?tag=Optimization"
                     title="Optimization"
-                    rel="5">Optimization</a>
+                    rel="6">Optimization</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Machine+Learning"
                     title="Machine Learning"
-                    rel="4">Machine Learning</a>
+                    rel="5">Machine Learning</a>
         
                 <a data-sort="0001" 
                     href="/archive/?tag=Python"
                     title="Python"
-                    rel="4">Python</a>
+                    rel="5">Python</a>
         
-                <a data-sort="0002" 
+                <a data-sort="0003" 
                     href="/archive/?tag=Gradient+Descent"
                     title="Gradient Descent"
                     rel="3">Gradient Descent</a>
         
-                <a data-sort="0002" 
-                    href="/archive/?tag=Newton%27s+Method"
-                    title="Newton's Method"
-                    rel="3">Newton's Method</a>
-        
-                <a data-sort="0003" 
+                <a data-sort="0004" 
                     href="/archive/?tag=Logistic+Regression"
                     title="Logistic Regression"
-                    rel="2">Logistic Regression
+                    rel="2">Logistic Regression</a>
+        
+                <a data-sort="0004" 
+                    href="/archive/?tag=Newton%27s+Method"
+                    title="Newton's Method"
+                    rel="2">Newton's Method
     </div>
 </section>
 
@@ -576,7 +585,7 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
         anchors.options = {
           visible: 'always',
           placement: 'right',
-          icon: '#'
+          icon: ''
         };
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })

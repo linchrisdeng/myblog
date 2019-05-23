@@ -11,7 +11,7 @@ tags:
     - Logistic Regression
     - Python
     - Gradient Descent
-    - Newton's Method
+    - tanh
     - Linear
 catalog: true
 mathjax: true

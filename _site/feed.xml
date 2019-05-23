@@ -5,9 +5,110 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 19 May 2019 19:23:04 -0500</pubDate>
-    <lastBuildDate>Sun, 19 May 2019 19:23:04 -0500</lastBuildDate>
+    <pubDate>Thu, 23 May 2019 16:00:11 -0500</pubDate>
+    <lastBuildDate>Thu, 23 May 2019 16:00:11 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Introduction to Binary Classification -- Perceptron </title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;After reviewing and analyzing logistic regression, we break down the door of classification, in this post I will introduce another basic classification method called &lt;strong&gt;Perceptron&lt;/strong&gt; which is also the first machine learning method I learned.&lt;/p&gt;
+
+&lt;p&gt;I like the name &lt;em&gt;Perceptron&lt;/em&gt;, it sounds like a complex auto-machine that perfectly match machine learning this subject. Frankly speaking, after understanding the one, it is not cool or complicated. It is the most straight forward method I have ever seen but derserve you to learn, since it is the base of some advanced algorithms like &lt;em&gt;Support Vector Machine&lt;/em&gt;, currently the most popular method &lt;em&gt;Neural Network&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please check this previous &lt;a href=&quot;https://linchrisdeng.github.io/2019/03/26/Linear-Regression-Parameter-Estimation/&quot;&gt;&lt;strong&gt;post&lt;/strong&gt;&lt;/a&gt; and make sure you are familiar with my notation style.&lt;/p&gt;
+
+&lt;p&gt;For linear regression, we estimate paramemters $\mathbf w_i$ to &lt;em&gt;force&lt;/em&gt; our prediction $\hat{y_i} \approx y_i$. Due to this reason, sometime we may define regression as &lt;strong&gt;descriptive&lt;/strong&gt; method (I will talk about measure metrics later, forgive the inaccuracy). However, for classification problem, our objective funtion would look like $\mathbf {w}^T\mathbf{x}_i =  0$ which means no point/data lied on the &lt;em&gt;“regression”&lt;/em&gt; line. Then we can imagine a line cross the figure with two classes  points dropped on both sides like this:&lt;/p&gt;
+
+&lt;div&gt;
+    &lt;a href=&quot;https://plot.ly/~linchrisdeng/63/?share_key=TWE6kEAzPzL16L4rTXMhCx&quot; target=&quot;_blank&quot; title=&quot;Perceptron&quot; style=&quot;display: block; text-align: center;&quot;&gt;&lt;img src=&quot;https://plot.ly/~linchrisdeng/63.png?share_key=TWE6kEAzPzL16L4rTXMhCx&quot; alt=&quot;Perceptron&quot; style=&quot;max-width: 100%;width: 600px;&quot; width=&quot;600&quot; onerror=&quot;this.onerror=null;this.src='https://plot.ly/404.png';&quot; /&gt;&lt;/a&gt;
+    &lt;script data-plotly=&quot;linchrisdeng:63&quot; sharekey-plotly=&quot;TWE6kEAzPzL16L4rTXMhCx&quot; src=&quot;https://plot.ly/embed.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Weights were estimated by directly using scikit-learn, two classes were perfectly sepatate by a logistic/tanh like hyperplane. Now you can guess will the &lt;em&gt;perceptron&lt;/em&gt; is another S curve algorithm? Let’s see how does it work.&lt;/p&gt;
+
+&lt;h2 id=&quot;perceptron-cost-function&quot;&gt;Perceptron Cost Function&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/post-MLOptimization-6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s change the view to the top, we can see a &lt;em&gt;“line”&lt;/em&gt; is separating these two classes wthout cross any of them. Base on the our definition of the *“line” we have:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{ll}
+{\mathbf{w}^{T} \mathbf{x}_i&gt;0} &amp; {\text { if } y_{i}=+1} \ \text{(blue scatters)}
+\\ 
+{\mathbf{w}^{T} \mathbf{x}&lt;0} &amp; {\text { if } y_{i}=-1} \ \text{(orange scatters)}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Just like what we usually do to design cost function, we summarize &lt;em&gt;“costs”&lt;/em&gt; into one formula:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{}
+
+\end{array}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_i(\mathbf{w}) = \text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+\\ \Downarrow
+\\
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+\\
+\\ \Downarrow
+\\ 
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{max}(0,-y_{i} \mathbf{w}^{T} \mathbf{x}_i )&lt;/script&gt;
+
+&lt;p&gt;However, we may find two problems here that&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Parameter $\mathbf{w}$ will easily &lt;em&gt;descent&lt;/em&gt; to $0$&lt;/li&gt;
+  &lt;li&gt;Cannot apply high order optimization method (Newton’s)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;relu-vs-softplus&quot;&gt;ReLU VS Softplus&lt;/h2&gt;
+
+&lt;p&gt;Here we need to mention a new pair of function which can be used in classification in machine learning and deep learning network.&lt;/p&gt;
+
+&lt;p&gt;ReLU (&lt;em&gt;Rectified Linear Unit&lt;/em&gt;):&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(t) = \text{max}(0, t)&lt;/script&gt;
+
+&lt;p&gt;Softplus:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{}
+\text{soft}(s_1, s_2) = log(e^{s_1} + e^{s_2})\\ \\
+f(t) = \text{soft}(0, t) = log(e^0 + e^t) =  log(1+e^t)
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/post-MLOptimization-7.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Returning back to the perceptron cost function then transfering it to &lt;em&gt;Softplus&lt;/em&gt; version.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{max}(0, -y_{i} \mathbf{w}^{T} \mathbf{x}_i ) = \frac{1}{N}\sum^N_{i=1}\text{soft}(0, -y_{i} \mathbf{w}^{T} \mathbf{x}_i ) \\
+\Downarrow \\
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{log}(1 + e^{-y_{i} \mathbf{w}^{T} \mathbf{x}_i} )&lt;/script&gt;
+
+&lt;p&gt;You must be familiar with this cost function and now it can answer the question we raised in the beginning &lt;em&gt;“Why perceptron looks like a &lt;strong&gt;S&lt;/strong&gt; curve?”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Welcome back to &lt;a href=&quot;https://linchrisdeng.github.io/2019/03/29/Logistic-Regression-tanh-Cost-Function/&quot;&gt;&lt;em&gt;tanh&lt;/em&gt; logistic regression&lt;/a&gt; !!!&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 01 Apr 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/</guid>
+        
+        <category>Machine Learning</category>
+        
+        <category>Optimization</category>
+        
+        <category>Python</category>
+        
+        <category>Classification</category>
+        
+        <category>Binary</category>
+        
+        <category>Perceptron</category>
+        
+        
+      </item>
     
       <item>
         <title>Logistic Regression -- Hyperbolic Tangent (tanh) Cost Function</title>
@@ -180,7 +281,7 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
         
         <category>Gradient Descent</category>
         
-        <category>Newton's Method</category>
+        <category>tanh</category>
         
         <category>Linear</category>
         

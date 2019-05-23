@@ -11,35 +11,37 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Optimization Modeling: Sports League Realignment - Lin Blog | Blog">
+    <meta property="og:title" content="Introduction to Binary Classification -- Perceptron  - Lin Blog | Blog">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="Introduction
 
 ">
     
-    <meta property="article:published_time" content="2018-03-27T07:00:00Z">
+    <meta property="article:published_time" content="2019-04-01T07:00:00Z">
     
     
     <meta property="article:author" content="LIN">
     
     
+    <meta property="article:tag" content="Machine Learning">
+    
     <meta property="article:tag" content="Optimization">
     
-    <meta property="article:tag" content="Model">
+    <meta property="article:tag" content="Python">
     
-    <meta property="article:tag" content="AMPL">
+    <meta property="article:tag" content="Classification">
     
-    <meta property="article:tag" content="R">
+    <meta property="article:tag" content="Binary">
     
-    <meta property="article:tag" content="Sports">
+    <meta property="article:tag" content="Perceptron">
     
     
     <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
-    <meta property="og:url" content="http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/">
+    <meta property="og:url" content="http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/">
     <meta property="og:site_name" content="Lin Blog | Blog">
     
-    <title>Optimization Modeling: Sports League Realignment - Lin Blog | Blog</title>
+    <title>Introduction to Binary Classification -- Perceptron  - Lin Blog | Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -48,7 +50,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/">
+    <link rel="canonical" href="http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -186,7 +188,7 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/in-post/NHL/post-NHL-0.jpg" width="0" height="0"> -->
+<!-- <img src="/img/in-post/post-MLOptimization-5.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -195,7 +197,7 @@
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/in-post/NHL/post-NHL-0.jpg');
+        background-image: url('/img/in-post/post-MLOptimization-5.jpg');
         background: ;
     }
 
@@ -212,21 +214,23 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                        <a class="tag" href="/archive/?tag=Machine+Learning" title="Machine Learning">Machine Learning</a>
+                        
                         <a class="tag" href="/archive/?tag=Optimization" title="Optimization">Optimization</a>
                         
-                        <a class="tag" href="/archive/?tag=Model" title="Model">Model</a>
+                        <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
                         
-                        <a class="tag" href="/archive/?tag=AMPL" title="AMPL">AMPL</a>
+                        <a class="tag" href="/archive/?tag=Classification" title="Classification">Classification</a>
                         
-                        <a class="tag" href="/archive/?tag=R" title="R">R</a>
+                        <a class="tag" href="/archive/?tag=Binary" title="Binary">Binary</a>
                         
-                        <a class="tag" href="/archive/?tag=Sports" title="Sports">Sports</a>
+                        <a class="tag" href="/archive/?tag=Perceptron" title="Perceptron">Perceptron</a>
                         
                     </div>
-                    <h1>Optimization Modeling: Sports League Realignment</h1>
+                    <h1>Introduction to Binary Classification -- Perceptron </h1>
                     
                     <h2 class="subheading"></h2>
-                    <span class="meta">Posted by LIN on March 27, 2018</span>
+                    <span class="meta">Posted by LIN on April 1, 2019</span>
                 </div>
             </div>
         </div>
@@ -254,206 +258,95 @@
 
 				<h2 id="introduction">Introduction</h2>
 
-<p>For MLB, NBA, NFL, NHL these four big leagues in North America normally consists of 30 to 32 teams. These teams will play same number of home and away games in the same division, and against some teams in other conferences and divisions.</p>
+<p>After reviewing and analyzing logistic regression, we break down the door of classification, in this post I will introduce another basic classification method called <strong>Perceptron</strong> which is also the first machine learning method I learned.</p>
 
-<p>Take the National Hockey League (NHL) as an example, prior to 2013, the league was structured into two 15-team conferences, each subdivided into three 5-team. This kind of assignment is called <strong>League Structure</strong>.</p>
+<p>I like the name <em>Perceptron</em>, it sounds like a complex auto-machine that perfectly match machine learning this subject. Frankly speaking, after understanding the one, it is not cool or complicated. It is the most straight forward method I have ever seen but derserve you to learn, since it is the base of some advanced algorithms like <em>Support Vector Machine</em>, currently the most popular method <em>Neural Network</em>.</p>
 
-<p><img src="/img/in-post/NHL/post-NHL-1.jpg" alt="NHL 2008-2012" /></p>
+<p>Please check this previous <a href="https://linchrisdeng.github.io/2019/03/26/Linear-Regression-Parameter-Estimation/"><strong>post</strong></a> and make sure you are familiar with my notation style.</p>
 
-<p>But for 2013-2014 season, the league realign the number of subdivision to 4.</p>
+<p>For linear regression, we estimate paramemters $\mathbf w_i$ to <em>force</em> our prediction $\hat{y_i} \approx y_i$. Due to this reason, sometime we may define regression as <strong>descriptive</strong> method (I will talk about measure metrics later, forgive the inaccuracy). However, for classification problem, our objective funtion would look like $\mathbf {w}^T\mathbf{x}_i =  0$ which means no point/data lied on the <em>“regression”</em> line. Then we can imagine a line cross the figure with two classes  points dropped on both sides like this:</p>
 
-<p><img src="/img/in-post/NHL/post-NHL-1.jpg" alt="NHL 2013-2014" /></p>
+<div>
+    <a href="https://plot.ly/~linchrisdeng/63/?share_key=TWE6kEAzPzL16L4rTXMhCx" target="_blank" title="Perceptron" style="display: block; text-align: center;"><img src="https://plot.ly/~linchrisdeng/63.png?share_key=TWE6kEAzPzL16L4rTXMhCx" alt="Perceptron" style="max-width: 100%;width: 600px;" width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="linchrisdeng:63" sharekey-plotly="TWE6kEAzPzL16L4rTXMhCx" src="https://plot.ly/embed.js" async=""></script>
+</div>
 
-<p>Hence for this optimization problem we need to focus on how to build a model that will support the construction of a efficient league structure.</p>
+<p>Weights were estimated by directly using scikit-learn, two classes were perfectly sepatate by a logistic/tanh like hyperplane. Now you can guess will the <em>perceptron</em> is another S curve algorithm? Let’s see how does it work.</p>
 
-<h2 id="league-structure-evaluation">League Structure Evaluation</h2>
+<h2 id="perceptron-cost-function">Perceptron Cost Function</h2>
 
-<p>The purpose of constructing a league structure is to minimize the total travel distance for a whole season. We set $S$ as the league structure, the measure or objective function $D(S)$ is defined as the total distances over all games between pairs $(i, j)$ teams or cities. Base on above, let $d(i,j) $ as distance between teams or home cities $(i, j)$ , $g(i, j)$ as the number of games between pair $(i, j)$ in a season. The objective can be defined as:</p>
+<p><img src="/img/in-post/post-MLOptimization-6.jpg" alt="" /></p>
 
-<script type="math/tex; mode=display">D(S) = \sum_{(i,j)}d(i, j)g(i,j)</script>
-
-<h2 id="mixed-integer-programming-mip">Mixed Integer Programming (MIP)</h2>
-
-<p>Our realignment (league structure) is a common Mixed Integer Progarmming which require one additional condition that at least one of the variables can and only take integer value. For NHL teams whther to be assigned to one of subdivision is a binary (0 or 1) problem.</p>
-
-<p>The basic form of MIP:</p>
-
-<p>Minimize</p>
-
-<script type="math/tex; mode=display">\beta^T X</script>
-
-<p>subject to</p>
-
-<script type="math/tex; mode=display">AX \le b, X\geq 0</script>
-
-<p>Where</p>
-
-<script type="math/tex; mode=display">X = (x_1, x_2, x_3, ..., x_n)^T, x_i \in X \ are \ restricted\  to\  integer</script>
-
-<script type="math/tex; mode=display">\beta = (\beta_1, \beta_2, \beta_3,..., \beta_n)^T</script>
+<p>Let’s change the view to the top, we can see a <em>“line”</em> is separating these two classes wthout cross any of them. Base on the our definition of the *“line” we have:</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-A = \begin {pmatrix}a_{11} &...  &a_{1n}\\ \vdots &\ddots &\vdots \\a_{n1} &... &a_{nn} \end {pmatrix} %]]></script>
+\begin{array}{ll}
+{\mathbf{w}^{T} \mathbf{x}_i>0} & {\text { if } y_{i}=+1} \ \text{(blue scatters)}
+\\ 
+{\mathbf{w}^{T} \mathbf{x}<0} & {\text { if } y_{i}=-1} \ \text{(orange scatters)}
+\end{array} %]]></script>
 
-<script type="math/tex; mode=display">b = (b_1, b_2, b_3,..., b_n)^T</script>
+<p>Just like what we usually do to design cost function, we summarize <em>“costs”</em> into one formula:</p>
 
-<h2 id="minimizing-the-total-league-travel-distance-mip">Minimizing the total league travel distance MIP</h2>
+<script type="math/tex; mode=display">\begin{array}{}
 
-<ul>
-  <li>$T$ is a set of $n$ teams or cities</li>
-  <li>$S$ is a set of $s$ divisions</li>
-  <li>$D = (D_{ij} = d(i, j): i, j \in T)$ is a $n \times n$ matrix that contains distance between each pair of cities</li>
-  <li>G is a $s \times s$ matrix. $G_{u, v}$ represent average number of games between division $u$ and $v$, it was calculated by the understanding the schedule of NHL, details could be seen at <a href="https://en.wikipedia.org/wiki/Season_structure_of_the_NHL">Season structure of the NHL</a></li>
-  <li>Set $b$ as the number of teams assigned into each divisions</li>
-</ul>
+\end{array}</script>
 
-<blockquote>
-  <p><strong>2008 - 2012</strong></p>
+<script type="math/tex; mode=display">g_i(\mathbf{w}) = \text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+\\ \Downarrow
+\\
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+\\
+\\ \Downarrow
+\\ 
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{max}(0,-y_{i} \mathbf{w}^{T} \mathbf{x}_i )</script>
 
-  <p>NHL was a 2-conference, 6-division league where $n = 30, s = 6, b = [5, 5, 5, 5, 5, 5]$</p>
-</blockquote>
-
-<script type="math/tex; mode=display">% <![CDATA[
-G = \begin{pmatrix} 3 & 2 & 2 & 0.6 & 0.6 & 0.6 \\ 2 & 3 & 2 & 0.6 & 0.6 & 0.6 \\ 2 & 2 & 3 & 0.6 & 0.6 & 0.6 \\ 0.6 & 0.6 & 0.6 & 3 & 2 & 2 \\ 0.6 & 0.6 & 0.6 & 2 & 3 & 2 \\   0.6 & 0.6 & 0.6 & 2 & 2 & 3 \\\end{pmatrix} %]]></script>
-
-<blockquote>
-  <p><strong>2013 - 2014</strong></p>
-
-  <p>NHL had 4 divisions where $n = 30, s = 4, b = [7, 7, 8, 8]$</p>
-</blockquote>
-
-<script type="math/tex; mode=display">% <![CDATA[
-G = \begin{pmatrix} \frac{15}{7} & \frac{3}{2} & 1 & 1 \\ \frac{3}{2} & \frac{15}{7} &1 & 1 \\ 1 & 1 & \frac{14.5}{6} & \frac{3}{2} \\ 1 & 1 & \frac{3}{2} & \frac{14.5}{6} \end{pmatrix} %]]></script>
-
-<h3 id="formulate-mip">Formulate MIP</h3>
-
-<p>Set $x_{iu} = 1$ if team i in division j else $x_{iu} = 0$. Hence, we can get objective function as</p>
-
-<p>minimize</p>
-
-<script type="math/tex; mode=display">F(x) = \sum_{i,j \in T} \sum_{u,v \in S} x_{iu} \cdot x_{jv} \cdot D_{ij} \cdot G_{uv}</script>
-
-<blockquote>
-  <p>However, this may lead objective function $F(x) = 0$,  or one of the team will be assigned to multiple divisions, then we need a more rigorous term to define the assignment of each teams corresponding to each divisions.</p>
-</blockquote>
-
-<p>Set $Y_{ijuv}$ as follows: for each pair of teams $(i,j)$ and each pair of divisions $(u, v)$, if $y_{ijuv} = 1$ means team $i$ is assigned to division $u$, team $j$ is assigned to division $v$</p>
-
-<ul>
-  <li>$\sum_{u, v \in S} Y_{ijuv} = 1$ for each pair of cities $(i, j)$</li>
-  <li>$\sum_{i, j \in T} Y_{ijuv} = b_u \cdot b_v$ for each pair of divisions $(u, v)$</li>
-</ul>
-
-<p>For now we can summarize out MIP optimization:</p>
-
-<p>minimize</p>
-
-<script type="math/tex; mode=display">\sum_{i,j\in T; u,v\in S} Y_{ijuv} \cdot D_{ij}  \cdot G_{uv}</script>
-
-<p>s.t.</p>
-
-<script type="math/tex; mode=display">\sum_{i \in T} x_{iu} = b_u \ for \ u \in S</script>
-
-<blockquote>
-  <p>number of teams in each division must fullfill requirment</p>
-</blockquote>
-
-<script type="math/tex; mode=display">\sum_{u \in S}  x_{iu} = 1 \ for \  i \in T</script>
-
-<blockquote>
-  <p>each team can only be assigned into one division</p>
-</blockquote>
-
-<script type="math/tex; mode=display">\sum_{u, v \in S} y_{ijuv} = 1 \ for \ each  \ pair \ of \ teams \ (i, j)</script>
-
-<script type="math/tex; mode=display">\sum_{i, j \in T} y_{ijuv} = b_u \cdot b_v\ for \ each \ pair \ of \ divisions \ (u, v)</script>
-
-<blockquote>
-  <p>for any two divisions, will have $b_u \cdot b_v$ pairs of teams</p>
-</blockquote>
-
-<script type="math/tex; mode=display">y_{ijuv} \leq x_{iu} \ \ \ i,j \in T \ u,v \in S</script>
-
-<script type="math/tex; mode=display">y_{ijuv} \leq x_{jv} \ \ \ i,j \in T \ u,v \in S</script>
-
-<blockquote>
-  <p>$y_{ijuv} = 1$ when both $x_{iu}, x_{jv} = 1$</p>
-</blockquote>
-
-<h2 id="application">Application</h2>
-
-<p>Base on the above MIP, we can apply this to our own division schedule.</p>
-
-<h3 id="roller-derby">Roller Derby</h3>
-
-<p>A organizing committee for a new Roller Derby sports league
-is in the process of assigning 16 teams to four divisions in such a way that overall league travel is minimized. The 16 teams are located in the following cities.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">indianapolis,   in</th>
-      <th>columbus, oh</th>
-      <th>cincinnati, oh</th>
-      <th>st. paul, mn</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">milwaukee, wi</td>
-      <td>memphis, tn</td>
-      <td>toledo, oh</td>
-      <td>grand rapids, mi</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">bloomington, il</td>
-      <td>louisville, ky</td>
-      <td>rockford, il</td>
-      <td>fort wayne, in</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">cedar rapids, ia</td>
-      <td>topeka, ks</td>
-      <td>green bay, wi</td>
-      <td>sioux falls, sd</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>And what if we assigned <strong>Fort Wanye, IN</strong> and <strong>Indianapolis, IN</strong> into a same division. How  does this new constraint affect the total distance and alignment ?</p>
-
-<p>Details can be seen in my <a href="https://github.com/linchrisdeng/Optimization-Modeling-Sports-League-Realignment">GitHub</a> or <a href="https://htmlpreview.github.io/?https://github.com/linchrisdeng/Optimization-Modeling-Sports-League-Realignment/blob/master/Realignment.html#model">here</a></p>
-
-<h3 id="update">Update</h3>
-
-<ul>
-  <li>In R, <a href="http://www.datasciencetoolkit.org/about">DataScienceToolkit</a> will not support  <code class="highlighter-rouge">geocode</code> function <code class="highlighter-rouge">dsk</code> API anymore, please register, please register <a href="https://developers.google.com/maps/documentation/geocoding/start">Google GeoCoding API</a></li>
-  <li>To solve this MIP Optimization problem I use <a href="https://ampl.com/products/ampl/">AMPL</a> which is a optimization modeling system support (CPLEX, Gurobi, Xpress) solver, but it is not free to use except <a href="https://ampl.com/products/ampl/ampl-for-students/">30-day trial</a> for students</li>
-</ul>
-
-<h2 id="references">References</h2>
+<p>However, we may find two problems here that</p>
 
 <ol>
-  <li>
-    <p><a href="https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Mixed_Integer_Programming.pdf">Mix Integer Programming</a></p>
-  </li>
-  <li>
-    <p>Macdonald, B. and Pulleyblank, W., 2014. Realignment in the NHL, MLB, NFL, and NBA. <em>Journal of Quantitative Analysis in Sports</em>, <em>10</em>(2), pp.225-240.</p>
-  </li>
+  <li>Parameter $\mathbf{w}$ will easily <em>descent</em> to $0$</li>
+  <li>Cannot apply high order optimization method (Newton’s)</li>
 </ol>
+
+<h2 id="relu-vs-softplus">ReLU VS Softplus</h2>
+
+<p>Here we need to mention a new pair of function which can be used in classification in machine learning and deep learning network.</p>
+
+<p>ReLU (<em>Rectified Linear Unit</em>):</p>
+
+<script type="math/tex; mode=display">f(t) = \text{max}(0, t)</script>
+
+<p>Softplus:</p>
+
+<script type="math/tex; mode=display">\begin{array}{}
+\text{soft}(s_1, s_2) = log(e^{s_1} + e^{s_2})\\ \\
+f(t) = \text{soft}(0, t) = log(e^0 + e^t) =  log(1+e^t)
+\end{array}</script>
+
+<p><img src="/img/in-post/post-MLOptimization-7.jpg" width="500" /></p>
+
+<p>Returning back to the perceptron cost function then transfering it to <em>Softplus</em> version.</p>
+
+<script type="math/tex; mode=display">g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{max}(0, -y_{i} \mathbf{w}^{T} \mathbf{x}_i ) = \frac{1}{N}\sum^N_{i=1}\text{soft}(0, -y_{i} \mathbf{w}^{T} \mathbf{x}_i ) \\
+\Downarrow \\
+g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{log}(1 + e^{-y_{i} \mathbf{w}^{T} \mathbf{x}_i} )</script>
+
+<p>You must be familiar with this cost function and now it can answer the question we raised in the beginning <em>“Why perceptron looks like a <strong>S</strong> curve?”</em></p>
+
+<p><strong>Welcome back to <a href="https://linchrisdeng.github.io/2019/03/29/Logistic-Regression-tanh-Cost-Function/"><em>tanh</em> logistic regression</a> !!!</strong></p>
 
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2019/03/21/Introduction-to-Gradient-Descent-and-Newtons-Method/" data-toggle="tooltip" data-placement="top" title="Introduction to Gradient Descent and Newton's Method">
-                        Next<br>
-                        <span>Introduction to Gradient Descent and Newton's Method</span>
+                    <li class="previous">
+                        <a href="/2019/03/29/Logistic-Regression-tanh-Cost-Function/" data-toggle="tooltip" data-placement="top" title="Logistic Regression -- Hyperbolic Tangent (tanh) Cost Function">
+                        Previous<br>
+                        <span>Logistic Regression -- Hyperbolic Tangent (tanh) Cost Function</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
                 <hr style="visibility: hidden;">
