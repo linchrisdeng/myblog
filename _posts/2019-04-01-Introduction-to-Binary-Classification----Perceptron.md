@@ -126,3 +126,7 @@ You must be familiar with this cost function and now it can answer the question 
 
 
 
+------
+
+[GitHub](<https://github.com/linchrisdeng/ML_post/tree/master/ML_04_Perceptron>) | [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_04_Perceptron/scikit-perceptron.ipynb>)
+
