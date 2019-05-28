@@ -5,9 +5,169 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 23 May 2019 16:22:55 -0500</pubDate>
-    <lastBuildDate>Thu, 23 May 2019 16:22:55 -0500</lastBuildDate>
+    <pubDate>Mon, 27 May 2019 21:45:39 -0500</pubDate>
+    <lastBuildDate>Mon, 27 May 2019 21:45:39 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Why SVM (Support Vector Machine)? </title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;After understanding the perceptron we may have an intuition of Linear Classification and raise some question about it. &lt;strong&gt;Perceptron&lt;/strong&gt; seems not stable I am not saying it is unreliable but lack of enough limitations which means for an optimization problem weights varied during the process and stopped within same conditions, like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/SVM_01.jpg&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;and this will lead problem in predicting new data. Hence we need a more concrete and rigorous method – SVM (Support Vector Machine)&lt;/p&gt;
+
+&lt;h2 id=&quot;hyperplane-and-maximum-margin&quot;&gt;Hyperplane and Maximum Margin&lt;/h2&gt;
+
+&lt;p&gt;We all know that for high-dimension classification, we divided different classes by insert a &lt;strong&gt;hyperplane&lt;/strong&gt; and if we need a stable linear hyperplane we will &lt;em&gt;“fix”&lt;/em&gt; something which is &lt;strong&gt;margin&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The margin is the gap between two classes and our hyperplane will be placed in the middle of the margin. The reason of setting a maximum margin is given the more space between classes, given the better prediction ability.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/SVM_02.jpg&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Above plot is the basic idea of a perfect hyperplane and its “twin friends” – Maximum Margin. To maximize margins means we need to calculate the distance $\text{d}$ between two margins.&lt;/p&gt;
+
+&lt;p&gt;We defind the perfect classification hyperplane and two margins as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{w}^T\text{x} = 0 \ \ \text{(Hyperplane)}
+\\
+\text{w}^T\text{x} = +1 \ \ \text{(Positive Region)}
+\\
+\text{w}^T\text{x} = -1 \ \ \text{(Negative Region)}
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;We all know that weights vector is always perpendicular to the hyperplane and parallel margins.&lt;/p&gt;
+
+&lt;p&gt;Imagining there is a straight perpendicularl ine cross two margins and leave two points&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{w}^T\text{x}_1 =  +1 \  \  \text{or} \ \ (\text{x}_1, +1)
+\\
+\text{w}^T\text{x}_2 =  -1 \  \  \text{or} \ \ (\text{x}_2, -1)&lt;/script&gt;
+
+&lt;p&gt;Hence, the distance of these two points is:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{w}^T\mathbf{x}_1 - \mathbf{w}^T\mathbf{x}_2 = \mathbf{w}^T(\mathbf{x}_1 -  \mathbf{x}_2) = 2
+\\
+\Downarrow
+\\
+||\mathbf{x}_1 - \mathbf{x}_2||_2 = \frac{2}{||\mathbf{w}||_2}&lt;/script&gt;
+
+&lt;p&gt;Therefore aiming to find maximum margin is to find the minimal normal weight $\text{w}$ with classification ability.&lt;/p&gt;
+
+&lt;h2 id=&quot;hard-margin-svm&quot;&gt;Hard-Margin SVM&lt;/h2&gt;
+
+&lt;p&gt;In the meanwhile, we need to adjust the original cost function of &lt;em&gt;perceptron&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;For Perceptron&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{ll}
+{\mathbf{w}^{T} \mathbf{x}_{i}&gt;0} &amp; {\text { if } y_{i}=+1 }
+\\ 
+{\mathbf{w}^{T} \mathbf{x}_{i}&lt;0} &amp; {\text { if } y_{i}=-1 }
+\end{array}
+\\
+\Downarrow
+\\
+\begin{array}{ll}
+{y_i\mathbf{w}^{T} \mathbf{x}_{i}&gt;0} &amp; {\text { correctly classified }}
+\\ 
+{y_i\mathbf{w}^{T} \mathbf{x}_{i}&lt;0} &amp; {\text { wrongly classified } }
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;For SVM&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{ll}
+\mathbf{w}^{T} \mathbf{x}_i \geq  +1 \ \ \text{if}\ y_i = +1
+\\
+\mathbf{w}^{T} \mathbf{x}_i \leq  -1 \ \ \text{if}\ y_i = -1
+\end{array}
+\\
+\Downarrow
+\\
+\begin{array}{ll}
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&gt;0} &amp; {\text { correctly classified }}
+\\ 
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&lt;0} &amp; {\text { wrongly classified } }
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Now we have the cost function of SVM&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g_i(\mathbf{w}) = \text{max}\left(0, 1-y_i\mathbf{w}^T\mathbf{x}_i\right) = 0
+\\
+\Downarrow
+\\
+g(\mathbf{w})=\frac{1}{N} \sum_{i=1}^{N} \max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) = 0&lt;/script&gt;
+
+&lt;p&gt;After understanding how to maxmize the margin, we can add the margin limitation to the cost function. This gives us the hard-margin SVM:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{minimize}\  \ ||\mathbf{w}||_2
+\\
+\text{s.t} \ \ 
+\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;However, this hard-margin cost of SVM can only be used to train perfectly classified dataset due to its constraint, thus we need to relax this by using &lt;strong&gt;KKT Condition&lt;/strong&gt;, which is   one of the most important knowledge in convex optimization.&lt;/p&gt;
+
+&lt;h2 id=&quot;kkt-condition&quot;&gt;KKT Condition&lt;/h2&gt;
+
+&lt;p&gt;I will make this as an individual post because it contains too much content need to be well explained.&lt;/p&gt;
+
+&lt;p&gt;Here is the &lt;a href=&quot;&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;soft-margin-svm&quot;&gt;Soft-Margin SVM&lt;/h2&gt;
+
+&lt;p&gt;After completing the KKT conditions, we can relax the conditions of the hard-margin SVM and get soft-margin SVM:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) + \lambda||\mathbf{w}||_2
+\\
+\Downarrow
+\\
+g(\mathbf{w}) = C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right) + \lambda||\mathbf{w}||_2&lt;/script&gt;
+
+&lt;p&gt;where $C$ means the penalty we given to misclassified, which determines the width of the  margin (large $C \ \Rightarrow $  smaller margin, vice versa)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/SVM_03.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Plots downloaded from &lt;a href=&quot;https://stats.stackexchange.com/questions/31066/what-is-the-influence-of-c-in-svms-with-linear-kernel&quot;&gt;stackoverflow: Kent Munthe Caspersen&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;In this post, an imperfect one, I talked about the the disadvantages of &lt;em&gt;Perceptron&lt;/em&gt; and the&lt;/p&gt;
+
+&lt;p&gt;connection between margin and its original cost function. I also solved the hard and soft margin SVM cost function. As to the next month, I will try to summarize the KKT conditions and some other convex optimization methods that can be used in Machine Learning.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;Here is a great interpretation of KKT condition in SVM from &lt;a href=&quot;http://www.gatsby.ucl.ac.uk/~gretton/coursefiles/Slides5A.pdf&quot;&gt;Arthur Gretton
+Gatsby Unit, CSML, UCL&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 03 Apr 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/04/03/Why-SVM-(Support-Vector-Machine)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/03/Why-SVM-(Support-Vector-Machine)/</guid>
+        
+        <category>Machine Learning</category>
+        
+        <category>Optimization</category>
+        
+        <category>Python</category>
+        
+        <category>Classification</category>
+        
+        <category>Binary</category>
+        
+        <category>Perceptron</category>
+        
+        
+      </item>
     
       <item>
         <title>Introduction to Binary Classification -- Perceptron </title>
@@ -38,7 +198,7 @@
 \begin{array}{ll}
 {\mathbf{w}^{T} \mathbf{x}_i&gt;0} &amp; {\text { if } y_{i}=+1} \ \text{(blue scatters)}
 \\ 
-{\mathbf{w}^{T} \mathbf{x}&lt;0} &amp; {\text { if } y_{i}=-1} \ \text{(orange scatters)}
+{\mathbf{w}^{T} \mathbf{x}_i&lt;0} &amp; {\text { if } y_{i}=-1} \ \text{(orange scatters)}
 \end{array} %]]&gt;&lt;/script&gt;
 
 &lt;p&gt;Just like what we usually do to design cost function, we summarize &lt;em&gt;“costs”&lt;/em&gt; into one formula:&lt;/p&gt;
@@ -50,7 +210,7 @@
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;g_i(\mathbf{w}) = \text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
 \\ \Downarrow
 \\
-g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+g_i(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
 \\
 \\ \Downarrow
 \\ 
@@ -107,8 +267,6 @@ g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{log}(1 + e^{-y_{i} \mathbf{w}^{T} \
         <guid isPermaLink="true">http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/</guid>
         
         <category>Machine Learning</category>
-        
-        <category>Optimization</category>
         
         <category>Python</category>
         

@@ -7,7 +7,6 @@ author:     "LIN"
 header-img: "img/in-post/post-MLOptimization-5.jpg"
 tags:
     - Machine Learning
-    - Optimization    
     - Python
     - Classification
     - Binary
@@ -49,7 +48,7 @@ $$
 \begin{array}{ll}
 {\mathbf{w}^{T} \mathbf{x}_i>0} & {\text { if } y_{i}=+1} \ \text{(blue scatters)}
 \\ 
-{\mathbf{w}^{T} \mathbf{x}<0} & {\text { if } y_{i}=-1} \ \text{(orange scatters)}
+{\mathbf{w}^{T} \mathbf{x}_i<0} & {\text { if } y_{i}=-1} \ \text{(orange scatters)}
 \end{array}
 $$
 
@@ -67,7 +66,7 @@ $$
 g_i(\mathbf{w}) = \text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
 \\ \Downarrow
 \\
-g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
+g_i(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{sign}(-y_{i} \mathbf{w}^{T} \mathbf{x}_i )
 \\
 \\ \Downarrow
 \\ 
