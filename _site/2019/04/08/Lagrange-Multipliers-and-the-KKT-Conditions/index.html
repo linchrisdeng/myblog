@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="What did I do && What will I do">
+    <meta name="keywords"  content="">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lagrange Multipliers and the KKT Conditions - Lin Blog | Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="Introduction
+
+">
+    
+    <meta property="article:published_time" content="2019-04-08T07:00:00Z">
+    
+    
+    <meta property="article:author" content="LIN">
+    
+    
+    <meta property="article:tag" content="Optimization">
+    
+    <meta property="article:tag" content="Convex">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/sidebar_img.jpg">
+    <meta property="og:url" content="http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/">
+    <meta property="og:site_name" content="Lin Blog | Blog">
+    
+    <title>Lagrange Multipliers and the KKT Conditions - Lin Blog | Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- p5.js insert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lin Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="/archive/">Archive</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/in-post/KKT_03.jpg" width="0" height="0"> -->
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/in-post/KKT_03.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=Optimization" title="Optimization">Optimization</a>
+                        
+                        <a class="tag" href="/archive/?tag=Convex" title="Convex">Convex</a>
+                        
+                    </div>
+                    <h1>Lagrange Multipliers and the KKT Conditions</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by LIN on April 8, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+                <!-- Multi-Lingual -->
+                
+                <h2 id="introduction">Introduction</h2>
+
+<p>After the illustration of <a href="">convex constrained optimization</a>, we prepared to pursue the topic of lagrange multipliers and the KKT conditions. The goal of KKT is to find maximum or minimum of a function subject to some constraints. Before interpretation, let’ s have a look of KKT.</p>
+
+<p>Normal Form:</p>
+
+<script type="math/tex; mode=display">\begin{array}{ll}
+\text{min}\quad \quad f(\mathbf x)
+\\
+\text{s.t.} \\ \quad\quad\quad\begin{array}{l}{g_{i}(x) \leq 0 \quad i = 1,...,m} \\ {h_{j}(x)=0 \quad j = 1,...,l}\end{array}
+\end{array}</script>
+
+<p>KKT conditions:</p>
+
+<p>We associate each constraint (not including the sign constraints) with a <strong><em>Lagrangian multiplier</em></strong></p>
+
+<ul>
+  <li>Lagrangian</li>
+</ul>
+
+<script type="math/tex; mode=display">L(\mathbf{x, \mu}) = f(\mathbf{x}) + \mu_ig_i(x) + \lambda_j(x)</script>
+
+<ul>
+  <li>Main Condition</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f\left(x^{*}\right)=\sum_{i=1}^{m} \mu_{i} \nabla g_{i}\left(x^{*}\right)+\sum_{j=1}^{\ell} \lambda_{j} \nabla h_{j}\left(x^{*}\right)</script>
+
+<ul>
+  <li>Primal Feasibility</li>
+</ul>
+
+<script type="math/tex; mode=display">\begin{array}{l}{g_{i}\left(x^{*}\right) \leq 0, \text { for } i=1, \ldots, m} \\ {h_{j}\left(x^{*}\right)=0, \text { for } j=1, \ldots, \ell}\end{array}</script>
+
+<ul>
+  <li>Dual Feasibility</li>
+</ul>
+
+<script type="math/tex; mode=display">\mu_{i} \geq 0, \text { for } i=1, \ldots, m</script>
+
+<ul>
+  <li>Complementary Slackness</li>
+</ul>
+
+<script type="math/tex; mode=display">\mu_{i} g_{i}\left(x^{*}\right)=0, \text { for } i=1, \dots, m</script>
+
+<h2 id="lagrange-multiplier">Lagrange Multiplier</h2>
+
+<p>From the normal KKT conditions we may find that <strong>Lagrangian</strong> is the most important part in KKT conditions, which give us the solution to a constrained optimization problem orrurs when it meet both objective function and constraints. I will explain this by giving a example:</p>
+
+<p><script type="math/tex">\text{max} \quad f(x,y) = x^2y
+\\
+\text{s.t.} \quad x^2 +y^2 =5</script>
+The second-order gradient of it is $-4x^2$ which is not convex, but we maximize a concave function with a convex constraint means this is convex optimization problem. Following is the visualization of objective function.</p>
+
+<div>
+    <a href="https://plot.ly/~linchrisdeng/67/?share_key=KOEOFSRpADqwRp4fN5ZnkU" target="_blank" title="KKT_Model0" style="display: block; text-align: center;"><img src="https://plot.ly/~linchrisdeng/67.png?share_key=KOEOFSRpADqwRp4fN5ZnkU" alt="KKT_Model0" style="max-width: 100%;width: 600px;" width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="linchrisdeng:67" sharekey-plotly="KOEOFSRpADqwRp4fN5ZnkU" src="https://plot.ly/embed.js" async=""></script>
+</div>
+
+<p>Here I need to introduce the idea of <strong>contour line</strong> or iso-contour, which is used to describe the relationship between two variables and the value of objective function, for more details please check this <a href="https://en.wikipedia.org/wiki/Contour_line">wiki</a>.</p>
+
+<p><img src="/img/in-post/KKT_04.jpg" width="500" /></p>
+
+<p>Above is the contour line of out function $x^2y$, the blue circle is the constraint $x^2 +y^2 = 5$ or $x^2 + y^2 -5= 0$.</p>
+
+<p>Base on our understanding, the optimal solution will be laid on the tangent points 
+between objective function and constrint.</p>
+
+<p><img src="/img/in-post/KKT_06.jpg" width="500" /></p>
+
+<p>Then I added the gradient quiver  $x, y\in [-5,5]$ of the objective function:</p>
+
+<p><img src="/img/in-post/KKT_05.jpg" width="500" /></p>
+
+<p>Here there are one gradient for each tangent point, and this gradient is perpendicular to the point as well. In the meanwhile, our constraint also have gradients for the tangent point with the same direction as objective function.</p>
+
+<p>Following is plot of gradient, blue arrow for constraint, red for objective function.</p>
+
+<p><img src="/img/in-post/KKT_07.jpg" width="500" /></p>
+
+<p><img src="/img/in-post/KKT_08.jpg" width="500" /></p>
+
+<p>For now, I think you may understand how we derive the <strong>Lagrangian</strong> and <strong>Main condition</strong>:</p>
+
+<script type="math/tex; mode=display">\begin{array}{ll}
+\text{max} \quad f(x,y) = x^2y
+\\
+\text{s.t.} \ \ \quad g(x, y)
+\end{array}
+
+\\
+\text{where} \quad g(x, y) = x^2 +y^2 - 5</script>
+
+<script type="math/tex; mode=display">\Downarrow\\
+\nabla f(x^*, y^*) = \lambda\nabla g(x^*, y^*)</script>
+
+<h2 id="example">Example</h2>
+
+<p>Here is another example:</p>
+
+<script type="math/tex; mode=display">\begin{array}{ll}
+\text{min} \quad 2x_1^2 + 2x_1x_2 + x_2^2 - 10x_1 - 10x_2
+\\
+\text{s.t.} \quad \quad \quad x_1^2 +x_2^2 \leq 5
+\\
+\quad \quad \quad \quad 3x_1 + x_2 \geq 3
+
+\end{array}</script>
+
+<ul>
+  <li>Lagrangian:</li>
+</ul>
+
+<script type="math/tex; mode=display">L(\mathbf {x, \mu}) = 2x_1^2 + 2x_1x_2 + x_2^2 - 10x_1  - 10x_2 +
+\\ 
+\quad \quad \quad \mu_1(x_1^2 + x_2^2 - 5) + \mu_2(3x_1 + x_2 -3)</script>
+
+<ul>
+  <li>Main Conditions:</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{ll} 
+4 x_{1}+2 x_{2}-10+2 \mu_{1} x_{1}+3 \mu_{2} &=0 \\ 2 x_{1}+2 x_{2}-10+2 \mu_{1} x_{2}+\mu_{2} &=0 
+
+\end{array} %]]></script>
+
+<ul>
+  <li>Primal Feasibility:</li>
+</ul>
+
+<script type="math/tex; mode=display">\begin{aligned}
+x_{1}^{2}+x_{2}^{2} \leq 5
+\\
+3 x_{1}+x_{2} \geq 3
+\end{aligned}</script>
+
+<ul>
+  <li>Dual Feasibility</li>
+</ul>
+
+<script type="math/tex; mode=display">\mu_1 \geq0
+\\
+\mu_2 \leq 0</script>
+
+<ul>
+  <li>Complementarity:</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{ll} 
+\mu_{1} \cdot\left(x_{1}^{2}+x_{2}^{2}-5\right) &=0 
+\\ 
+\mu_{2} \cdot\left(3 x_{1}+x_{2}-3\right) &=0 
+\end{array} %]]></script>
+
+<h2 id="kkt--hard-margin-svm">KKT – Hard-Margin SVM</h2>
+
+<p>Because of the merge of gradient, we derived the main condition of KKT conditions, and this is how we get soft-margin SVM</p>
+
+<script type="math/tex; mode=display">\begin{array}{ll}
+\text{minimize}\  \ ||\mathbf{w}||_2
+\\
+\text{s.t} \ \ 
+\quad \quad \quad \frac{1}{N}\sum^N_{i=1}\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
+\end{array}
+
+\\
+\Downarrow
+\\
+L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \max \left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)
+\\
+\Downarrow
+\\
+L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)</script>
+
+<h2 id="summary">Summary</h2>
+
+<p>KKT conditions is one of the most important knowledge in convex optimization, this is also where machine learning and statistical models thrived from. In this post I briefly reviewed the KKT conditions combine with convex optimization problems, in future post I will review some models that manipulated KKT and their applications.</p>
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/04/06/Introduction-to-Convex-Constrained-Optimization/" data-toggle="tooltip" data-placement="top" title="Introduction to Convex Constrained Optimization">
+                                Previous<br>
+                                <span>Introduction to Convex Constrained Optimization</span>
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+                
+                
+            </div>
+            <!-- Side Catalog Container -->
+            
+                <div class="
+                    col-lg-2 col-lg-offset-0
+                    visible-lg-block
+                    sidebar-container
+                    catalog-container">
+                    <div class="side-catalog">
+                        <hr class="hidden-sm hidden-xs">
+                        <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                        </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+        <!-- Sidebar Container -->
+        <div class="
+            col-lg-8 col-lg-offset-2
+            col-md-10 col-md-offset-1
+            sidebar-container">
+            <!-- Featured Tags -->
+            
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        </a>
+        
+        
+                <a data-sort="0001" 
+                    href="/archive/?tag=Optimization"
+                    title="Optimization"
+                    rel="8">Optimization</a>
+        
+                <a data-sort="0003" 
+                    href="/archive/?tag=Machine+Learning"
+                    title="Machine Learning"
+                    rel="6">Machine Learning</a>
+        
+                <a data-sort="0003" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="6">Python</a>
+        
+                <a data-sort="0006" 
+                    href="/archive/?tag=Gradient+Descent"
+                    title="Gradient Descent"
+                    rel="3">Gradient Descent</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Binary"
+                    title="Binary"
+                    rel="2">Binary</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Classification"
+                    title="Classification"
+                    rel="2">Classification</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Convex"
+                    title="Convex"
+                    rel="2">Convex</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Logistic+Regression"
+                    title="Logistic Regression"
+                    rel="2">Logistic Regression</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Newton%27s+Method"
+                    title="Newton's Method"
+                    rel="2">Newton's Method</a>
+        
+                <a data-sort="0007" 
+                    href="/archive/?tag=Perceptron"
+                    title="Perceptron"
+                    rel="2">Perceptron
+    </div>
+</section>
+
+            <!-- Friends Blog -->
+            <!-- 
+<hr>
+<h5>LINKS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://huangxuan.me">Hux Blog</a></li>
+  
+  <li><a href="#">Foo</a></li>
+  
+  <li><a href="#">Bar</a></li>
+  
+  <li><a href="#">Example Friends</a></li>
+  
+  <li><a href="#">It helps SEO</a></li>
+  
+</ul>
+ -->
+        </div>
+    </div>
+</div>
+</article>
+
+
+<!-- Stuff for jsarr tag  -->
+
+<!-- End Stuff for jsarr tag  -->
+
+
+<!-- add support for mathjax by voleking-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    SVG: {
+      scale: 90
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+
+
+
+
+<!-- async load function -->
+<script>
+function async(u, c) {
+var d = document, t = 'script',
+o = d.createElement(t),
+s = d.getElementsByTagName(t)[0];
+o.src = u;
+if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+s.parentNode.insertBefore(o, s);
+}
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+anchors.options = {
+visible: 'always',
+placement: 'right',
+icon: ''
+};
+anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+})
+</script>
+<style>
+/* place left on bigger screen */
+@media all and (min-width: 800px) {
+.anchorjs-link{
+position: absolute;
+left: -0.75em;
+font-size: 1.1em;
+margin-top : -0.1em;
+}
+}
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/linchrisdeng">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.linkedin.com/in/lin-deng-280200137">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Lin Blog 2019
+                    <br>
+                    Powered by <a href="https://jekyllrb.com/">Jekyll</a> & 
+                    Theme by <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/structure">TeXt </a> &
+                        <a href="https://github.com/Huxpro/huxpro.github.io#boilerplate-beta">Hux</a> 
+
+<!--                     |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139933717-1';
+    var _gaDomain = 'linchrisdeng.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

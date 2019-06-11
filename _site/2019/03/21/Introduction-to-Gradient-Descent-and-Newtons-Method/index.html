@@ -61,6 +61,8 @@
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- p5.js insert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -115,6 +117,12 @@
                     </li>
                     
                     
+                    
+                    
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
                     
                     
                     
@@ -187,7 +195,6 @@
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="/img/in-post/post-MLOptimization-0.jpg" width="0" height="0"> -->
-
 <!-- Post Header -->
 
 
@@ -237,22 +244,18 @@
 
 
 
-
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-
-    <!-- Post Container -->
+            <!-- Post Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
-
                 <!-- Multi-Lingual -->
                 
-
-				<h2 id="introduction">Introduction</h2>
+                <h2 id="introduction">Introduction</h2>
 
 <p>For this blog I wanna give you some intuitions about how does optimization methods work. Without further ado let’s clarify a question:</p>
 
@@ -1235,58 +1238,52 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 <p>Code: <a href="https://github.com/linchrisdeng/ML_post/tree/master/ML_00_GD_NT">GitHub</a>, <a href="https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_00_GD_NT/ML_00_GD_NT.ipynb">nbviewer</a></p>
 
 
-
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/03/27/Optimization-Modeling-Sports-League-Realignment/" data-toggle="tooltip" data-placement="top" title="Optimization Modeling: Sports League Realignment">
-                        Previous<br>
-                        <span>Optimization Modeling: Sports League Realignment</span>
-                        </a>
-                    </li>
+                        <li class="previous">
+                            <a href="/2018/03/27/Optimization-Modeling-Sports-League-Realignment/" data-toggle="tooltip" data-placement="top" title="Optimization Modeling: Sports League Realignment">
+                                Previous<br>
+                                <span>Optimization Modeling: Sports League Realignment</span>
+                            </a>
+                        </li>
                     
                     
-                    <li class="next">
-                        <a href="/2019/03/26/Linear-Regression-Parameter-Estimation/" data-toggle="tooltip" data-placement="top" title="Linear Regression -- Parameter Estimation">
-                        Next<br>
-                        <span>Linear Regression -- Parameter Estimation</span>
-                        </a>
-                    </li>
+                        <li class="next">
+                            <a href="/2019/03/26/Linear-Regression-Parameter-Estimation/" data-toggle="tooltip" data-placement="top" title="Linear Regression -- Parameter Estimation">
+                                Next<br>
+                                <span>Linear Regression -- Parameter Estimation</span>
+                            </a>
+                        </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
-
                 
-
                 
-            </div>  
-
-    <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
+            </div>
+            <!-- Side Catalog Container -->
+            
+                <div class="
+                    col-lg-2 col-lg-offset-0
+                    visible-lg-block
+                    sidebar-container
+                    catalog-container">
+                    <div class="side-catalog">
+                        <hr class="hidden-sm hidden-xs">
+                        <h5>
                         <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
+                        </h5>
                     <ul class="catalog-body"></ul>
                 </div>
             </div>
         
-
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
+        <!-- Sidebar Container -->
+        <div class="
+            col-lg-8 col-lg-offset-2
+            col-md-10 col-md-offset-1
+            sidebar-container">
+            <!-- Featured Tags -->
+            
 
 
 <section>
@@ -1304,53 +1301,57 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
                 <a data-sort="0001" 
                     href="/archive/?tag=Optimization"
                     title="Optimization"
-                    rel="6">Optimization</a>
+                    rel="8">Optimization</a>
         
-                <a data-sort="0001" 
+                <a data-sort="0003" 
                     href="/archive/?tag=Machine+Learning"
                     title="Machine Learning"
                     rel="6">Machine Learning</a>
         
-                <a data-sort="0001" 
+                <a data-sort="0003" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="6">Python</a>
         
-                <a data-sort="0004" 
+                <a data-sort="0006" 
                     href="/archive/?tag=Gradient+Descent"
                     title="Gradient Descent"
                     rel="3">Gradient Descent</a>
         
-                <a data-sort="0005" 
+                <a data-sort="0007" 
                     href="/archive/?tag=Binary"
                     title="Binary"
                     rel="2">Binary</a>
         
-                <a data-sort="0005" 
+                <a data-sort="0007" 
                     href="/archive/?tag=Classification"
                     title="Classification"
                     rel="2">Classification</a>
         
-                <a data-sort="0005" 
+                <a data-sort="0007" 
+                    href="/archive/?tag=Convex"
+                    title="Convex"
+                    rel="2">Convex</a>
+        
+                <a data-sort="0007" 
                     href="/archive/?tag=Logistic+Regression"
                     title="Logistic Regression"
                     rel="2">Logistic Regression</a>
         
-                <a data-sort="0005" 
+                <a data-sort="0007" 
                     href="/archive/?tag=Newton%27s+Method"
                     title="Newton's Method"
                     rel="2">Newton's Method</a>
         
-                <a data-sort="0005" 
+                <a data-sort="0007" 
                     href="/archive/?tag=Perceptron"
                     title="Perceptron"
                     rel="2">Perceptron
     </div>
 </section>
 
-
-                <!-- Friends Blog -->
-                <!-- 
+            <!-- Friends Blog -->
+            <!-- 
 <hr>
 <h5>LINKS</h5>
 <ul class="list-inline">
@@ -1367,14 +1368,20 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
   
 </ul>
  -->
-            </div>
         </div>
     </div>
+</div>
 </article>
+
+
+<!-- Stuff for jsarr tag  -->
+
+<!-- End Stuff for jsarr tag  -->
+
 
 <!-- add support for mathjax by voleking-->
 
-  <script type="text/x-mathjax-config">
+<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: {
       equationNumbers: {
@@ -1398,45 +1405,39 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 
 
 
-
-
-
-
-
 <!-- async load function -->
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
+function async(u, c) {
+var d = document, t = 'script',
+o = d.createElement(t),
+s = d.getElementsByTagName(t)[0];
+o.src = u;
+if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+s.parentNode.insertBefore(o, s);
+}
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: ''
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
+async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+anchors.options = {
+visible: 'always',
+placement: 'right',
+icon: ''
+};
+anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+})
 </script>
 <style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
+/* place left on bigger screen */
+@media all and (min-width: 800px) {
+.anchorjs-link{
+position: absolute;
+left: -0.75em;
+font-size: 1.1em;
+margin-top : -0.1em;
+}
+}
 </style>
-
 
 
     <!-- Footer -->

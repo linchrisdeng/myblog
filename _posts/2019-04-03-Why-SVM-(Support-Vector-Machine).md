@@ -147,7 +147,7 @@ $$
 \text{minimize}\  \ ||\mathbf{w}||_2
 \\
 \text{s.t} \ \ 
-\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
+\quad \quad \quad \frac{1}{N}\sum^N_{i=1}\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
 \end{array}
 $$
 
@@ -168,11 +168,11 @@ After completing the KKT conditions, we can relax the conditions of the hard-mar
 
 
 $$
-g(\mathbf{w}) = C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) + \lambda||\mathbf{w}||_2
+g(\mathbf{w}) = ||\mathbf{w}||_2 + C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) 
 \\
 \Downarrow
 \\
-g(\mathbf{w}) = C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right) + \lambda||\mathbf{w}||_2
+g(\mathbf{w}) = ||\mathbf{w}||_2 +  C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right) 
 $$
 
 

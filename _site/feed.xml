@@ -5,9 +5,360 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 27 May 2019 21:45:39 -0500</pubDate>
-    <lastBuildDate>Mon, 27 May 2019 21:45:39 -0500</lastBuildDate>
+    <pubDate>Mon, 10 Jun 2019 22:10:55 -0500</pubDate>
+    <lastBuildDate>Mon, 10 Jun 2019 22:10:55 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Lagrange Multipliers and the KKT Conditions</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;After the illustration of &lt;a href=&quot;&quot;&gt;convex constrained optimization&lt;/a&gt;, we prepared to pursue the topic of lagrange multipliers and the KKT conditions. The goal of KKT is to find maximum or minimum of a function subject to some constraints. Before interpretation, let’ s have a look of KKT.&lt;/p&gt;
+
+&lt;p&gt;Normal Form:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{min}\quad \quad f(\mathbf x)
+\\
+\text{s.t.} \\ \quad\quad\quad\begin{array}{l}{g_{i}(x) \leq 0 \quad i = 1,...,m} \\ {h_{j}(x)=0 \quad j = 1,...,l}\end{array}
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;KKT conditions:&lt;/p&gt;
+
+&lt;p&gt;We associate each constraint (not including the sign constraints) with a &lt;strong&gt;&lt;em&gt;Lagrangian multiplier&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Lagrangian&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;L(\mathbf{x, \mu}) = f(\mathbf{x}) + \mu_ig_i(x) + \lambda_j(x)&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Main Condition&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla f\left(x^{*}\right)=\sum_{i=1}^{m} \mu_{i} \nabla g_{i}\left(x^{*}\right)+\sum_{j=1}^{\ell} \lambda_{j} \nabla h_{j}\left(x^{*}\right)&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Primal Feasibility&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{l}{g_{i}\left(x^{*}\right) \leq 0, \text { for } i=1, \ldots, m} \\ {h_{j}\left(x^{*}\right)=0, \text { for } j=1, \ldots, \ell}\end{array}&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dual Feasibility&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_{i} \geq 0, \text { for } i=1, \ldots, m&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Complementary Slackness&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_{i} g_{i}\left(x^{*}\right)=0, \text { for } i=1, \dots, m&lt;/script&gt;
+
+&lt;h2 id=&quot;lagrange-multiplier&quot;&gt;Lagrange Multiplier&lt;/h2&gt;
+
+&lt;p&gt;From the normal KKT conditions we may find that &lt;strong&gt;Lagrangian&lt;/strong&gt; is the most important part in KKT conditions, which give us the solution to a constrained optimization problem orrurs when it meet both objective function and constraints. I will explain this by giving a example:&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\text{max} \quad f(x,y) = x^2y
+\\
+\text{s.t.} \quad x^2 +y^2 =5&lt;/script&gt;
+The second-order gradient of it is $-4x^2$ which is not convex, but we maximize a concave function with a convex constraint means this is convex optimization problem. Following is the visualization of objective function.&lt;/p&gt;
+
+&lt;div&gt;
+    &lt;a href=&quot;https://plot.ly/~linchrisdeng/67/?share_key=KOEOFSRpADqwRp4fN5ZnkU&quot; target=&quot;_blank&quot; title=&quot;KKT_Model0&quot; style=&quot;display: block; text-align: center;&quot;&gt;&lt;img src=&quot;https://plot.ly/~linchrisdeng/67.png?share_key=KOEOFSRpADqwRp4fN5ZnkU&quot; alt=&quot;KKT_Model0&quot; style=&quot;max-width: 100%;width: 600px;&quot; width=&quot;600&quot; onerror=&quot;this.onerror=null;this.src='https://plot.ly/404.png';&quot; /&gt;&lt;/a&gt;
+    &lt;script data-plotly=&quot;linchrisdeng:67&quot; sharekey-plotly=&quot;KOEOFSRpADqwRp4fN5ZnkU&quot; src=&quot;https://plot.ly/embed.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here I need to introduce the idea of &lt;strong&gt;contour line&lt;/strong&gt; or iso-contour, which is used to describe the relationship between two variables and the value of objective function, for more details please check this &lt;a href=&quot;https://en.wikipedia.org/wiki/Contour_line&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_04.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Above is the contour line of out function $x^2y$, the blue circle is the constraint $x^2 +y^2 = 5$ or $x^2 + y^2 -5= 0$.&lt;/p&gt;
+
+&lt;p&gt;Base on our understanding, the optimal solution will be laid on the tangent points 
+between objective function and constrint.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_06.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I added the gradient quiver  $x, y\in [-5,5]$ of the objective function:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_05.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here there are one gradient for each tangent point, and this gradient is perpendicular to the point as well. In the meanwhile, our constraint also have gradients for the tangent point with the same direction as objective function.&lt;/p&gt;
+
+&lt;p&gt;Following is plot of gradient, blue arrow for constraint, red for objective function.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_07.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_08.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For now, I think you may understand how we derive the &lt;strong&gt;Lagrangian&lt;/strong&gt; and &lt;strong&gt;Main condition&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{max} \quad f(x,y) = x^2y
+\\
+\text{s.t.} \ \ \quad g(x, y)
+\end{array}
+
+\\
+\text{where} \quad g(x, y) = x^2 +y^2 - 5&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Downarrow\\
+\nabla f(x^*, y^*) = \lambda\nabla g(x^*, y^*)&lt;/script&gt;
+
+&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;Here is another example:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{min} \quad 2x_1^2 + 2x_1x_2 + x_2^2 - 10x_1 - 10x_2
+\\
+\text{s.t.} \quad \quad \quad x_1^2 +x_2^2 \leq 5
+\\
+\quad \quad \quad \quad 3x_1 + x_2 \geq 3
+
+\end{array}&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Lagrangian:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;L(\mathbf {x, \mu}) = 2x_1^2 + 2x_1x_2 + x_2^2 - 10x_1  - 10x_2 +
+\\ 
+\quad \quad \quad \mu_1(x_1^2 + x_2^2 - 5) + \mu_2(3x_1 + x_2 -3)&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Main Conditions:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{ll} 
+4 x_{1}+2 x_{2}-10+2 \mu_{1} x_{1}+3 \mu_{2} &amp;=0 \\ 2 x_{1}+2 x_{2}-10+2 \mu_{1} x_{2}+\mu_{2} &amp;=0 
+
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Primal Feasibility:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+x_{1}^{2}+x_{2}^{2} \leq 5
+\\
+3 x_{1}+x_{2} \geq 3
+\end{aligned}&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dual Feasibility&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_1 \geq0
+\\
+\mu_2 \leq 0&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Complementarity:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{ll} 
+\mu_{1} \cdot\left(x_{1}^{2}+x_{2}^{2}-5\right) &amp;=0 
+\\ 
+\mu_{2} \cdot\left(3 x_{1}+x_{2}-3\right) &amp;=0 
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;kkt--hard-margin-svm&quot;&gt;KKT – Hard-Margin SVM&lt;/h2&gt;
+
+&lt;p&gt;Because of the merge of gradient, we derived the main condition of KKT conditions, and this is how we get soft-margin SVM&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{minimize}\  \ ||\mathbf{w}||_2
+\\
+\text{s.t} \ \ 
+\quad \quad \quad \frac{1}{N}\sum^N_{i=1}\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
+\end{array}
+
+\\
+\Downarrow
+\\
+L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \max \left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)
+\\
+\Downarrow
+\\
+L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)&lt;/script&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;KKT conditions is one of the most important knowledge in convex optimization, this is also where machine learning and statistical models thrived from. In this post I briefly reviewed the KKT conditions combine with convex optimization problems, in future post I will review some models that manipulated KKT and their applications.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 08 Apr 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/</guid>
+        
+        <category>Optimization</category>
+        
+        <category>Convex</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Introduction to Convex Constrained Optimization</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://linchrisdeng.github.io/2019/04/03/Why-SVM-(Support-Vector-Machine)/&quot;&gt;Last post&lt;/a&gt;, I discussed the SVM’s soft-margin cost function without detailed interpretation , in this and next posts I will give an intuition of Duality of Convec Optimization problems and KKT conditions.&lt;/p&gt;
+
+&lt;p&gt;Before explain KKT, we need to think about why we need this tansformation. For &lt;strong&gt;unconstrined convex optimization&lt;/strong&gt; like MSE, cross-entropy cost, etc., we will find the &lt;em&gt;optimal solution&lt;/em&gt;, which fullfill our stop conditions: gradient == 0, enough iterations … However, after introducing the &lt;em&gt;margin&lt;/em&gt; to the  the original perceptron, we face a problem that how to optimize a cost function with constraints? Base on our limited experience and knowledge we all know that we need to summarize the constrained convex problem into a one-line convex cost function, the method we use is the Karush–Kuhn–Tucker &lt;strong&gt;(KKT) conditions&lt;/strong&gt;, but before this let’s illustrate what is &lt;strong&gt;Convex&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;convex-problems&quot;&gt;Convex Problems&lt;/h2&gt;
+
+&lt;p&gt;In previous posts, I have mentioned what is convex and how to implement &lt;em&gt;descent methods&lt;/em&gt; to it.  Here we need to dive into the definition of &lt;strong&gt;convex&lt;/strong&gt; with &lt;strong&gt;constraints&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Convex Combination&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For any $\mathbf{x, y} \subseteq \mathbb{R}^{n}$, a &lt;em&gt;convex combination&lt;/em&gt; of them is $\mathbf{z}=\lambda \mathbf{x}+(1-\lambda) \mathbf{y}, \lambda \in[0,1]$&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Convex Set&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A set is convex if it contains all convex combinations of any two points $\mathbf{x,y }$ and for $x = \sum^k_i\lambda_ix_i$ where all $x_i \in S$ and $\lambda_i \geq0$ satisfying $\sum^k_i\lambda_i =1$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_01.jpg&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can clearly find in non-convex set, between $\mathbf{x, y}$ not all points locates in this combination.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Convex Function&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;$f$ is convex if :&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x_{1}, x_{2} \in X, \forall \lambda \in[0,1] : \quad f\left(\lambda x_{1}+(1-\lambda) x_{2}\right) \leq \lambda f\left(x_{1}\right)+(1-\lambda) f\left(x_{2}\right)&lt;/script&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;is strictly convex if:&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\forall x_{1}, x_{2} \in X, \forall \lambda \in[0,1] : \quad f\left(\lambda x_{1}+(1-\lambda) x_{2}\right) &lt; \lambda f\left(x_{1}\right)+(1-\lambda) f\left(x_{2}\right) %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/in-post/KKT_02.jpg&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Convex&lt;/strong&gt; means stand on one point you can “see” any points on this set&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;function-convexity&quot;&gt;Function Convexity&lt;/h2&gt;
+
+&lt;p&gt;If $f(x)$ is a convex second-order differentiable function then its &lt;em&gt;Hessian Matrix&lt;/em&gt; must be &lt;strong&gt;PSD&lt;/strong&gt; (Positive Semi-definite) throughout the defined region.&lt;/p&gt;
+
+&lt;h3 id=&quot;proposition&quot;&gt;Proposition&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If $f_1, …, f_m$ are convex functions, then $f(x) = \text{max}{f_1(x), …f_m(x)}$ is a convex function.&lt;/p&gt;
+
+    &lt;p&gt;eg:&lt;/p&gt;
+
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;|x|, \text{max}\{a_i^Tx+b_i\}&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If $f_1, …, f_m$ are concave functions, then $f(x) = \text{min}{f_1(x), …f_m(x)}$ is a concave function.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If $\lambda_1,…,\lambda_m\geq0$ and functions $f_1,.,,,f_m$ are convex (concave), then $a_1f_1+  \cdots + a_mf_m$ is a convex (concave) function&lt;/p&gt;
+
+    &lt;p&gt;eg:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1^2 + x_2^2, e^x + |x|&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Convex Optimization:&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;􏰀 &lt;strong&gt;Minimize&lt;/strong&gt; a &lt;strong&gt;convex&lt;/strong&gt; function over a &lt;strong&gt;convex&lt;/strong&gt; feasible region
+􏰀 &lt;strong&gt;Maximize&lt;/strong&gt; a &lt;strong&gt;concave&lt;/strong&gt; function over a &lt;strong&gt;convex&lt;/strong&gt; feasible region&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;constraints-convexity&quot;&gt;Constraints Convexity&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If we have constraint $g(x) ≤ 0$, and $g(x)$ is &lt;strong&gt;convex&lt;/strong&gt;, then this is a &lt;strong&gt;convex&lt;/strong&gt; constraint&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If we have constraint $g(x) ≥ 0$, and $g(x)$ is &lt;strong&gt;concave&lt;/strong&gt;, then this is a &lt;strong&gt;convex&lt;/strong&gt; constraint&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Linear&lt;/strong&gt; constraints are always &lt;strong&gt;convex&lt;/strong&gt; constraints&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sometimes, even if a constraint doesn’t appear to be in the above form, it still could be a convex constraint&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For point 4, there is a example:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x^3 -  1 \leq 0&lt;/script&gt;
+
+&lt;p&gt;$x^3$  is obviously a convex function, however this constraint defines a convex feasible region ($x&amp;lt;1$) thus is a convex constraint.&lt;/p&gt;
+
+&lt;h2 id=&quot;convex-optimization&quot;&gt;Convex Optimization&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{min} \quad 2x_i^2 + x_1x_2 + x_2^2 - 5x_1 - 5x_2
+\\
+\text{s.t.} \quad \quad \quad \quad x_1^2 + x_2^2 \leq 5
+\\
+\quad \quad \quad \quad \quad 2x_1+x_2 \geq 5
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;Above is a convex optimization problem, however if we change the first constraint to $x_1^2 +x_2^2 \geq 5$, it won’t be a convex constraint.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{max} \quad \quad  xyz
+\\
+\text{s.t.} \quad \quad  x+2y+3z \leq3
+\\
+\quad \quad \quad \quad   x, y, z \geq 0
+\end{array}&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Convex optimization: maximize a concave or minimize a convex in a convex region&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This example, we unfortunately maximize a convex function, but we can transform this into a &lt;strong&gt;concave&lt;/strong&gt; function:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{ll}
+\text{max} \quad \quad  \text {log}(xyz)
+\\
+\text{s.t.} \quad \quad  x+2y+3z \leq3
+\\
+\quad \quad \quad \quad   x, y, z \geq 0
+\end{array}&lt;/script&gt;
+
+&lt;p&gt;In real world optimization problem, transformation will be applied to more complex functions and constraints, in machine learning field, we don’t need to worry too much about these &lt;em&gt;tricky&lt;/em&gt; methods.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 06 Apr 2019 07:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2019/04/06/Introduction-to-Convex-Constrained-Optimization/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/06/Introduction-to-Convex-Constrained-Optimization/</guid>
+        
+        <category>Optimization</category>
+        
+        <category>Convex</category>
+        
+        
+      </item>
     
       <item>
         <title>Why SVM (Support Vector Machine)? </title>
@@ -109,7 +460,7 @@ g(\mathbf{w})=\frac{1}{N} \sum_{i=1}^{N} \max \left(0,1-y_{i} \mathbf{w}^{T} \ma
 \text{minimize}\  \ ||\mathbf{w}||_2
 \\
 \text{s.t} \ \ 
-\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
+\quad \quad \quad \frac{1}{N}\sum^N_{i=1}\max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)=0 \ \ \ i = 1,...N 
 \end{array}&lt;/script&gt;
 
 &lt;p&gt;However, this hard-margin cost of SVM can only be used to train perfectly classified dataset due to its constraint, thus we need to relax this by using &lt;strong&gt;KKT Condition&lt;/strong&gt;, which is   one of the most important knowledge in convex optimization.&lt;/p&gt;
@@ -124,11 +475,11 @@ g(\mathbf{w})=\frac{1}{N} \sum_{i=1}^{N} \max \left(0,1-y_{i} \mathbf{w}^{T} \ma
 
 &lt;p&gt;After completing the KKT conditions, we can relax the conditions of the hard-margin SVM and get soft-margin SVM:&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) + \lambda||\mathbf{w}||_2
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;g(\mathbf{w}) = ||\mathbf{w}||_2 + C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right) 
 \\
 \Downarrow
 \\
-g(\mathbf{w}) = C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right) + \lambda||\mathbf{w}||_2&lt;/script&gt;
+g(\mathbf{w}) = ||\mathbf{w}||_2 +  C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)&lt;/script&gt;
 
 &lt;p&gt;where $C$ means the penalty we given to misclassified, which determines the width of the  margin (large $C \ \Rightarrow $  smaller margin, vice versa)&lt;/p&gt;
 
