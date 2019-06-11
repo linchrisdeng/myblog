@@ -257,3 +257,10 @@ $$
 ## Summary 
 
 KKT conditions is one of the most important knowledge in convex optimization, this is also where machine learning and statistical models thrived from. In this post I briefly reviewed the KKT conditions combine with convex optimization problems, in future post I will review some models that manipulated KKT and their applications.
+
+
+
+-------
+
+[GitHub](<https://github.com/linchrisdeng/ML_post/tree/master/ML_05_KKT>) | [nbviewer](<https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_05_KKT/lagrangeVisualization.ipynb>)
+

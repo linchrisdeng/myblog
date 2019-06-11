@@ -5,8 +5,8 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 10 Jun 2019 22:10:55 -0500</pubDate>
-    <lastBuildDate>Mon, 10 Jun 2019 22:10:55 -0500</lastBuildDate>
+    <pubDate>Mon, 10 Jun 2019 22:16:46 -0500</pubDate>
+    <lastBuildDate>Mon, 10 Jun 2019 22:16:46 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -191,6 +191,18 @@ L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \m
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;KKT conditions is one of the most important knowledge in convex optimization, this is also where machine learning and statistical models thrived from. In this post I briefly reviewed the KKT conditions combine with convex optimization problems, in future post I will review some models that manipulated KKT and their applications.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_05_KKT&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_05_KKT/lagrangeVisualization.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
 </description>
         <pubDate>Mon, 08 Apr 2019 07:00:00 -0500</pubDate>
         <link>http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/</link>
@@ -469,7 +481,7 @@ g(\mathbf{w})=\frac{1}{N} \sum_{i=1}^{N} \max \left(0,1-y_{i} \mathbf{w}^{T} \ma
 
 &lt;p&gt;I will make this as an individual post because it contains too much content need to be well explained.&lt;/p&gt;
 
-&lt;p&gt;Here is the &lt;a href=&quot;&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here is the &lt;a href=&quot;https://linchrisdeng.github.io/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;soft-margin-svm&quot;&gt;Soft-Margin SVM&lt;/h2&gt;
 

@@ -160,7 +160,7 @@ However, this hard-margin cost of SVM can only be used to train perfectly classi
 
 I will make this as an individual post because it contains too much content need to be well explained.
 
-Here is the [Link]() 
+Here is the [Link](<https://linchrisdeng.github.io/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/>)
 
 ## Soft-Margin SVM
 
