@@ -244,7 +244,7 @@ $$
 \\
 \Downarrow
 \\
-L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \max \left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)
+L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \max \left(0,1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}\right)
 \\
 \Downarrow
 \\

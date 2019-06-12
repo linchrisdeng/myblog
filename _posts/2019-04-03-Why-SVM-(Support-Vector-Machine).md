@@ -172,7 +172,7 @@ g(\mathbf{w}) = ||\mathbf{w}||_2 + C\sum^N_{i=1}\text{max}\left(0, 1-y_{i} \math
 \\
 \Downarrow
 \\
-g(\mathbf{w}) = ||\mathbf{w}||_2 +  C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right) 
+g(\mathbf{w}) = ||\mathbf{w}||_2 +  C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \mathbf{w}^{T} \mathbf{x}_{i}}\right)
 $$
 
 
