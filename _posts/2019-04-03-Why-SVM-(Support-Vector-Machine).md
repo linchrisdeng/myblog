@@ -120,9 +120,9 @@ $$
 \Downarrow
 \\
 \begin{array}{ll}
-{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}>0} & {\text { correctly classified }}
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}<0} & {\text { correctly classified }}
 \\ 
-{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}<0} & {\text { wrongly classified } }
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}>0} & {\text { wrongly classified } }
 \end{array}
 $$
 

@@ -5,8 +5,8 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Jun 2019 18:14:55 -0500</pubDate>
-    <lastBuildDate>Wed, 12 Jun 2019 18:14:55 -0500</lastBuildDate>
+    <pubDate>Fri, 05 Jul 2019 13:31:00 -0500</pubDate>
+    <lastBuildDate>Fri, 05 Jul 2019 13:31:00 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -1130,9 +1130,10 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
 
 &lt;p&gt;This is not a convex problem, hence we cannot treat this least squares as linear regression. Then we give a derivative to the &lt;em&gt;least squares&lt;/em&gt; cost&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\nabla g({\mathbf{w}})=2 \sum_{i=1}^{N}\left(\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)-y_{i}\right) \sigma\left(
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\nabla g({\mathbf{w}})=2 \sum_{i=1}^{N}\left(\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)-y_{i}\right) \sigma\left(
 {\mathbf{w}}^{T} {\mathbf{x_i}}\right)\left(1-\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)\right) {\mathbf{x}}_{i}&lt;/script&gt;
-Combining the gradient cost function and visualization, this a non-convex problem. And it may cause a problem that some parts of the cost function is too &lt;em&gt;flat&lt;/em&gt; that means it will force the gradient or newton stop at some bad parameters.&lt;/p&gt;
+
+&lt;p&gt;Combining the gradient cost function and visualization, this a non-convex problem. And it may cause a problem that some parts of the cost function is too &lt;em&gt;flat&lt;/em&gt; that means it will force the gradient or newton stop at some bad parameters.&lt;/p&gt;
 
 &lt;p&gt;For this gradient function, it can easily return $0$ when $sigmoid = 1$ with large input value, let me try this Mean Square Error as cost function:&lt;/p&gt;
 

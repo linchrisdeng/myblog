@@ -567,9 +567,10 @@
 
 <p>This is not a convex problem, hence we cannot treat this least squares as linear regression. Then we give a derivative to the <em>least squares</em> cost</p>
 
-<p><script type="math/tex">\nabla g({\mathbf{w}})=2 \sum_{i=1}^{N}\left(\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)-y_{i}\right) \sigma\left(
+<script type="math/tex; mode=display">\nabla g({\mathbf{w}})=2 \sum_{i=1}^{N}\left(\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)-y_{i}\right) \sigma\left(
 {\mathbf{w}}^{T} {\mathbf{x_i}}\right)\left(1-\sigma\left({\mathbf{w}}^{T} {\mathbf{x_i}}\right)\right) {\mathbf{x}}_{i}</script>
-Combining the gradient cost function and visualization, this a non-convex problem. And it may cause a problem that some parts of the cost function is too <em>flat</em> that means it will force the gradient or newton stop at some bad parameters.</p>
+
+<p>Combining the gradient cost function and visualization, this a non-convex problem. And it may cause a problem that some parts of the cost function is too <em>flat</em> that means it will force the gradient or newton stop at some bad parameters.</p>
 
 <p>For this gradient function, it can easily return $0$ when $sigmoid = 1$ with large input value, let me try this Mean Square Error as cost function:</p>
 
