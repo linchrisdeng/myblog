@@ -5,8 +5,8 @@
     <description>What did I do &amp;&amp; What will I do</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 05 Jul 2019 13:31:00 -0500</pubDate>
-    <lastBuildDate>Fri, 05 Jul 2019 13:31:00 -0500</lastBuildDate>
+    <pubDate>Mon, 04 Nov 2019 21:22:36 +0800</pubDate>
+    <lastBuildDate>Mon, 04 Nov 2019 21:22:36 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -204,7 +204,7 @@ L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \m
 &lt;/table&gt;
 
 </description>
-        <pubDate>Mon, 08 Apr 2019 07:00:00 -0500</pubDate>
+        <pubDate>Mon, 08 Apr 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/04/08/Lagrange-Multipliers-and-the-KKT-Conditions/</guid>
         
@@ -361,7 +361,7 @@ L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \m
 &lt;p&gt;In real world optimization problem, transformation will be applied to more complex functions and constraints, in machine learning field, we don’t need to worry too much about these &lt;em&gt;tricky&lt;/em&gt; methods.&lt;/p&gt;
 
 </description>
-        <pubDate>Sat, 06 Apr 2019 07:00:00 -0500</pubDate>
+        <pubDate>Sat, 06 Apr 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/04/06/Introduction-to-Convex-Constrained-Optimization/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/04/06/Introduction-to-Convex-Constrained-Optimization/</guid>
         
@@ -453,9 +453,9 @@ L(\mathbf {w}, C)=\|\mathbf{w}\|_{2}+C \sum_{i=1}^{N} \log \left(1+e^{1-y_{i} \m
 \Downarrow
 \\
 \begin{array}{ll}
-{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&gt;0} &amp; {\text { correctly classified }}
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&lt;0} &amp; {\text { correctly classified }}
 \\ 
-{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&lt;0} &amp; {\text { wrongly classified } }
+{1-y_i\mathbf{w}^{T} \mathbf{x}_{i}&gt;0} &amp; {\text { wrongly classified } }
 \end{array} %]]&gt;&lt;/script&gt;
 
 &lt;p&gt;Now we have the cost function of SVM&lt;/p&gt;
@@ -513,7 +513,7 @@ g(\mathbf{w}) = ||\mathbf{w}||_2 +  C\sum^N_{i=1}\text{log}\left(1+e^{1-y_{i} \m
 Gatsby Unit, CSML, UCL&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 03 Apr 2019 07:00:00 -0500</pubDate>
+        <pubDate>Wed, 03 Apr 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/04/03/Why-SVM-(Support-Vector-Machine)/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/04/03/Why-SVM-(Support-Vector-Machine)/</guid>
         
@@ -625,7 +625,7 @@ g(\mathbf{w}) = \frac{1}{N}\sum^N_{i=1}\text{log}(1 + e^{-y_{i} \mathbf{w}^{T} \
 &lt;/table&gt;
 
 </description>
-        <pubDate>Mon, 01 Apr 2019 07:00:00 -0500</pubDate>
+        <pubDate>Mon, 01 Apr 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/04/01/Introduction-to-Binary-Classification-Perceptron/</guid>
         
@@ -799,7 +799,7 @@ g(\mathbf w) = \frac{1}{N}\sum^N_{i = 1}\log \left(1 +e^{ -y_i\mathbf{w}^{T} \ma
 
 &lt;p&gt;More Details please check &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_03_tanh&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_03_tanh/Logit_tanh.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Fri, 29 Mar 2019 07:00:00 -0500</pubDate>
+        <pubDate>Fri, 29 Mar 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/03/29/Logistic-Regression-tanh-Cost-Function/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/03/29/Logistic-Regression-tanh-Cost-Function/</guid>
         
@@ -1476,7 +1476,7 @@ g_{i}(\mathbf{w})=\left\{\begin{array}{ll}{-\log \left(\sigma\left(\mathbf{w}^{T
 &lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_02_Logistic_Regression&quot;&gt;GItHub&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_02_Logistic_Regression/ML_02_logit.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 27 Mar 2019 07:00:00 -0500</pubDate>
+        <pubDate>Wed, 27 Mar 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/03/27/Logistic-Regression-Cross-Entropy-Cost-Function/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/03/27/Logistic-Regression-Cross-Entropy-Cost-Function/</guid>
         
@@ -1672,7 +1672,7 @@ Regardless of the dataset, the least square cost function for linear regression 
 &lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_01_Regression&quot;&gt;Github&lt;/a&gt;, &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_01_Regression/ML_01_regression.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 26 Mar 2019 07:00:00 -0500</pubDate>
+        <pubDate>Tue, 26 Mar 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/03/26/Linear-Regression-Parameter-Estimation/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/03/26/Linear-Regression-Parameter-Estimation/</guid>
         
@@ -2672,7 +2672,7 @@ iter = 2 | w = 0.4900183490741459 | gradient: -0.0022327095634864236
 &lt;p&gt;Code: &lt;a href=&quot;https://github.com/linchrisdeng/ML_post/tree/master/ML_00_GD_NT&quot;&gt;GitHub&lt;/a&gt;, &lt;a href=&quot;https://nbviewer.jupyter.org/github/linchrisdeng/ML_post/blob/master/ML_00_GD_NT/ML_00_GD_NT.ipynb&quot;&gt;nbviewer&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 21 Mar 2019 07:00:00 -0500</pubDate>
+        <pubDate>Thu, 21 Mar 2019 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2019/03/21/Introduction-to-Gradient-Descent-and-Newtons-Method/</link>
         <guid isPermaLink="true">http://localhost:4000/2019/03/21/Introduction-to-Gradient-Descent-and-Newtons-Method/</guid>
         
@@ -2882,7 +2882,7 @@ is in the process of assigning 16 teams to four divisions in such a way that ove
 &lt;/ol&gt;
 
 </description>
-        <pubDate>Tue, 27 Mar 2018 07:00:00 -0500</pubDate>
+        <pubDate>Tue, 27 Mar 2018 20:00:00 +0800</pubDate>
         <link>http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/03/27/Optimization-Modeling-Sports-League-Realignment/</guid>
         

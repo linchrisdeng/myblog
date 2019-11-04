@@ -32,25 +32,23 @@ $$
 
 Output $Y$: 
 
-$$Y = [y_1, y_2, ..., y_n]^T$$  
+$$Y^T = [y_1, y_2, ..., y_n]$$  
 
-$N + 1$ parameters: 
+$P+1$ parameters: 
 
-$$W = [w_0, w_1, w_2, ..., w_n]^T$$  
+$$W^T = [w_0, w_1, w_2, ..., w_p]$$   
 
 Normal form of linear regression: 
 
-$$y_p \approx w_0 + w_1x_{p, 1} + w_2x_{p,2} + \cdots + w_nx_{p,n}$$
+$$y_p \approx w_0 + w_1x_{p, 1} + w_2x_{p,2} + \cdots + w_px_{p,n}$$ 
 
 or 
 
-$$y_p = w_0 + w_1x_{i, 1} + w_2x_{i,2} + \cdots + w_nx_{i,n} + \varepsilon_i, \ \ \ \ \ \ \ i = 1,...n$$   
+$$y_i = w_0 + w_1x_{i, 1} + w_2x_{i,2} + \cdots + w_px_{i,n} + \varepsilon_i, \ \ \ \ \ \ \ i = 1,...n$$   
 
 where $\varepsilon$ is residual (error) to the fitness line 
 
-Full equation:
 
-$$Y \approx W^TX$$ 
 
 
 
