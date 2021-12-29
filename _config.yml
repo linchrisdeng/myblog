@@ -83,7 +83,7 @@ duoshuo_share: false                     # set to false if you want to use Comme
 ba_track_id: #4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
 ga_track_id: UA-139933717-1      # Format: UA-xxxxxx-xx
-ga_domain: linchrisdeng.github.io  #huangxuan.me
+ga_domain: linchrisdeng.github.io/myblog  #huangxuan.me
 
 
 
